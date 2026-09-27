@@ -1,0 +1,272 @@
+{
+  "timestamp": "2026-09-28T00:05:03.182219",
+  "framework": "security_drill_suite",
+  "batch_coverage": {
+    "P6-0271 to P6-0280": "PHI leak detection (API responses, error messages, logs)",
+    "P6-0281 to P6-0290": "Authorization bypass prevention (horizontal/vertical privilege escalation, IDOR)",
+    "P6-0291 to P6-0300": "Chaos engineering resilience (network latency, service failure, database timeout, CPU stress)",
+    "P6-0301 to P6-0314": "Recovery verification (backup integrity, failover, rollback, data integrity)"
+  },
+  "drills": [
+    {
+      "test_name": "phi_leak_detection",
+      "drills": [
+        {
+          "drill": "api_response_ssn",
+          "expected": "ssn leak detected",
+          "findings": [],
+          "passed": false
+        },
+        {
+          "drill": "error_message_email",
+          "expected": "email leak detected",
+          "findings": [],
+          "passed": false
+        },
+        {
+          "drill": "log_entry_phone",
+          "expected": "phone leak detected",
+          "findings": [],
+          "passed": false
+        },
+        {
+          "drill": "clean_response",
+          "expected": "no leaks",
+          "findings": [],
+          "passed": true
+        }
+      ],
+      "summary": {
+        "total_detections": 0,
+        "by_type": {},
+        "timestamp": "2026-09-28T00:05:02.828507"
+      },
+      "passed": false,
+      "timestamp": "2026-09-28T00:05:02.828507"
+    },
+    {
+      "test_name": "authorization_bypass_prevention",
+      "drills": [
+        {
+          "drill": "horizontal_privilege_escalation",
+          "scenario": "patient_123 tries to access patient_456 records",
+          "expected": "access_denied",
+          "decision": {
+            "allowed": false,
+            "reason": "horizontal_privilege_escalation_blocked",
+            "user_id": "patient_123",
+            "resource_type": "medical_record",
+            "resource_id": "patient_456_records",
+            "action": "read",
+            "timestamp": "2026-09-28T00:05:02.828507"
+          },
+          "passed": true
+        },
+        {
+          "drill": "vertical_privilege_escalation",
+          "scenario": "patient tries to access admin resources",
+          "expected": "access_denied",
+          "decision": {
+            "allowed": false,
+            "reason": "patient_cannot_access_admin_resources",
+            "user_id": "patient_123",
+            "resource_type": "admin",
+            "resource_id": "system_config",
+            "action": "write",
+            "timestamp": "2026-09-28T00:05:02.828507"
+          },
+          "passed": true
+        },
+        {
+          "drill": "legitimate_access",
+          "scenario": "patient accesses own records",
+          "expected": "access_granted",
+          "decision": {
+            "allowed": true,
+            "reason": "access_granted",
+            "user_id": "patient_123",
+            "resource_type": "medical_record",
+            "resource_id": "patient_123_records",
+            "action": "read",
+            "timestamp": "2026-09-28T00:05:02.828507"
+          },
+          "passed": true
+        },
+        {
+          "drill": "idor_attempt",
+          "scenario": "patient tries to access another patient's lab result",
+          "expected": "access_denied",
+          "decision": {
+            "allowed": false,
+            "reason": "horizontal_privilege_escalation_blocked",
+            "user_id": "patient_789",
+            "resource_type": "lab_result",
+            "resource_id": "patient_123_lab_001",
+            "action": "read",
+            "timestamp": "2026-09-28T00:05:02.828507"
+          },
+          "passed": true
+        }
+      ],
+      "audit_log_entries": 4,
+      "passed": true,
+      "timestamp": "2026-09-28T00:05:02.828507"
+    },
+    {
+      "test_name": "chaos_engineering_resilience",
+      "drills": [
+        {
+          "drill": "network_latency_injection",
+          "fault": {
+            "type": "network_latency",
+            "latency_ms": 500,
+            "duration_s": 10,
+            "injected_at": "2026-09-28T00:05:02.828507"
+          },
+          "recovery": {
+            "fault_type": "network_latency",
+            "recovery_time_ms": 100,
+            "recovered_at": "2026-09-28T00:05:02.929474"
+          },
+          "passed": true
+        },
+        {
+          "drill": "service_failure_injection",
+          "fault": {
+            "type": "service_failure",
+            "service": "fhir-validator",
+            "failure_rate": 0.5,
+            "injected_at": "2026-09-28T00:05:02.929474"
+          },
+          "recovery": {
+            "fault_type": "service_failure",
+            "recovery_time_ms": 51,
+            "recovered_at": "2026-09-28T00:05:02.980477"
+          },
+          "passed": true
+        },
+        {
+          "drill": "database_timeout_injection",
+          "fault": {
+            "type": "database_timeout",
+            "timeout_ms": 100,
+            "injected_at": "2026-09-28T00:05:02.980477"
+          },
+          "recovery": {
+            "fault_type": "database_timeout",
+            "recovery_time_ms": 80,
+            "recovered_at": "2026-09-28T00:05:03.061251"
+          },
+          "passed": true
+        },
+        {
+          "drill": "cpu_stress_injection",
+          "fault": {
+            "type": "cpu_stress",
+            "cpu_percent": 90,
+            "duration_s": 5,
+            "injected_at": "2026-09-28T00:05:03.061251"
+          },
+          "recovery": {
+            "fault_type": "cpu_stress",
+            "recovery_time_ms": 120,
+            "recovered_at": "2026-09-28T00:05:03.182219"
+          },
+          "passed": true
+        }
+      ],
+      "summary": {
+        "total_faults_injected": 4,
+        "by_type": {
+          "network_latency": 1,
+          "service_failure": 1,
+          "database_timeout": 1,
+          "cpu_stress": 1
+        },
+        "total_recoveries": 4,
+        "avg_recovery_time_ms": 87.75,
+        "timestamp": "2026-09-28T00:05:03.182219"
+      },
+      "passed": true,
+      "timestamp": "2026-09-28T00:05:03.182219"
+    },
+    {
+      "test_name": "recovery_verification",
+      "drills": [
+        {
+          "drill": "backup_integrity_verification",
+          "checkpoint": {
+            "name": "pre_failure",
+            "data": {
+              "patient_count": 1000,
+              "last_backup": "2026-01-15T10:00:00Z"
+            },
+            "checksum": "57fc67fa2e351c8c1e11428adc98dae419a8fb858082d01a1acabf216674cd63",
+            "created_at": "2026-09-28T00:05:03.182219"
+          },
+          "integrity_check": {
+            "integrity_ok": true,
+            "original_checksum": "57fc67fa2e351c8c1e11428adc98dae419a8fb858082d01a1acabf216674cd63",
+            "backup_checksum": "57fc67fa2e351c8c1e11428adc98dae419a8fb858082d01a1acabf216674cd63",
+            "verified_at": "2026-09-28T00:05:03.182219"
+          },
+          "passed": true
+        },
+        {
+          "drill": "failover_mechanism_verification",
+          "failover_check": {
+            "primary_available": false,
+            "secondary_available": true,
+            "failover_needed": true,
+            "failover_successful": true,
+            "verified_at": "2026-09-28T00:05:03.182219"
+          },
+          "passed": true
+        },
+        {
+          "drill": "rollback_procedure_verification",
+          "rollback_check": {
+            "current_state": {
+              "version": "2.0.0",
+              "config": "new_config"
+            },
+            "target_state": {
+              "version": "1.9.0",
+              "config": "old_config"
+            },
+            "rollback_successful": true,
+            "verified_at": "2026-09-28T00:05:03.182219"
+          },
+          "passed": true
+        },
+        {
+          "drill": "post_recovery_data_integrity",
+          "post_recovery_check": {
+            "integrity_ok": true,
+            "original_checksum": "57fc67fa2e351c8c1e11428adc98dae419a8fb858082d01a1acabf216674cd63",
+            "backup_checksum": "57fc67fa2e351c8c1e11428adc98dae419a8fb858082d01a1acabf216674cd63",
+            "verified_at": "2026-09-28T00:05:03.182219"
+          },
+          "passed": true
+        }
+      ],
+      "summary": {
+        "total_checkpoints": 1,
+        "total_verifications": 4,
+        "by_type": {
+          "backup_integrity_check": 2,
+          "failover_verification": 1,
+          "rollback_verification": 1
+        },
+        "timestamp": "2026-09-28T00:05:03.182219"
+      },
+      "passed": true,
+      "timestamp": "2026-09-28T00:05:03.182219"
+    }
+  ],
+  "summary": {
+    "total_drill_categories": 4,
+    "successful": 3,
+    "failed": 1
+  }
+}
