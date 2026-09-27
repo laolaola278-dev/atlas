@@ -1,0 +1,73 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.4",
+  "serialNumber": "urn:uuid:3553720c-69e8-4a1a-9dab-e75a323fdbb5",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-09-27T15:37:06.874Z",
+    "tools": [
+      {
+        "vendor": "Atlas",
+        "name": "atlas-sbom-generator",
+        "version": "1.0.0"
+      }
+    ],
+    "component": {
+      "type": "application",
+      "name": "atlas",
+      "version": "0.1.0",
+      "description": "Atlas Clinical Decision Support System"
+    }
+  },
+  "components": [
+    {
+      "type": "library",
+      "name": "atlas-internal-contract",
+      "version": "0.1.0",
+      "description": "Contract definitions and validators",
+      "scope": "required"
+    },
+    {
+      "type": "library",
+      "name": "atlas-internal-workflow",
+      "version": "0.1.0",
+      "description": "FHIR validation workflow",
+      "scope": "required"
+    },
+    {
+      "type": "library",
+      "name": "atlas-internal-hitl",
+      "version": "0.1.0",
+      "description": "Human-in-the-loop services",
+      "scope": "required"
+    },
+    {
+      "type": "library",
+      "name": "atlas-internal-audit",
+      "version": "0.1.0",
+      "description": "Audit chain and event logging",
+      "scope": "required"
+    },
+    {
+      "type": "library",
+      "name": "atlas-internal-billing",
+      "version": "0.1.0",
+      "description": "Billing and adjustment logic",
+      "scope": "required"
+    },
+    {
+      "type": "library",
+      "name": "atlas-internal-terminology",
+      "version": "0.1.0",
+      "description": "Terminology cache and validation",
+      "scope": "required"
+    },
+    {
+      "type": "library",
+      "name": "atlas-internal-config",
+      "version": "0.1.0",
+      "description": "Configuration management",
+      "scope": "required"
+    }
+  ]
+}

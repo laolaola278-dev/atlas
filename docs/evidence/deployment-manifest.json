@@ -1,0 +1,44 @@
+{
+  "name": "atlas",
+  "version": "0.1.0",
+  "timestamp": "2026-09-27T15:37:06.888Z",
+  "baseline": "p0-baseline",
+  "artifacts": {
+    "python": {
+      "modules": [
+        "internal.contract",
+        "internal.workflow",
+        "internal.hitl",
+        "internal.audit",
+        "internal.billing",
+        "internal.terminology",
+        "internal.config"
+      ],
+      "tests": 818,
+      "coverage": "pending"
+    },
+    "go": {
+      "modules": [
+        "internal/config",
+        "internal/contract",
+        "internal/hitl",
+        "internal/terminology"
+      ],
+      "build": "pending (Go toolchain required)"
+    },
+    "proto": {
+      "files": 23,
+      "generated": false
+    },
+    "evidence": {
+      "traceability": "docs/evidence/traceability-matrix.json",
+      "sbom": "docs/evidence/sbom-cyclonedx.json",
+      "p0Closure": "docs/evidence/p0-closure-report.md"
+    }
+  },
+  "deployment": {
+    "method": "pending",
+    "rollback": "pending",
+    "signature": "pending"
+  }
+}
