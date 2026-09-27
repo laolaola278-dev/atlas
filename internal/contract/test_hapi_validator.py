@@ -12,6 +12,7 @@ Two groups:
 """
 from __future__ import annotations
 
+import json
 import os
 import tempfile
 import unittest
@@ -168,6 +169,19 @@ class OfficialEngineTests(unittest.TestCase):
     def setUpClass(cls) -> None:
         cls.config = engine_config()
         cls.version = validator_version(cls.config)
+
+    def test_official_validator_accepts_the_atlas_transaction_bundle(self) -> None:
+        # The bundle the vertical slice feeds into stage one must itself be valid
+        # FHIR, including every nested resource, or the Bundle stage is only
+        # Atlas-side structural checking.
+        source = _ROOT / "testdata" / "fhir" / "synthetic" / "valid-patient-bundle.json"
+        bundle = json.loads(source.read_text(encoding="utf-8"))
+        record = validate_payload(bundle)
+        self.assertEqual(record["outcome"], "pass", record.get("issues"))
+        self.assertEqual(record["errorCount"], 0, record.get("issues"))
+        self.assertEqual(bundle["resourceType"], "Bundle")
+        self.assertEqual(len(bundle["entry"]), 2)
+        self.assertGreaterEqual(record["issueCount"], 0)
 
     def test_version_is_recorded(self) -> None:
         self.assertRegex(self.version, r"^\d+\.\d+\.\d+")

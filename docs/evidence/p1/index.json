@@ -4,7 +4,7 @@
   "crlf_artifacts": [],
   "engine_available": true,
   "environment": {
-    "git_revision_at_generation": "dd37e04",
+    "git_revision_at_generation": "bbd0263",
     "go_toolchain_available": false,
     "go_toolchain_note": "go is not on PATH here; go test and gofmt were not executed.",
     "python_version": "3.11.15"
@@ -37,7 +37,7 @@
       "command": "C:\\Users\\admin\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe -B tools/evidence/traceability.py",
       "exit_code": 0,
       "output_tail": [
-        "TOTAL      384             38        8     338           1022         22910        560000      560000             376",
+        "TOTAL      384             38        8     338           1022         22978        560000      560000             376",
         "declared-vs-target mismatches (0): none",
         "completion claims without full file evidence (0): none"
       ]
@@ -46,7 +46,7 @@
       "command": "C:\\Users\\admin\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe -B tools/evidence/python_gates.py",
       "exit_code": 0,
       "output_tail": [
-        "Ran 808 tests in 91.829s",
+        "Ran 818 tests in 141.180s",
         "",
         "OK"
       ]
@@ -72,16 +72,16 @@
   ],
   "gates_failed": 0,
   "gates_not_run": 0,
-  "generated_at": "2026-09-27T12:44:10Z",
+  "generated_at": "2026-09-27T13:23:16Z",
   "index_version": "1.3",
   "phase": "P1",
   "rows": [
     {
-      "bytes": 5317,
+      "bytes": 5849,
       "crlf": false,
-      "lines": 81,
+      "lines": 85,
       "path": "docs/evidence/p1/README.md",
-      "sha256": "242084fbce9fcd629ede52b994c77e1921667fa10222feb39f1f8178f4b601bc",
+      "sha256": "b12f25be70b0742e5c1388ad3d16eb4ab1bf4b33f6d2192704b7570f96b999d4",
       "status": "measured"
     },
     {
@@ -89,7 +89,7 @@
       "crlf": false,
       "lines": 436,
       "path": "docs/evidence/p1/fhir-official-validation.json",
-      "sha256": "5c93f7145533d97756e154ff3053cb43d171966772155f449b4feba54521636e",
+      "sha256": "ab4c97e855dce32630eab7b8344c2db637bfd344cb1cba6b1d1f23be0bf4d3db",
       "status": "measured"
     },
     {
@@ -97,7 +97,7 @@
       "crlf": false,
       "lines": 24,
       "path": "docs/evidence/p1/fhir-official-validation.log",
-      "sha256": "1f49ad1c8400528c12868e637f055b21e4890782299e6b1a7aa4e241bd3e4ff5",
+      "sha256": "9a5755fe15f90fe37084e5be8cd6d3b1ca626e029b9d281b41df41996449adeb",
       "status": "measured"
     },
     {
@@ -105,39 +105,39 @@
       "crlf": false,
       "lines": 104,
       "path": "docs/evidence/p1/fhir-validator-provenance.json",
-      "sha256": "3852aae6fbd5aaf44f7ed14ee52d52c0e661b60623d9c9d48169beee3027c611",
+      "sha256": "643e25845fac9b121cf927fc4e218388fd940d63b3add08daaafbb68286af36f",
       "status": "measured"
     },
     {
-      "bytes": 7895,
+      "bytes": 8718,
       "crlf": false,
-      "lines": 127,
+      "lines": 137,
       "path": "docs/evidence/p1/fhir-vertical-slice.json",
-      "sha256": "8f147e587f17a187a26facd09e42af0ad72e2c160e1787ec45252de6665f519c",
+      "sha256": "898225ccba70091c2a71ab32dcf647c5456ffd1143ccd5fcf7b9f8454138c221",
       "status": "measured"
     },
     {
-      "bytes": 3555,
+      "bytes": 3977,
       "crlf": false,
-      "lines": 31,
+      "lines": 33,
       "path": "docs/evidence/p1/fhir-vertical-slice.log",
-      "sha256": "521c092bf87c15791018cb492139e03d1455d4ead9b8a81785dfe9abff60d979",
+      "sha256": "243c155dfc2add84acae54b6afe04cc7f3c395f2cf26afd0573964e32e21d725",
       "status": "measured"
     },
     {
-      "bytes": 6726,
+      "bytes": 7038,
       "crlf": false,
       "lines": 71,
       "path": "docs/requirements/fhir-audit-hitl-evidence.md",
-      "sha256": "552a3e9e974908b1d421d50e7ff63a8ee19c65b23f0dad2b0b6895274eb2ad1d",
+      "sha256": "bba8e98f1675de9737b5658063d7af6e43611c9927970ccd6d4ec2300d51776d",
       "status": "measured"
     },
     {
-      "bytes": 2849,
+      "bytes": 3025,
       "crlf": false,
-      "lines": 48,
+      "lines": 49,
       "path": "docs/requirements/fhir-contract-test-plan.md",
-      "sha256": "e98e3b205f7866cf7eb0942e30c1a0dd210d9e02c81bf9eab245ac80a5470fd0",
+      "sha256": "acf6891088d3bb97cfc801690de5718e5d76295dbbf79e044e5fff5a0a129be8",
       "status": "measured"
     },
     {
@@ -149,11 +149,11 @@
       "status": "measured"
     },
     {
-      "bytes": 9974,
+      "bytes": 10172,
       "crlf": false,
       "lines": 112,
       "path": "docs/requirements/traceability.md",
-      "sha256": "50d10ebbec8407ab951acd90decacde5450d9fbd71f3b3c6c6e8735f9f4fd0a3",
+      "sha256": "d62a729e2ee089717421d0c6819a821b05e66acf4b00bcc6238c4d2686caf640",
       "status": "measured"
     },
     {
@@ -173,11 +173,11 @@
       "status": "measured"
     },
     {
-      "bytes": 28934,
+      "bytes": 28963,
       "crlf": false,
       "lines": 174,
       "path": "internal/contract/errors.py",
-      "sha256": "fe313f69162015e26b263cf1890ea42538abd7d9cf33dae90eb1524e5b491475",
+      "sha256": "a5ae24673f14fb5ae4ee1e8fba2b8475dad4dcc8ef25023539384364d80a45aa",
       "status": "measured"
     },
     {
@@ -197,11 +197,11 @@
       "status": "measured"
     },
     {
-      "bytes": 9895,
+      "bytes": 10700,
       "crlf": false,
-      "lines": 211,
+      "lines": 225,
       "path": "internal/contract/test_hapi_validator.py",
-      "sha256": "8e3c25f462e22975074ef165689c6b73f79e54da7c1ac1c67b7ea0931f109a17",
+      "sha256": "7d9849e7589216b6053c42bd7b875070e0cbad4300a73cbcd6d598c65f0cfdf6",
       "status": "measured"
     },
     {
@@ -213,11 +213,11 @@
       "status": "measured"
     },
     {
-      "bytes": 17606,
+      "bytes": 18693,
       "crlf": false,
-      "lines": 464,
+      "lines": 487,
       "path": "internal/workflow/slice.py",
-      "sha256": "ab19c9ad17fb2635e2ed8ca3fb99d7fdfab9fbbd05fa797721631ed3e100b1e9",
+      "sha256": "399fd3b8305a3b07a0619814ceed2e7eebcae1bbaa45f5b1cefc60ef11f4d0a6",
       "status": "measured"
     },
     {
@@ -301,19 +301,19 @@
       "status": "measured"
     },
     {
-      "bytes": 15095,
+      "bytes": 16239,
       "crlf": false,
-      "lines": 341,
+      "lines": 358,
       "path": "tools/evidence/fhir_slice_acceptance.py",
-      "sha256": "3c2b543480e662e675e5dfc0f127d4c37f692025f0dbbb1f25bae49d2a357e4a",
+      "sha256": "1a4da68c62c0f188df5efc6821334722925dea6ecc53bdc0f4461ccf722259cb",
       "status": "measured"
     },
     {
-      "bytes": 10926,
+      "bytes": 11627,
       "crlf": false,
-      "lines": 233,
+      "lines": 244,
       "path": "tools/evidence/p1_index.py",
-      "sha256": "9cca5a60f4cf9d713d680419ca9ff86bdd07087773ff3f67fe11677c5220dc24",
+      "sha256": "47debbbe03b0a570912b7746ae6465057f292d8009d5dd7cd0aba88f025a002d",
       "status": "measured"
     },
     {
@@ -341,11 +341,11 @@
       "status": "measured"
     },
     {
-      "bytes": 3611,
+      "bytes": 4139,
       "crlf": false,
-      "lines": 63,
+      "lines": 70,
       "path": "tools/phi-scan/rules-atlas.json",
-      "sha256": "a26ad8ed632697ee8b2fcd0bbddb72816bf4b077e9814a66bfe8cc4377622a9f",
+      "sha256": "76d3612f203560c82dc799e9c206d569dec913c341596cd0b087f0e027ca4082",
       "status": "measured"
     },
     {
@@ -384,7 +384,8 @@
   "scope": "FHIR vertical slice: Bundle -> Gate -> Validator -> AuditEvent -> Workflow -> HITL Review -> HITL Commit",
   "synthetic": true,
   "unverified": [
-    "the Bundle stage still consumes an Atlas transaction manifest (entry[].reference), not a real FHIR transaction Bundle, so only the Observation is judged by the official engine inside the slice",
+    "the slice still runs only in Python: no proto stubs or api/gen, no FhirValidationService/HitlService server, and services/atlas-workflow never consumes audit_event_id",
+    "Patient entries are still rejected by ENTRY_TYPES (patient identity belongs to the EMPI slice), so the transaction bundle references Patient/... without containing it",
     "jar GPG signature not verified: validator_cli.jar.asc is published but no gpg binary exists here",
     "proto service stubs and server implementation (api/gen absent), so FhirValidationService/HitlService have no server",
     "Go-side workflow consumption of audit_event_id (services/atlas-workflow has no reference)",

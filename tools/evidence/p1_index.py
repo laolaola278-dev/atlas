@@ -73,8 +73,10 @@ ARTIFACTS = (
 )
 
 UNVERIFIED = (
-    "the Bundle stage still consumes an Atlas transaction manifest (entry[].reference), not a real FHIR "
-    "transaction Bundle, so only the Observation is judged by the official engine inside the slice",
+    "the slice still runs only in Python: no proto stubs or api/gen, no FhirValidationService/HitlService "
+    "server, and services/atlas-workflow never consumes audit_event_id",
+    "Patient entries are still rejected by ENTRY_TYPES (patient identity belongs to the EMPI slice), so the "
+    "transaction bundle references Patient/... without containing it",
     "jar GPG signature not verified: validator_cli.jar.asc is published but no gpg binary exists here",
     "proto service stubs and server implementation (api/gen absent), so FhirValidationService/HitlService have no server",
     "Go-side workflow consumption of audit_event_id (services/atlas-workflow has no reference)",
@@ -195,6 +197,15 @@ def verify() -> int:
         print(f"DRIFT   : {path}")
     for path in unlisted:
         print(f"UNLISTED: {path} (indexed but no longer tracked by this generator)")
+    failed_gates = int(committed.get("gates_failed", 0) or 0)
+    if failed_gates:
+        # An index is evidence. One generated while a gate was failing must not be
+        # accepted as committed evidence, even if its digests still match.
+        print(f"INDEX RECORDS {failed_gates} FAILED GATE(S); regenerate it before committing")
+        for gate in committed.get("gates", []):
+            if gate.get("exit_code") not in (0, None):
+                print(f"  exit={gate.get('exit_code')} {str(gate.get('command'))[:100]}")
+        return 1
     if drift or unlisted:
         print(f"index_version {committed.get('index_version')} does not match the working tree")
         return 1

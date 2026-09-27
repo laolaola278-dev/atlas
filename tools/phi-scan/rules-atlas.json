@@ -57,6 +57,13 @@
       "reason": "Derived from the CC0 HL7 R4 observation-example.json with one required code broken on purpose; official-validator negative control; digest pinned and expiring",
       "owner": "privacy-lead",
       "expires": "2027-03-31"
+    },
+    {
+      "path": "testdata/fhir/synthetic/valid-patient-bundle.json",
+      "sha256": "a41962ba6a8ff2d18315deb60bcc4410e3dbeca5a503c4b373f1f2e48739aaf1",
+      "reason": "Synthetic FHIR transaction Bundle: only resource ids, urn:uuid fullUrls and HL7/LOINC/UCUM canonical URLs, no real PHI. The file name contains 'patient', which makes every long token sensitive-context, so standards URLs and kebab-case ids trip the scanner; digest pinned and expiring",
+      "owner": "privacy-lead",
+      "expires": "2027-03-31"
     }
   ],
   "notes": "Digest-bound exceptions only: every entry names one exact file, one exact sha256, one owner role and one expiry date. Wildcards, permanent exclusions and directory scopes are rejected by tools/phi-scan/rules.py (allow-invalid). The entries cover the official HL7 R4 CC0 example corpus and its derived negative control; they require privacy-lead countersignature and re-approval before expiry. The single custom rule adds a hard block on committed AWS-style access key identifiers. Its pattern deliberately cannot match its own literal text, so the rules file never self-blocks."

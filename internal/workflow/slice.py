@@ -20,7 +20,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from internal.audit.chain import AuditEvent, AuditLog, to_fhir_audit_event
-from internal.contract.bundle import require_bundle
+from internal.contract.bundle import bundle_entry_references, require_bundle
 from internal.contract.errors import ContractError
 from internal.contract.digest import canonical_digest
 from internal.contract.fhir_gate import patient_reference, validate_resource
@@ -93,7 +93,22 @@ def stage_bundle(bundle: dict[str, object]) -> tuple[str, ...]:
     entries = bundle.get("entry")
     if not isinstance(entries, list):
         raise ContractError("bundle-empty")
-    return tuple(str(item.get("reference", "")) for item in entries if isinstance(item, dict))
+    return bundle_entry_references(bundle)
+
+
+def official_bundle_record(bundle: dict[str, object]) -> dict[str, object]:
+    """Run the official engine over one transaction bundle and fail closed.
+
+    The bundle is judged as a whole, including every nested resource, so this is
+    not a repeat of the per-resource validation stage: it proves the transaction
+    itself is valid FHIR before anything reaches review.
+    """
+    record = validate_payload(bundle)
+    if record.get("outcome") != "pass" or record.get("errorCount"):
+        raise ContractError("validator-outcome-failed")
+    if not str(record.get("jarSha256", "")) or not str(record.get("validatorVersion", "")):
+        raise ContractError("validator-not-official")
+    return record
 
 
 def stage_gate(resource: dict[str, object]) -> tuple[object, ...]:
@@ -357,13 +372,21 @@ def run_vertical_slice(
     validator_record: dict[str, object] | None = None,
     validator_version: str = "hapi-unexecuted",
     official_engine: bool = False,
+    official_bundle: bool = False,
     validator_engine: str = "",
 ) -> dict[str, object]:
     """Run Bundle -> Gate -> Validator -> Audit -> Workflow -> Review -> Commit."""
     stages: list[dict[str, object]] = []
     bundle = load_fixture(bundle_name)
     entries = stage_bundle(bundle)
-    stages.append({"entries": list(entries), "stage": "bundle"})
+    bundle_record = official_bundle_record(bundle) if official_bundle else None
+    stages.append({
+        "bundle_official_validated": bundle_record is not None,
+        "bundle_outcome_id": str(bundle_record.get("outcomeId", "")) if bundle_record else "",
+        "bundle_validator_version": str(bundle_record.get("validatorVersion", "")) if bundle_record else "",
+        "entries": list(entries),
+        "stage": "bundle",
+    })
 
     resource = load_fixture(resource_name)
     reference = f"{resource.get('resourceType', '')}/{resource.get('id', '')}"

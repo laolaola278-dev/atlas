@@ -5,8 +5,8 @@
 
 | 工件 | 内容 |
 |---|---|
-| `index.json` | 37 个工件的路径/行数/字节数/SHA-256 + 7 条门禁的实测退出码 + 环境说明 + 未验证清单 |
-| `fhir-vertical-slice.json` / `.log` | 七阶段纵切的结构化结果与逐阶段日志（阶段顺序、`audit_event_id` 四个落点、提交响应、FHIR AuditEvent 投影、9 条 fail-closed 分支） |
+| `index.json` | 38 个工件的路径/行数/字节数/SHA-256 + 7 条门禁的实测退出码 + 环境说明 + 未验证清单；`--verify` 只做比对不重写，供 CI 做漂移门禁 |
+| `fhir-vertical-slice.json` / `.log` | 七阶段纵切的结构化结果与逐阶段日志（阶段顺序、`audit_event_id` 四个落点、提交响应、FHIR AuditEvent 投影、10 条 fail-closed 分支、Bundle 与 Validator 两个阶段的官方引擎结果） |
 | `fhir-official-validation.json` / `.log` | **官方 Validator 真实执行**结果：5 个官方示例 pass、1 个已知被拒、1 个负向对照被拒、Atlas 夹具实测结果、3 组配置探针 |
 | `fhir-validator-provenance.json` | 引擎与语料的供给来源、固定 SHA-256、逐条核对状态 |
 
@@ -58,6 +58,10 @@ $env:ATLAS_FHIR_VALIDATOR_OFFLINE = '1'
 - **信封分离（本轮新增）**：Atlas 夹具本体 `fail err=2`（`synthetic`、`purposeCode` 不是 FHIR 元素），
   而 `pure_resource()` 剥离这两个字段后的纯负载 **`pass err=0`**，且其摘要与纵切审计链绑定的摘要逐字节相同。
   两侧都被断言，所以分离不是死代码：若哪天信封本体又能通过官方校验，验收会失败。
+- **Bundle 整体判定（本轮新增）**：夹具改为真正的 FHIR transaction Bundle（`entry[].resource` +
+  `entry[].request`），官方引擎连同嵌套的 Observation 与 ServiceRequest 一起判定，实测
+  **`outcome=pass errors=0 warnings=5 info=4`**。`require_bundle()` 同时接受 Atlas 清单与 FHIR 两种条目形状，
+  并且 FHIR 条目缺少合法 `request` 时直接 `bundle-entry-request-invalid`。
 - **profile 推断**：LOINC `29463-7` 会让引擎套用 bodyweight 剖面（4.0.1），要求 `category`（VSCat 切片）
   与 `effective[x]`。夹具补全这两项后才 pass——这是实测得出的，不是照抄示例。
 
@@ -65,9 +69,9 @@ $env:ATLAS_FHIR_VALIDATOR_OFFLINE = '1'
 
 ## 明确未验证的事项
 
-1. **Bundle 阶段尚未经官方引擎判定**。`require_bundle()` 消费的是 Atlas 事务清单（`entry[].reference`），
-   不是 FHIR transaction Bundle（`entry[].resource` + `entry[].request`），且 `ENTRY_TYPES` 不允许 Patient 条目。
-   因此纵切内目前只有 Observation 被官方引擎真实判定。
+1. **纵切仍只运行在 Python 侧**。没有 proto stubs 与 `api/gen`，`FhirValidationService` / `HitlService`
+   没有服务端实现，Go 侧 `services/atlas-workflow` 也从未消费 `audit_event_id`。
+   七个阶段的语义已可执行、可审计，但还不是真实服务的运行时行为。
 1b. **无引擎环境会退回合成记录**。`fhir_slice_acceptance.py` 在缺少 jar/JRE 时使用官方形状的合成记录，
    并在证据里写明 `validator_engine=synthetic-record`；设 `ATLAS_FHIR_VALIDATOR_REQUIRE_OFFICIAL=1` 可让它直接失败。
 2. **jar 的 GPG 签名未验证**：官方发布了 `validator_cli.jar.asc`，本环境没有 gpg，目前只固定 SHA-256。

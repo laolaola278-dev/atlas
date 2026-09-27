@@ -140,6 +140,7 @@ def run_acceptance() -> dict[str, object]:
             validator_record=record,
             validator_version=validator_version,
             validator_engine="official-engine" if engine_used else "",
+            official_bundle=engine_used,
         )
         for stage in trace["stages"]:
             name = str(stage["stage"])
@@ -159,6 +160,13 @@ def run_acceptance() -> dict[str, object]:
         if [str(stage["stage"]) for stage in trace["stages"]] != list(STAGES):
             raise AssertionError("stage order changed")
         note(f"[check] stage order matches contract: {' -> '.join(STAGES)}")
+
+        bundle_stage = next(stage for stage in trace["stages"] if str(stage["stage"]) == "bundle")
+        if engine_used and not bundle_stage["bundle_official_validated"]:
+            raise AssertionError("the bundle stage did not run the official engine")
+        note(f"[check] bundle stage: entries={bundle_stage['entries']} "
+             f"official_validated={bundle_stage['bundle_official_validated']} "
+             f"version={bundle_stage['bundle_validator_version'] or 'n/a'}")
 
         if trace["task_state"] != "COMMITTED" or not trace["commit_response"]["committed"]:
             raise AssertionError("slice did not reach COMMITTED")
@@ -225,6 +233,11 @@ def run_acceptance() -> dict[str, object]:
         negatives["validator-envelope-invalid"] = _expect_code(
             lambda: stage_validator(pure_resource(resource), record), "validator-envelope-invalid",
         )
+        broken_entry = {**load_fixture(_BUNDLE)}
+        broken_entry["entry"] = [{"resource": {"id": "observation-synthetic", "resourceType": "Observation"}}]
+        negatives["bundle-entry-request-invalid"] = _expect_code(
+            lambda: stage_bundle(broken_entry), "bundle-entry-request-invalid",
+        )
         negatives["bundle-type-invalid"] = _expect_code(
             lambda: stage_bundle({**load_fixture(_BUNDLE), "type": "document"}), "bundle-type-invalid",
         )
@@ -281,7 +294,11 @@ def run_acceptance() -> dict[str, object]:
         "acceptance": "pass",
         "audit_event_id": audit_event_id,
         "audit_event_id_surfaces": ids,
+        "bundle_entries": bundle_stage["entries"],
         "bundle_fixture": f"testdata/fhir/synthetic/{_BUNDLE}.json",
+        "bundle_official_outcome_id": str(bundle_stage["bundle_outcome_id"]),
+        "bundle_official_validated": bool(bundle_stage["bundle_official_validated"]),
+        "bundle_validator_version": str(bundle_stage["bundle_validator_version"]),
         "commit_response": trace["commit_response"],
         "fhir_audit_event": projected,
         "fhir_resource_response": trace["fhir_resource_response"],

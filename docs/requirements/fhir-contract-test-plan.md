@@ -22,7 +22,7 @@ python -B tools/evidence/fhir_slice_acceptance.py         # exit 0，写出 docs
 
 | 夹具 | 期望结果 | 实测 |
 |---|---|---|
-| `valid-patient-bundle.json` | `require_bundle()` → `validate_resource()` → `require_official()` 全通过 | 通过，2 个 entry 引用 |
+| `valid-patient-bundle.json` | 真正的 FHIR transaction Bundle：`require_bundle()` 解析 `entry[].resource` 得到 2 个引用，官方引擎整体判定 `pass errors=0` | 通过 |
 | `invalid-profile.json` | `profile-not-declared` | 命中（同时命中 `resource-id-missing`，夹具无 `id`） |
 | `invalid-reference.json` | `patient-reference-missing` | 命中 |
 | `validator-missing.json` | `validator-result-unknown` | 命中，夹具内 `expectedError` 与实际错误码断言相等 |
@@ -42,7 +42,8 @@ Bundle -> Gate -> Validator -> audit_event_id -> Workflow -> HITL Review -> HITL
    官方 R4 语料 5 pass / 1 known-rejected，负向对照被拒，证据见 `docs/evidence/p1/fhir-official-validation.json`。
    **纵切 Validator 阶段已用真实引擎**：`pure_resource()` 剥离 Atlas 信封字段后，官方引擎实测
    `outcome=pass errors=0`，阶段标签 `official-engine` 且缺 jar 摘要即 `validator-not-official`。
-   **剩余缺口**：Bundle 阶段仍消费 Atlas 事务清单（`entry[].reference`）而非 FHIR transaction Bundle，
-   所以纵切内只有 Observation 被官方引擎判定。
+   **Bundle 阶段也已用真实引擎**：夹具改为真正的 FHIR transaction Bundle，官方引擎整体判定
+   （含嵌套 Observation 与 ServiceRequest）实测 `pass errors=0`。
+   **剩余缺口**：纵切仍运行在 Python 侧，没有 proto stubs / `api/gen`，Go 服务未消费 `audit_event_id`。
 2. **proto 服务端**：`FhirValidationService`/`HitlService` 无生成桩与实现。
 3. **Go 侧 Workflow**：`services/atlas-workflow` 尚未消费 `audit_event_id`。

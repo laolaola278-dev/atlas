@@ -79,7 +79,7 @@
 
 | 验收项 | 实测结果 |
 |---|---|
-| 接受带 `synthetic=true` 的 transaction Bundle | `stage_bundle` 通过，返回 2 个 entry 引用 |
+| 接受真正的 FHIR transaction Bundle（`entry[].resource` + `entry[].request`）与 Atlas 清单两种形状 | `stage_bundle` 通过，两种形状都解析出同样的 2 个 entry 引用；FHIR 条目缺 `request` 或方法非法 → `bundle-entry-request-invalid`；条目无 id → `bundle-entry-invalid` |
 | 拒绝非法 Bundle 类型 / 空 Bundle | `bundle-type-invalid`、`bundle-empty` |
 | 拒绝缺失 profile、非法引用、过期术语 | `profile-not-declared`、`patient-reference-missing`、`terminology-release-expired` |
 | 写入前运行官方 FHIR Validator | **达成（Observation）**：`pure_resource()` 剥离 `ATLAS_ENVELOPE_FIELDS` 得到纯 FHIR 负载，官方引擎实跑该负载 `outcome=pass errors=0`；审计链绑定的摘要即被判定字节的摘要；信封本体实测 `fail err=2` 并被门禁拒绝，证明分离不是死代码 |
@@ -102,7 +102,7 @@
 
 ## 后续顺序
 
-1. **把 Bundle 阶段也交给官方引擎**：`require_bundle()` 目前消费 Atlas 事务清单（`entry[].reference`），需改为真正的 FHIR transaction Bundle（`entry[].resource` + `entry[].request`），并允许 Patient 条目。
+1. **让纵切跑在真实服务上**：生成 proto stubs 与 `api/gen`，实现 `FhirValidationService` / `HitlService` 服务端，并让 Go 侧 `services/atlas-workflow` 真正消费 `audit_event_id`（需要 Go 工具链）。
 2. 验证 jar 的 GPG 签名（需要 gpg 与 HL7 公钥），把签名校验并入供给脚本。
 3. 在具备 Go 工具链的环境补齐 Go 侧回归，并把结果写入本矩阵。
 4. 按计划补齐 P1 的 58 个批次产出，或修订计划使其与实际交付一致。

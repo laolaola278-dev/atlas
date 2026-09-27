@@ -1,16 +1,17 @@
 [stage 0] synthetic fixtures loaded: valid-patient-bundle.json, observation.json
 [stage 0] envelope fields stripped before validation: ['purposeCode', 'synthetic']
 [stage 0] canonical resource digest (projection only): 577caa660b9e06ce609a8a16921d6a0142ff4105e85d5d25610c7485df2ce8f8
-[stage 0] official validator 6.10.4+git.1b90fb13f77b outcome=pass errors=0 warnings=5 info=3 elapsedMs=19061
-[stage 1] bundle: {"entries": ["Observation/observation-synthetic", "ServiceRequest/service-request-synthetic"]}
+[stage 0] official validator 6.10.4+git.1b90fb13f77b outcome=pass errors=0 warnings=5 info=3 elapsedMs=24827
+[stage 1] bundle: {"bundle_official_validated": true, "bundle_outcome_id": "c8ba92bfaac1874df785f70d4b21135a18a5993deda7c65ad1c6559127d3a2ad", "bundle_validator_version": "6.10.4+git.1b90fb13f77b", "entries": ["Observation/observation-synthetic", "ServiceRequest/service-request-synthetic"]}
 [stage 2] gate: {"issues": [], "resource": "Observation/observation-synthetic"}
-[stage 3] validator: {"engine": "official-engine", "official": true, "outcome_id": "8736927e8b66aee16b205f3d66913a31d8ded6dc1564601e91944604330df1c3", "resource_digest": "577caa660b9e06ce609a8a16921d6a0142ff4105e85d5d25610c7485df2ce8f8", "validator_version": "6.10.4+git.1b90fb13f77b"}
+[stage 3] validator: {"engine": "official-engine", "official": true, "outcome_id": "c194eaabfe115c5d913041934e68b6100bc3a6bcd0f59813f301aa9bfc2eb8a8", "resource_digest": "577caa660b9e06ce609a8a16921d6a0142ff4105e85d5d25610c7485df2ce8f8", "validator_version": "6.10.4+git.1b90fb13f77b"}
 [stage 4] audit: {"audit_event_id": "fhir-validate-observation-synthetic-1", "event_hash": "d89dc683c236c14cfaad24ad87d3cb1ab92497190258c5dacc8ae65c377adda4", "previous_hash": "0000000000000000000000000000000000000000000000000000000000000000", "sequence": 1}
 [stage 5] workflow: {"audit_event_id": "fhir-validate-observation-synthetic-1", "task_id": "task-fhir-validate-observation-synthetic-1", "task_state": "OPEN"}
 [stage 6] hitl-review: {"audit_event_id": "fhir-validate-observation-synthetic-1", "content_digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd", "review_event_id": "suggestion-synthetic-approve-second-4", "state": "APPROVED", "state_version": "6", "suggestion_id": "suggestion-synthetic", "suggestion_version": "6"}
 [stage 7] hitl-commit: {"audit_event_id": "fhir-validate-observation-synthetic-1", "commit_audit_event_id": "suggestion-synthetic-ordinary-commit-5", "committed": true, "target_version": "target-slice", "write_intent_id": "proof-slice", "write_kind": "ordinary"}
 [check] one audit_event_id propagated across 4 surfaces: fhir-validate-observation-synthetic-1
 [check] stage order matches contract: bundle -> gate -> validator -> audit -> workflow -> hitl-review -> hitl-commit
+[check] bundle stage: entries=['Observation/observation-synthetic', 'ServiceRequest/service-request-synthetic'] official_validated=True version=6.10.4+git.1b90fb13f77b
 [check] workflow task state: COMMITTED
 [check] commit response: {"audit_event_id": "fhir-validate-observation-synthetic-1", "commit_audit_event_id": "suggestion-synthetic-ordinary-commit-5", "committed": true, "target_version": "target-slice", "write_intent_id": "proof-slice", "write_kind": "ordinary"}
 [check] audit chain operations: fhir-validate -> queue-review -> approve-one -> approve-second -> ordinary-commit
@@ -18,6 +19,7 @@
 [check] to_fhir_audit_event projection: id=fhir-validate-observation-synthetic-1 action=fhir-validate
 [check] durable reload is idempotent: 5 lines before and after two reloads
 [check] restarted service restores suggestion-synthetic as WRITEBACK_COMMITTED
+[fail-closed] bundle-entry-request-invalid -> bundle-entry-request-invalid
 [fail-closed] bundle-type-invalid -> bundle-type-invalid
 [fail-closed] gate-purpose-missing -> purpose-missing
 [fail-closed] validator-digest-mismatch -> validator-digest-mismatch

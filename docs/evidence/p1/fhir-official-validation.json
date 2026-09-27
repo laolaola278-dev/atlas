@@ -1,7 +1,7 @@
 {
   "atlas_envelope": {
     "content_digest": "da138fcd1fc077aa670dff52af754e2c4abe7b42f58d4c3313d70a763e1068b7",
-    "elapsed_ms": 19202,
+    "elapsed_ms": 30547,
     "error_count": 2,
     "exit_code": 1,
     "fhir_version": "4.0.1",
@@ -78,7 +78,7 @@
   },
   "atlas_projection": {
     "content_digest": "577caa660b9e06ce609a8a16921d6a0142ff4105e85d5d25610c7485df2ce8f8",
-    "elapsed_ms": 19000,
+    "elapsed_ms": 35655,
     "error_count": 0,
     "exit_code": 0,
     "fhir_version": "4.0.1",
@@ -136,7 +136,7 @@
       }
     ],
     "outcome": "pass",
-    "outcome_id": "f2a99b50445583386f62772955b8a8f6b35b9cd2864ab6a5c34b2805529834eb",
+    "outcome_id": "4f558a6241d840e1a24ab82f8e24f570270bf46fc8d70ff59e362c6657228b4a",
     "path": "testdata/fhir/synthetic/observation.json -> pure FHIR projection",
     "validator_version": "6.10.4+git.1b90fb13f77b",
     "warning_count": 5
@@ -158,11 +158,11 @@
     "python_version": "3.11.15"
   },
   "fhir_version": "4.0.1",
-  "generated_at": "2026-09-27T12:44:10Z",
+  "generated_at": "2026-09-27T13:23:16Z",
   "known_rejected": [
     {
       "content_digest": "33b7db8a8d63a190c111f2a32e93ae12b5676409cdb8574d33054b4ab73a87ee",
-      "elapsed_ms": 20202,
+      "elapsed_ms": 27843,
       "error_count": 2,
       "exit_code": 1,
       "fhir_version": "4.0.1",
@@ -202,11 +202,11 @@
     "engine jar sha256  : 1106b9d58f9e363e47bea7c4fc065841e5fc91fe9d062775c3bfdd212bd653cc",
     "validator version  : 6.10.4+git.1b90fb13f77b",
     "fhir version       : 4.0.1    tx server: n/a    offline: True",
-    "[must-pass      ] testdata/fhir/r4-examples/patient-example.json     pass err=0 warn=0 info=1 exit=0 19093ms gate=accepted",
-    "[must-pass      ] testdata/fhir/r4-examples/observation-example.json pass err=0 warn=3 info=2 exit=0 19375ms gate=accepted",
-    "[must-pass      ] testdata/fhir/r4-examples/bundle-example.json      pass err=0 warn=0 info=1 exit=0 19406ms gate=accepted",
-    "[must-pass      ] testdata/fhir/r4-examples/condition-example.json   pass err=0 warn=0 info=1 exit=0 19468ms gate=accepted",
-    "[must-pass      ] testdata/fhir/r4-examples/encounter-example.json   pass err=0 warn=0 info=1 exit=0 20468ms gate=accepted",
+    "[must-pass      ] testdata/fhir/r4-examples/patient-example.json     pass err=0 warn=0 info=1 exit=0 32734ms gate=accepted",
+    "[must-pass      ] testdata/fhir/r4-examples/observation-example.json pass err=0 warn=3 info=2 exit=0 37483ms gate=accepted",
+    "[must-pass      ] testdata/fhir/r4-examples/bundle-example.json      pass err=0 warn=0 info=1 exit=0 37297ms gate=accepted",
+    "[must-pass      ] testdata/fhir/r4-examples/condition-example.json   pass err=0 warn=0 info=1 exit=0 27094ms gate=accepted",
+    "[must-pass      ] testdata/fhir/r4-examples/encounter-example.json   pass err=0 warn=0 info=1 exit=0 21406ms gate=accepted",
     "[known-rejected ] testdata/fhir/r4-examples/practitioner-example.json fail err=2 exit=1 gate=rejected:validator-outcome-failed",
     "                   error       invalid      Practitioner.qualification[0].identifier[0].system",
     "                   warning     not-found    Practitioner.qualification[0].code.coding[0].system",
@@ -225,7 +225,7 @@
   "must_pass": [
     {
       "content_digest": "4bd96f76475b7d0ca51f8045a644d5634876beeb58aad5c38f0eeea33a17918d",
-      "elapsed_ms": 19093,
+      "elapsed_ms": 32734,
       "error_count": 0,
       "exit_code": 0,
       "fhir_version": "4.0.1",
@@ -248,7 +248,7 @@
     },
     {
       "content_digest": "87c6416aee4be2460742acb3dd5f19adfc522fb785680e613fb88c95f8a66740",
-      "elapsed_ms": 19375,
+      "elapsed_ms": 37483,
       "error_count": 0,
       "exit_code": 0,
       "fhir_version": "4.0.1",
@@ -295,7 +295,7 @@
     },
     {
       "content_digest": "6eab13821e228e82732db91313c151b90d5c1a885b88330a08dfac858867fd33",
-      "elapsed_ms": 19406,
+      "elapsed_ms": 37297,
       "error_count": 0,
       "exit_code": 0,
       "fhir_version": "4.0.1",
@@ -318,7 +318,7 @@
     },
     {
       "content_digest": "669c76c4daa0f1b6d51ff92ae6972c0d04c32dc8dc85a59e88501bd481cd073e",
-      "elapsed_ms": 19468,
+      "elapsed_ms": 27094,
       "error_count": 0,
       "exit_code": 0,
       "fhir_version": "4.0.1",
@@ -341,7 +341,7 @@
     },
     {
       "content_digest": "42d8f7d68c05d5c7b47a95361cf4610c7666b2785dbb83143eba268c90c9eac3",
-      "elapsed_ms": 20468,
+      "elapsed_ms": 21406,
       "error_count": 0,
       "exit_code": 0,
       "fhir_version": "4.0.1",
@@ -365,7 +365,7 @@
   ],
   "negative_control": {
     "content_digest": "eb9108df5a239181b68fb153a7177caa4828c6a23fe5b4203de3846509982145",
-    "elapsed_ms": 19000,
+    "elapsed_ms": 29484,
     "error_count": 2,
     "exit_code": 1,
     "fhir_version": "4.0.1",

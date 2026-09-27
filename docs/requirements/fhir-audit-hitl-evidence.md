@@ -24,7 +24,8 @@
 | 官方 Validator 正向结果 | 5 个官方示例 pass（0 error），`require_official()` 接受 |
 | 官方 Validator 负向结果 | `practitioner-example.json` 被官方引擎拒绝（2 error），门禁以 `validator-outcome-failed` 拒绝；派生负向夹具 `r4-observation-invalid-status.json` 同样被拒绝 |
 | 引擎缺失时 fail-closed | 无 jar / 无 JRE / 摘要不符 / 超时 / 输出缺失 / 输出损坏 → `validator-engine-unavailable`、`validator-jar-digest-mismatch`、`validator-engine-timeout`、`validator-output-missing`、`validator-output-corrupt` |
-| **全量 Python 回归** | `tools/evidence/python_gates.py` 自动发现并执行 **79 个测试模块、807 项测试 OK**；此前 CI 只列 25 个模块，存在覆盖漂移风险 |
+| **Bundle 阶段由官方引擎判定** | 夹具改为真正的 FHIR transaction Bundle（`entry[].resource` + `entry[].request`），官方引擎整体判定含嵌套资源：实测 `outcome=pass errors=0 warnings=5 info=4`；`require_bundle()` 同时接受 Atlas 清单与 FHIR 两种条目形状，FHIR 条目缺 `request` 即 `bundle-entry-request-invalid` |
+| **全量 Python 回归** | `tools/evidence/python_gates.py` 自动发现并执行 **79 个测试模块、818 项测试 OK**；此前 CI 只列 25 个模块，存在覆盖漂移风险 |
 执行产物：`docs/evidence/p1/fhir-vertical-slice.json`、`docs/evidence/p1/fhir-vertical-slice.log`、
 `docs/evidence/p1/fhir-official-validation.json`、`docs/evidence/p1/fhir-official-validation.log`、
 `docs/evidence/p1/fhir-validator-provenance.json`。
@@ -49,10 +50,9 @@
 
 ## 仍缺失证据
 
-- **Bundle 阶段尚未经官方引擎判定**：`require_bundle()` 消费的是 Atlas 事务清单
-  （`entry[].reference`），不是 FHIR transaction Bundle（`entry[].resource` + `entry[].request`），
-  且 `ENTRY_TYPES` 不允许 Patient 条目。因此纵切内目前只有 Observation 被官方引擎真实判定，
-  Bundle 阶段仍只是 Atlas 侧的结构校验。
+- **Patient 条目仍被拒**：`ENTRY_TYPES` 不含 `Patient`（患者身份归 EMPI 纵切管），
+  所以事务 Bundle 里的资源只能引用 `Patient/...` 而不能包含它，官方引擎对未解析引用只给 warning。
+  这是有意保留的策略边界，不是缺陷；EMPI 纵切落地后需要重新评估。
 - **无引擎的环境仍会走合成记录**：`fhir_slice_acceptance.py` 在没有 jar/JRE 时退回官方形状的合成记录，
   并在日志与证据里显式写明 `validator_engine=synthetic-record`；设置
   `ATLAS_FHIR_VALIDATOR_REQUIRE_OFFICIAL=1` 可让它在无引擎时直接失败。
