@@ -284,8 +284,11 @@ def main() -> int:
     json_path = Path(args.json)
     log_path = Path(args.log)
     json_path.parent.mkdir(parents=True, exist_ok=True)
-    json_path.write_text(json.dumps(evidence, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    log_path.write_text("\n".join(str(line) for line in evidence["log"]) + "\n", encoding="utf-8")
+    # newline="\n" keeps the artifacts byte-identical across platforms and
+    # across a Git commit/checkout round trip, so the recorded SHA-256 in
+    # docs/evidence/p1/index.json stays verifiable.
+    json_path.write_text(json.dumps(evidence, indent=2, sort_keys=True) + "\n", encoding="utf-8", newline="\n")
+    log_path.write_text("\n".join(str(line) for line in evidence["log"]) + "\n", encoding="utf-8", newline="\n")
     print(f"evidence json: {json_path.relative_to(_ROOT)}")
     print(f"evidence log : {log_path.relative_to(_ROOT)}")
     return 0

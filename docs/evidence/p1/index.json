@@ -1,6 +1,6 @@
 {
   "environment": {
-    "git_revision_at_generation": "535f1aa",
+    "git_revision_at_generation": "5589db3",
     "go_toolchain_available": false,
     "go_toolchain_note": "go is not on PATH here; go test and gofmt were not executed.",
     "python_version": "3.11.15",
@@ -43,97 +43,111 @@
       "command": "python -B -m unittest internal.workflow.test_slice internal.audit.test_file internal.audit.test_chain internal.hitl.test_service internal.hitl.test_audited internal.contract.test_errors internal.contract.test_fhir_gate internal.contract.test_validator tools.phi-scan.test_scan tools.locaudit.test_scan tools.evidence.test_p0_index",
       "exit_code": 0,
       "output_tail": [
-        "Ran 108 tests in 2.396s",
+        "Ran 108 tests in 2.560s",
         "",
         "OK"
       ]
     }
   ],
   "gates_failed": 0,
-  "generated_at": "2026-09-27T10:56:34Z",
-  "index_version": "1.1",
+  "generated_at": "2026-09-27T11:00:12Z",
+  "index_version": "1.2",
   "phase": "P1",
   "rows": [
     {
-      "bytes": 7102,
+      "bytes": 6987,
+      "crlf": false,
       "lines": 115,
       "path": "docs/evidence/p1/fhir-vertical-slice.json",
-      "sha256": "2121371e7399fd9453fd7b89bae3d128b70453b21e17e1e7ee9423d5ddae3e28"
+      "sha256": "a18697eace32031496732354297b9a9b59159d41129d867cff9735b0c3fe02a1"
     },
     {
-      "bytes": 3166,
+      "bytes": 3138,
+      "crlf": false,
       "lines": 28,
       "path": "docs/evidence/p1/fhir-vertical-slice.log",
-      "sha256": "7600503cbd2f0e4c311b64b0af245b7fafe95d80393bc9ae3d8e46bd586d0fd1"
+      "sha256": "05267c6b816646c9307d2f972bb7048bdacdc2ec1d513505dc9f8445afc57bf4"
     },
     {
       "bytes": 1727,
+      "crlf": false,
       "lines": 30,
       "path": "docs/evidence/p1/README.md",
       "sha256": "75fb66c9b988b4468c742112d7a93ac8e4ff602139da414d89ea15fd28f9e804"
     },
     {
-      "bytes": 313822,
+      "bytes": 304081,
+      "crlf": false,
       "lines": 9741,
       "path": "docs/requirements/traceability-matrix.json",
-      "sha256": "01458669894244db5ca7fbdadcb71763997d6db8f15ec6ca154131eade9f939b"
+      "sha256": "e4a14230e7527da4ba540216172b4df318b867df331c0ed5aa0659ff79b9b119"
     },
     {
       "bytes": 8773,
+      "crlf": false,
       "lines": 110,
       "path": "docs/requirements/traceability.md",
       "sha256": "4c557f553f81dfedcb5550a25956eba803abb9025cc992397f889cc0e1abff56"
     },
     {
       "bytes": 3972,
+      "crlf": false,
       "lines": 53,
       "path": "docs/requirements/fhir-audit-hitl-evidence.md",
       "sha256": "4c558d6d89c0565ff73046bde8d3b12980d480e0877078b68d42d076bf95801d"
     },
     {
       "bytes": 2307,
+      "crlf": false,
       "lines": 43,
       "path": "docs/requirements/fhir-contract-test-plan.md",
       "sha256": "5e29da167e8144fc491c685fa49b3de0d9c823665ff603ec39faf87888e6f6b4"
     },
     {
       "bytes": 15114,
+      "crlf": false,
       "lines": 410,
       "path": "internal/workflow/slice.py",
       "sha256": "5a7574b3d126c944a211e1e0770a5ef218c16f59027bbfbbeb5ffeca5448478e"
     },
     {
       "bytes": 11431,
+      "crlf": false,
       "lines": 245,
       "path": "internal/workflow/test_slice.py",
       "sha256": "e4693c607eaa89c12180693523ec1fea64d271a6e6c59b84136e37eef6dbea0b"
     },
     {
       "bytes": 2305,
+      "crlf": false,
       "lines": 62,
       "path": "internal/audit/file.py",
       "sha256": "365945cf63bae65caffc697fc7bde424bc0966cb002188053b5e62d19dc92fe7"
     },
     {
       "bytes": 28601,
+      "crlf": false,
       "lines": 170,
       "path": "internal/contract/errors.py",
       "sha256": "3f926d1c5c51f0d27588a6789bea5158a623581905f14b468bc49edf65139a85"
     },
     {
-      "bytes": 12478,
-      "lines": 295,
+      "bytes": 12707,
+      "crlf": false,
+      "lines": 298,
       "path": "tools/evidence/fhir_slice_acceptance.py",
-      "sha256": "ccb47ddba1329df84bdd989baa2d6c236fc967af0f0a9965de68f13900a72a64"
+      "sha256": "fff801c62768a601aa409d15ffe2dfdcd18e6db4f3d2a56e822536e793b83289"
     },
     {
-      "bytes": 10895,
-      "lines": 258,
+      "bytes": 11027,
+      "crlf": false,
+      "lines": 260,
       "path": "tools/evidence/traceability.py",
-      "sha256": "5fb3458ffd6b0fe88a2051e9dafbc02071b9672bb23b04e10fd0b0d09d211900"
+      "sha256": "d8a8dcda0e6f48869563eba49be5913f9651216591319f51a07dd4a834f66ad2"
     },
     {
       "bytes": 25318,
+      "crlf": false,
       "lines": 731,
       "path": "tools/phi-scan/rules.py",
       "sha256": "91eef6149bfeebf36fec1fd5d99357c2765c28c7bb5e7ab283d03f834579a46c"

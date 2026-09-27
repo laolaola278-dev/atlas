@@ -249,7 +249,9 @@ def main() -> int:
     if args.write:
         path = Path(args.out)
         path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(json.dumps(matrix, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        # LF-only output keeps the committed artifact byte-identical to the
+        # file the evidence index hashed.
+        path.write_text(json.dumps(matrix, indent=2, sort_keys=True) + "\n", encoding="utf-8", newline="\n")
         print(f"matrix written: {path.relative_to(_ROOT)}")
     return 0
 

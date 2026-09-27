@@ -55,8 +55,8 @@
       "validator_version": "hapi-unexecuted"
     }
   },
-  "generated_at": "2026-09-27T10:56:31Z",
-  "git_revision": "535f1aa",
+  "generated_at": "2026-09-27T11:00:09Z",
+  "git_revision": "5589db3",
   "hapi_validator_executed": false,
   "hapi_validator_note": "No HAPI binary or jar exists in this repository. internal/contract/validator.py:require_official() is a fail-closed evidence gate that only accepts an externally supplied official outcome record.",
   "log": [
