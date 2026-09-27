@@ -16,14 +16,22 @@
 | `to_fhir_audit_event()` 映射 | 纵切实测投影 `resourceType=AuditEvent`、`id=fhir-validate-observation-synthetic-1`、`entityDigest=1253cd4d...be7b` |
 | 端到端路线 Bundle → Gate → Validator → AuditEvent → Workflow → HITL Review → HITL Commit | `python -B tools/evidence/fhir_slice_acceptance.py` → exit 0 |
 | 持久化与重启 | `AuditFile` 连续两次重载行数不变（5 → 5 → 5），重启后的 `ReviewService` 恢复 `suggestion-synthetic` 为 `WRITEBACK_COMMITTED` |
-| **官方 HAPI Validator 真实执行** | `validator_cli.jar` 6.10.4（Git# 1b90fb13f77b，jar SHA-256 `1106b9d5…d653cc`）在 Temurin JDK 21.0.12.1 上以子进程实际运行，解析其 OperationOutcome 并生成 `require_official()` 接受的官方记录 || **标准合成测试集** | HL7 官方 R4 v4.0.1 示例 6 个，逐文件 SHA-256 固定，许可与来源见 `testdata/fhir/r4-examples/README.md` |
-| 官方 Validator 正向结果 | 5 个官方示例 pass（0 error），`require_official()` 接受 || 官方 Validator 负向结果 | `practitioner-example.json` 被官方引擎拒绝（2 error），门禁以 `validator-outcome-failed` 拒绝；派生负向夹具 `r4-observation-invalid-status.json` 同样被拒绝 || 引擎缺失时 fail-closed | 无 jar / 无 JRE / 摘要不符 / 超时 / 输出缺失 / 输出损坏 → `validator-engine-unavailable`、`validator-jar-digest-mismatch`、`validator-engine-timeout`、`validator-output-missing`、`validator-output-corrupt` |
+| **官方 HAPI Validator 真实执行** | `validator_cli.jar` 6.10.4（Git# 1b90fb13f77b，jar SHA-256 `1106b9d5…d653cc`）在 Temurin JDK 21.0.12.1 上以子进程实际运行，解析其 OperationOutcome 并生成 `require_official()` 接受的官方记录 |
+| **纵切 Validator 阶段用真实引擎** | 验收脚本实测：剥离信封后的纯 FHIR 负载 `outcome=pass errors=0 warnings=5 info=3`，耗时约 20–26s；阶段标签为 `official-engine`，且记录缺少 `jarSha256` 或 `validatorVersion` 时直接 `validator-not-official`，标签不可伪造 |
+| **信封分离双向断言** | 信封本体实测 `fail err=2` 且被门禁拒绝；纯负载 `pass err=0` 且被门禁接受；纯负载摘要与审计链 `payload_digest` 相等（`577caa66…2ce8f8`） |
+| **官方引擎的 profile 推断** | LOINC `29463-7` 使引擎套用 bodyweight 剖面（4.0.1），要求 `category`（VSCat 切片）与 `effective[x]`；夹具补全这两项后才 pass |
+| **标准合成测试集** | HL7 官方 R4 v4.0.1 示例 6 个，逐文件 SHA-256 固定，许可与来源见 `testdata/fhir/r4-examples/README.md` |
+| 官方 Validator 正向结果 | 5 个官方示例 pass（0 error），`require_official()` 接受 |
+| 官方 Validator 负向结果 | `practitioner-example.json` 被官方引擎拒绝（2 error），门禁以 `validator-outcome-failed` 拒绝；派生负向夹具 `r4-observation-invalid-status.json` 同样被拒绝 |
+| 引擎缺失时 fail-closed | 无 jar / 无 JRE / 摘要不符 / 超时 / 输出缺失 / 输出损坏 → `validator-engine-unavailable`、`validator-jar-digest-mismatch`、`validator-engine-timeout`、`validator-output-missing`、`validator-output-corrupt` |
+| **全量 Python 回归** | `tools/evidence/python_gates.py` 自动发现并执行 **79 个测试模块、807 项测试 OK**；此前 CI 只列 25 个模块，存在覆盖漂移风险 |
 执行产物：`docs/evidence/p1/fhir-vertical-slice.json`、`docs/evidence/p1/fhir-vertical-slice.log`、
 `docs/evidence/p1/fhir-official-validation.json`、`docs/evidence/p1/fhir-official-validation.log`、
 `docs/evidence/p1/fhir-validator-provenance.json`。
-单元回归：`python -B -m unittest internal.workflow.test_slice` → 9 tests OK；
+单元回归：`python -B -m unittest internal.workflow.test_slice` → 15 tests OK（含 6 项信封分离测试）；
 `python -B -m unittest internal.contract.test_hapi_validator` → 无引擎时 7 pass / 3 skipped，
-配置真实引擎后 **10 tests OK（97.7s，含官方引擎实跑）**。
+配置真实引擎后 **10 tests OK（97.7s，含官方引擎实跑）**；
+全量回归 `python -B tools/evidence/python_gates.py` → **79 模块 807 tests OK（94.9s）**。
 
 ## fail-closed 实测（验收脚本逐条执行，均不追加成功事件）
 
@@ -41,11 +49,13 @@
 
 ## 仍缺失证据
 
-- **纵切内尚未使用真实引擎**：`run_vertical_slice()` 已支持 `official_engine=True`（调用
-  `validate_payload()` 实跑官方引擎），但默认仍使用 `official_record()` 构造的官方形状记录。
-  原因是 Atlas 合成夹具把来源证明字段（`synthetic`、`actorId`、`whyCode`、`purposeCode`）放在资源根上，
-  并声明 `example.invalid` 的 profile，官方引擎会对其报结构性错误。
-  统一两条轨道需要把 FHIR 负载与 Atlas 来源信封分离，这是下一步的第一项。
+- **Bundle 阶段尚未经官方引擎判定**：`require_bundle()` 消费的是 Atlas 事务清单
+  （`entry[].reference`），不是 FHIR transaction Bundle（`entry[].resource` + `entry[].request`），
+  且 `ENTRY_TYPES` 不允许 Patient 条目。因此纵切内目前只有 Observation 被官方引擎真实判定，
+  Bundle 阶段仍只是 Atlas 侧的结构校验。
+- **无引擎的环境仍会走合成记录**：`fhir_slice_acceptance.py` 在没有 jar/JRE 时退回官方形状的合成记录，
+  并在日志与证据里显式写明 `validator_engine=synthetic-record`；设置
+  `ATLAS_FHIR_VALIDATOR_REQUIRE_OFFICIAL=1` 可让它在无引擎时直接失败。
 - **jar 的 GPG 签名未验证**：官方发布了 `validator_cli.jar.asc`，但本环境没有 gpg，
   目前只固定了 jar 的 SHA-256。
 - **Proto 服务端实现**：`api/gen` 不存在，`FhirValidationService` 与 `HitlService` 只有 proto 定义，

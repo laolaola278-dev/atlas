@@ -21,6 +21,7 @@ from __future__ import annotations
 import argparse
 import json
 import platform
+import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 import sys
@@ -39,6 +40,7 @@ from internal.contract.hapi_validator import (  # noqa: E402
     validator_version,
 )
 from internal.contract.validator import require_official  # noqa: E402
+from internal.workflow.slice import pure_resource  # noqa: E402
 
 _EVIDENCE_DIR = _ROOT / "docs" / "evidence" / "p1"
 _CORPUS = _ROOT / "testdata" / "fhir" / "r4-examples"
@@ -83,7 +85,7 @@ def _accepts(record: dict[str, object]) -> str:
     return "accepted"
 
 
-def _row(source: Path, outcome, config) -> dict[str, object]:
+def _row(source: Path, outcome, config, label: str = "") -> dict[str, object]:
     """Return one evidence row for a single official validation."""
     payload = json.loads(source.read_text(encoding="utf-8"))
     record = official_record(payload, outcome, config=config, content_digest=canonical_digest(payload))
@@ -99,7 +101,7 @@ def _row(source: Path, outcome, config) -> dict[str, object]:
         "issues": [dict(item) for item in outcome.issues],
         "outcome": outcome.outcome,
         "outcome_id": outcome.outcome_id,
-        "path": _relative(source),
+        "path": label or _relative(source),
         "validator_version": outcome.validator_version,
         "warning_count": outcome.warning_count,
     }
@@ -162,9 +164,28 @@ def run(probe: bool = False) -> dict[str, object]:
     _check(any(str(item["expression"]).startswith("Observation.status") for item in negative["issues"]), "expected an Observation.status issue in the negative control")
 
     atlas = _row(ATLAS_FIXTURE, validate_file(ATLAS_FIXTURE, config=config), config)
-    note(f"[atlas-fixture  ] {atlas['path']:<50} {atlas['outcome']:<4} err={atlas['error_count']} warn={atlas['warning_count']} gate={atlas['gate']}")
+    note(f"[atlas-envelope] {atlas['path']:<50} {atlas['outcome']:<4} err={atlas['error_count']} warn={atlas['warning_count']} gate={atlas['gate']}")
+    _check(atlas["outcome"] == "fail" and atlas["error_count"] >= 1,
+           "the Atlas envelope unexpectedly validated as FHIR, so the envelope separation would be dead code")
+    _check(atlas["gate"].startswith("rejected:validator-outcome-failed"), "gate accepted the Atlas envelope")
     for issue in atlas["issues"][:6]:
         note(f"                   {issue['severity']:<11} {issue['code']:<12} {issue['expression'][:66]}")
+
+    envelope = json.loads(ATLAS_FIXTURE.read_text(encoding="utf-8"))
+    projection = pure_resource(envelope)
+    note(f"[separation     ] stripped envelope fields: {sorted(set(envelope) - set(projection))}")
+    with tempfile.TemporaryDirectory() as directory:
+        projection_path = Path(directory) / "observation-projection.json"
+        projection_path.write_text(json.dumps(projection, indent=2, sort_keys=True) + "\n",
+                                   encoding="utf-8", newline="\n")
+        projected = _row(projection_path, validate_file(projection_path, config=config), config,
+                         label="testdata/fhir/synthetic/observation.json -> pure FHIR projection")
+    note(f"[atlas-project ] {projected['path']:<50} {projected['outcome']:<4} err={projected['error_count']} warn={projected['warning_count']} gate={projected['gate']}")
+    _check(projected["outcome"] == "pass" and projected["error_count"] == 0 and projected["exit_code"] == 0,
+           f"the derived FHIR projection did not validate: {projected['issues']}")
+    _check(projected["gate"] == "accepted", "require_official rejected the projection record")
+    _check(projected["content_digest"] == canonical_digest(projection),
+           "the evidence digest and the slice digest are not the same bytes")
 
     probes: list[dict[str, object]] = []
     if probe:
@@ -186,7 +207,8 @@ def run(probe: bool = False) -> dict[str, object]:
         _check(outcomes == {"fail"}, f"the known rejection is configuration dependent: {probes}")
 
     return {
-        "atlas_synthetic_fixture": atlas,
+        "atlas_envelope": atlas,
+        "atlas_projection": projected,
         "corpus_license": {
             "note": "HL7 permits redistribution of the specification; the document is licensed CC0.",
             "source": "https://hl7.org/fhir/R4/license.html",
@@ -201,12 +223,13 @@ def run(probe: bool = False) -> dict[str, object]:
         },
         "environment": {"go_toolchain_available": False, "python_version": platform.python_version()},
         "fhir_version": "4.0.1",
-        "gap_note": (
-            "The Atlas synthetic fixture carries provenance fields (synthetic, actorId, whyCode, purposeCode) at the "
-            "resource root and declares an example.invalid profile, so the official validator reports structural "
-            "errors for it. Unifying both tracks requires separating the FHIR payload from the Atlas provenance "
-            "envelope; until then the vertical slice validates with an official-shaped record while the standard "
-            "corpus is validated with the real engine."
+        "separation_note": (
+            "The Atlas fixture is an envelope: internal/workflow/slice.py:pure_resource() strips the declared "
+            "ATLAS_ENVELOPE_FIELDS (synthetic, purposeCode, actorId, whyCode, consentState, codeSystem, "
+            "reviewedAt) and the official engine validates only the projection. Both halves are asserted here: "
+            "the envelope must fail as FHIR and the projection must pass, and the projection digest must equal "
+            "the digest the audit chain binds. The validator infers the bodyweight profile from LOINC 29463-7, "
+            "which is why the projection carries category vital-signs and effectiveDateTime."
         ),
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "known_rejected": rejected,
@@ -217,7 +240,7 @@ def run(probe: bool = False) -> dict[str, object]:
         "schema_version": "1.1",
         "synthetic": True,
         "totals": {
-            "engine_runs": len(passed) + len(rejected) + 2 + len(probes),
+            "engine_runs": len(passed) + len(rejected) + 3 + len(probes),
             "known_rejected": len(rejected),
             "must_pass": len(passed),
             "must_pass_passed": sum(1 for row in passed if row["outcome"] == "pass"),

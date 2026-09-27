@@ -24,7 +24,8 @@ python -B tools/evidence/fhir_official_validation.py
 # 3. 七阶段纵切验收（任一不变量失败即 exit 1）
 python -B tools/evidence/fhir_slice_acceptance.py
 
-# 4. 单元回归
+# 4. 单元回归（自动发现全部 79 个测试模块）
+python -B tools/evidence/python_gates.py
 python -B -m unittest internal.workflow.test_slice internal.contract.test_hapi_validator
 
 # 5. 先跑全部门禁，再算摘要，生成索引
@@ -54,14 +55,21 @@ $env:ATLAS_FHIR_VALIDATOR_OFFLINE = '1'
   `require_official()` 以 `validator-outcome-failed` 拒绝。三组配置探针（联网 + `-tx n/a`、
   联网 + `tx.fhir.org/r4`、离线 + `-tx n/a`）结果完全一致，说明这不是离线或术语策略造成的。
 - **negative-control**：把官方 observation 示例的 `status` 改成非法值后，官方引擎报 2 error，门禁拒绝。
+- **信封分离（本轮新增）**：Atlas 夹具本体 `fail err=2`（`synthetic`、`purposeCode` 不是 FHIR 元素），
+  而 `pure_resource()` 剥离这两个字段后的纯负载 **`pass err=0`**，且其摘要与纵切审计链绑定的摘要逐字节相同。
+  两侧都被断言，所以分离不是死代码：若哪天信封本体又能通过官方校验，验收会失败。
+- **profile 推断**：LOINC `29463-7` 会让引擎套用 bodyweight 剖面（4.0.1），要求 `category`（VSCat 切片）
+  与 `effective[x]`。夹具补全这两项后才 pass——这是实测得出的，不是照抄示例。
 
 这三类合起来证明门禁既不放行坏输入，也不无条件放行官方输入。
 
 ## 明确未验证的事项
 
-1. **纵切默认路径仍用官方形状的合成记录**。`run_vertical_slice(official_engine=True)` 已实现真实引擎调用，
-   但 Atlas 夹具把来源字段（`synthetic`、`actorId`、`whyCode`、`purposeCode`）放在资源根上并声明
-   `example.invalid` profile，官方引擎实测对其报 4 个 structure error。统一两条轨道需要先做信封分离。
+1. **Bundle 阶段尚未经官方引擎判定**。`require_bundle()` 消费的是 Atlas 事务清单（`entry[].reference`），
+   不是 FHIR transaction Bundle（`entry[].resource` + `entry[].request`），且 `ENTRY_TYPES` 不允许 Patient 条目。
+   因此纵切内目前只有 Observation 被官方引擎真实判定。
+1b. **无引擎环境会退回合成记录**。`fhir_slice_acceptance.py` 在缺少 jar/JRE 时使用官方形状的合成记录，
+   并在证据里写明 `validator_engine=synthetic-record`；设 `ATLAS_FHIR_VALIDATOR_REQUIRE_OFFICIAL=1` 可让它直接失败。
 2. **jar 的 GPG 签名未验证**：官方发布了 `validator_cli.jar.asc`，本环境没有 gpg，目前只固定 SHA-256。
 3. `api/gen` 不存在，`FhirValidationService` 与 `HitlService` 只有 proto 定义，没有服务端实现。
 4. Go 侧 `services/atlas-workflow` 未消费 `audit_event_id`；当前唯一消费方是 Python `internal/workflow/slice.py`。

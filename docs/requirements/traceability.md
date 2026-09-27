@@ -52,7 +52,7 @@
 | 阶段 | 原始范围 | 已执行的可验证证据 | 尚缺证据 | 状态 |
 |---|---|---|---|---|
 | P0 | 工程、契约、HITL、审计、隐私、PHI 扫描、CI | 规划门禁 `python -B plan/verify_first_round.py` PASS（exit 0）；CI Python 模块清单 291 tests OK（exit 0）；PHI 门禁 `--fail-on blocked` exit 0，blocked=0 / review=948 / files=332；P0 证据索引 5 行校验通过；工作区 164 个临时扫描产物与 11 个临时脚本已移出仓库 | Go 工具链在本环境不可用（`go` 不在 PATH），`go test -race -cover ./...` 未在本环境执行；独立 CI runner 未重跑；制品与回滚未验证 | 部分验证 |
-| P1 | FHIR、术语、EMPI | 七阶段纵切可执行：`python -B tools/evidence/fhir_slice_acceptance.py` exit 0，证据见 `docs/evidence/p1/fhir-vertical-slice.json`；`internal.workflow.test_slice` 9 项测试通过 | 官方 HAPI Validator 未真实执行（仓库内无任何 HAPI 二进制/jar）；计划内 58 个 P1 批次产出 0 落盘（`services/atlas-fhir/*.go`、`api/atlas-fhir/*.proto` 全部缺失）；EMPI 未开始 | 部分验证 |
+| P1 | FHIR、术语、EMPI | **纵切的 Validator 阶段由官方引擎真实执行**：`fhir_slice_acceptance.py` 实跑 `validator_cli.jar` 6.10.4，纯 FHIR 负载 `outcome=pass errors=0 warnings=5`，阶段标签 `official-engine` 且不可伪造；官方 R4 语料 6 文件实跑 5 pass / 1 known-rejected，负向对照被拒，3 组配置探针一致；全量 Python 回归 **79 模块 807 项 OK** | Bundle 阶段仍消费 Atlas 事务清单（`entry[].reference`）而非真正的 FHIR transaction Bundle，故纵切内只有 Observation 被官方引擎判定；jar 的 GPG 签名未验证（无 gpg）；计划内 58 个 P1 批次产出 0 落盘（`services/atlas-fhir/*.go`、`api/atlas-fhir/*.proto` 全部缺失）；EMPI 未开始 | 部分验证 |
 | P2 | HL7、DICOM、实时生理数据 | 设计与里程碑文档 | 接入实现、一致性验证、重放与异常处理证据（40 批次 0 落盘） | 未验证 |
 | P3 | CDSS、确定性规则、HITL、证据链 | `internal.hitl` 与状态机测试在 CI 清单内通过；双人复核 + 提交在纵切中实际执行 | 临床规则包、属性测试、模糊测试、专家盲审、破窗演练（72 批次 0 落盘） | 部分验证 |
 | P4 | 文书、医保、排班、表单、工作流 | 18 批次产出齐全、8 批次部分落盘，实测 19,962 行；`atlas-workflow` 的 `audit_event_id` 消费方由 `internal/workflow/slice.py` 实现并测试 | Go 测试未在本环境执行；医保接口、跨服务端到端测试；38 批次 0 落盘 | 部分验证 |
@@ -82,7 +82,7 @@
 | 接受带 `synthetic=true` 的 transaction Bundle | `stage_bundle` 通过，返回 2 个 entry 引用 |
 | 拒绝非法 Bundle 类型 / 空 Bundle | `bundle-type-invalid`、`bundle-empty` |
 | 拒绝缺失 profile、非法引用、过期术语 | `profile-not-declared`、`patient-reference-missing`、`terminology-release-expired` |
-| 写入前运行官方 FHIR Validator | **未达成**：仓库内没有 HAPI 二进制，`require_official()` 只是对外部官方结果记录的 fail-closed 校验 |
+| 写入前运行官方 FHIR Validator | **达成（Observation）**：`pure_resource()` 剥离 `ATLAS_ENVELOPE_FIELDS` 得到纯 FHIR 负载，官方引擎实跑该负载 `outcome=pass errors=0`；审计链绑定的摘要即被判定字节的摘要；信封本体实测 `fail err=2` 并被门禁拒绝，证明分离不是死代码 |
 | Validator 不可用/未知结果 fail-closed | `validator-result-unknown`、`validator-not-official`、`validator-digest-mismatch`、`validator-outcome-rejected` |
 | 记录 validator 版本、profile 摘要、结果摘要与审计关联 ID | `fhir_validation_result` + `AuditEvent.payload_digest` + `audit_event_id` |
 | fixture 覆盖有效样例与各类失败 | `testdata/fhir/synthetic/` 5 个夹具全部被测试引用；另有官方 HL7 R4 语料 6 个文件（`testdata/fhir/r4-examples/`，CC0，SHA-256 固定）与派生负向夹具 `r4-observation-invalid-status.json` |
@@ -102,7 +102,7 @@
 
 ## 后续顺序
 
-1. **分离 FHIR 负载与 Atlas 来源信封**，让纵切默认路径直接用真实官方引擎（`official_engine=True` 已实现，只差夹具改造）。
+1. **把 Bundle 阶段也交给官方引擎**：`require_bundle()` 目前消费 Atlas 事务清单（`entry[].reference`），需改为真正的 FHIR transaction Bundle（`entry[].resource` + `entry[].request`），并允许 Patient 条目。
 2. 验证 jar 的 GPG 签名（需要 gpg 与 HL7 公钥），把签名校验并入供给脚本。
 3. 在具备 Go 工具链的环境补齐 Go 侧回归，并把结果写入本矩阵。
 4. 按计划补齐 P1 的 58 个批次产出，或修订计划使其与实际交付一致。

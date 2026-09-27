@@ -3,20 +3,22 @@ engine jar         : E:\hds(js)\look\_scratch\tools\fhir-validator\validator_cli
 engine jar sha256  : 1106b9d58f9e363e47bea7c4fc065841e5fc91fe9d062775c3bfdd212bd653cc
 validator version  : 6.10.4+git.1b90fb13f77b
 fhir version       : 4.0.1    tx server: n/a    offline: True
-[must-pass      ] testdata/fhir/r4-examples/patient-example.json     pass err=0 warn=0 info=1 exit=0 18030ms gate=accepted
-[must-pass      ] testdata/fhir/r4-examples/observation-example.json pass err=0 warn=3 info=2 exit=0 18530ms gate=accepted
-[must-pass      ] testdata/fhir/r4-examples/bundle-example.json      pass err=0 warn=0 info=1 exit=0 18485ms gate=accepted
-[must-pass      ] testdata/fhir/r4-examples/condition-example.json   pass err=0 warn=0 info=1 exit=0 17968ms gate=accepted
-[must-pass      ] testdata/fhir/r4-examples/encounter-example.json   pass err=0 warn=0 info=1 exit=0 18125ms gate=accepted
+[must-pass      ] testdata/fhir/r4-examples/patient-example.json     pass err=0 warn=0 info=1 exit=0 19093ms gate=accepted
+[must-pass      ] testdata/fhir/r4-examples/observation-example.json pass err=0 warn=3 info=2 exit=0 19375ms gate=accepted
+[must-pass      ] testdata/fhir/r4-examples/bundle-example.json      pass err=0 warn=0 info=1 exit=0 19406ms gate=accepted
+[must-pass      ] testdata/fhir/r4-examples/condition-example.json   pass err=0 warn=0 info=1 exit=0 19468ms gate=accepted
+[must-pass      ] testdata/fhir/r4-examples/encounter-example.json   pass err=0 warn=0 info=1 exit=0 20468ms gate=accepted
 [known-rejected ] testdata/fhir/r4-examples/practitioner-example.json fail err=2 exit=1 gate=rejected:validator-outcome-failed
                    error       invalid      Practitioner.qualification[0].identifier[0].system
                    warning     not-found    Practitioner.qualification[0].code.coding[0].system
                    error       invalid      Practitioner.qualification[0].code.coding[0].system
 [negative-ctrl  ] testdata/fhir/synthetic/r4-observation-invalid-status.json fail err=2 gate=rejected:validator-outcome-failed
-[atlas-fixture  ] testdata/fhir/synthetic/observation.json           fail err=4 warn=4 gate=rejected:validator-outcome-failed
-                   error       structure    Observation
-                   error       structure    Observation
+[atlas-envelope] testdata/fhir/synthetic/observation.json           fail err=2 warn=5 gate=rejected:validator-outcome-failed
                    error       structure    Observation
                    error       structure    Observation
                    information invalid      Observation.meta.profile[0]
+                   warning     business-rule Observation.value.ofType(Quantity)
                    warning     invariant    Observation
+                   information informational Observation
+[separation     ] stripped envelope fields: ['purposeCode', 'synthetic']
+[atlas-project ] testdata/fhir/synthetic/observation.json -> pure FHIR projection pass err=0 warn=5 gate=accepted

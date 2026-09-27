@@ -54,6 +54,39 @@ def load_fixture(name: str) -> dict[str, object]:
     return payload
 
 
+# Atlas provenance fields live on the review envelope, never inside the FHIR
+# payload that the official validator sees. Keeping them in one declared set is
+# what makes the separation auditable instead of incidental.
+ATLAS_ENVELOPE_FIELDS = frozenset({
+    "actorId",
+    "codeSystem",
+    "consentState",
+    "purposeCode",
+    "reviewedAt",
+    "synthetic",
+    "whyCode",
+})
+
+
+def pure_resource(envelope: dict[str, object]) -> dict[str, object]:
+    """Return the FHIR payload with every Atlas provenance field removed.
+
+    The gate consumes the envelope, the official validator consumes this
+    projection, and the digest that binds the audit event, the workflow task and
+    the HITL receipt is computed over the projection only. That way the record
+    the audit chain carries is exactly the bytes the official engine judged.
+    """
+    payload = {key: value for key, value in envelope.items() if key not in ATLAS_ENVELOPE_FIELDS}
+    if len(payload) == len(envelope):
+        raise ContractError("validator-envelope-invalid")
+    if not str(payload.get("resourceType", "")) or not str(payload.get("id", "")):
+        raise ContractError("validator-envelope-invalid")
+    leaked = sorted(ATLAS_ENVELOPE_FIELDS.intersection(payload))
+    if leaked:
+        raise ContractError("validator-envelope-invalid")
+    return payload
+
+
 def stage_bundle(bundle: dict[str, object]) -> tuple[str, ...]:
     """Stage 1: accept only a transaction bundle with allowed entries."""
     require_bundle(bundle)
@@ -88,10 +121,11 @@ def official_record(digest: str, outcome_id: str, outcome: str = "pass") -> dict
     }
 
 
-def stage_validator(resource: dict[str, object], record: dict[str, object] | None) -> tuple[str, str]:
-    """Stage 3: return the resource digest and the official outcome id."""
-    digest = canonical_digest(resource)
-    return digest, require_official({**resource, "contentDigest": digest}, record)
+def stage_validator(envelope: dict[str, object], record: dict[str, object] | None) -> tuple[str, str]:
+    """Stage 3: bind the digest of the pure FHIR payload to one outcome id."""
+    payload = pure_resource(envelope)
+    digest = canonical_digest(payload)
+    return digest, require_official({**payload, "contentDigest": digest}, record)
 
 
 def stage_audit(
@@ -323,6 +357,7 @@ def run_vertical_slice(
     validator_record: dict[str, object] | None = None,
     validator_version: str = "hapi-unexecuted",
     official_engine: bool = False,
+    validator_engine: str = "",
 ) -> dict[str, object]:
     """Run Bundle -> Gate -> Validator -> Audit -> Workflow -> Review -> Commit."""
     stages: list[dict[str, object]] = []
@@ -338,12 +373,18 @@ def run_vertical_slice(
     stages.append({"issues": list(issues), "resource": reference, "stage": "gate"})
 
     record = validator_record
-    engine = "supplied-record"
+    engine = validator_engine or "supplied-record"
     if record is None and official_engine:
         # Real engine execution: validator_cli.jar runs and its OperationOutcome
         # becomes the official record. Without an engine this fails closed.
-        record = validate_payload(resource)
+        record = validate_payload(pure_resource(resource))
         engine = "official-engine"
+        validator_version = str(record.get("validatorVersion", validator_version))
+    if engine == "official-engine":
+        # The label is not a claim, it is checked: only a record produced by the
+        # real engine carries a jar digest and a resolved validator version.
+        if not isinstance(record, dict) or not str(record.get("jarSha256", "")) or not str(record.get("validatorVersion", "")):
+            raise ContractError("validator-not-official")
         validator_version = str(record.get("validatorVersion", validator_version))
     digest, outcome_id = stage_validator(resource, record)
     stages.append({
@@ -352,7 +393,9 @@ def run_vertical_slice(
         "outcome_id": outcome_id,
         "resource_digest": digest,
         "stage": "validator",
-        "validator_version": str(record.get("validatorVersion", "")) if isinstance(record, dict) else "",
+        "validator_version": (
+            str(record.get("validatorVersion") or validator_version) if isinstance(record, dict) else validator_version
+        ),
     })
 
     event = stage_audit(

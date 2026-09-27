@@ -13,7 +13,7 @@ jobs:
       - name: Planning gate
         run: python -B plan/verify_first_round.py
       - name: Scanner unit tests
-        run: python -B -m unittest tools.phi-scan.test_scan tools.locaudit.test_scan internal.hitl.state.test_machine internal.hitl.test_review internal.hitl.test_audited internal.hitl.test_service internal.contract.test_errors internal.contract.test_policy internal.contract.test_evidence internal.contract.test_query internal.contract.test_replay internal.contract.test_identity internal.contract.test_privacy internal.contract.test_domain internal.contract.test_batch internal.contract.test_stream internal.contract.test_write_intent internal.contract.test_fhir_gate internal.contract.test_config internal.audit.test_chain internal.audit.test_file internal.contract.test_idempotency internal.contract.test_hapi_validator internal.workflow.test_slice
+        run: python -B tools/evidence/python_gates.py
       - name: FHIR vertical slice acceptance
         run: python -B tools/evidence/fhir_slice_acceptance.py
       - name: P0-P8 traceability matrix

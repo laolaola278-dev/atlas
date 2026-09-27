@@ -20,6 +20,7 @@
     "bundle-type-invalid": "bundle-type-invalid",
     "gate-purpose-missing": "purpose-missing",
     "validator-digest-mismatch": "validator-digest-mismatch",
+    "validator-envelope-invalid": "validator-envelope-invalid",
     "validator-not-official": "validator-not-official",
     "validator-record-absent": "validator-result-unknown",
     "workflow-audit-event-mismatch": "workflow-audit-event-mismatch",
@@ -30,8 +31,8 @@
   "fhir_audit_event": {
     "action": "fhir-validate",
     "agentRole": "attending",
-    "entityDigest": "1253cd4d9da11154cbdbab208f082ddc150835e71f49d8b6858a38456b25be7b",
-    "eventHash": "a4da00a6b8cd57817292a0172d80ffb6b6f34237f0ae51fb78e5e755148bcfb7",
+    "entityDigest": "577caa660b9e06ce609a8a16921d6a0142ff4105e85d5d25610c7485df2ce8f8",
+    "eventHash": "d89dc683c236c14cfaad24ad87d3cb1ab92497190258c5dacc8ae65c377adda4",
     "id": "fhir-validate-observation-synthetic-1",
     "occurredAt": "2026-09-24T00:00:00Z",
     "outcome": "active",
@@ -50,22 +51,24 @@
     "validation": {
       "issues": [],
       "profile_digest": "5baa1084bad12ebfee1d42dd74e9ba838af5eb1adf6182152d08f2aa680829f1",
-      "resource_digest": "1253cd4d9da11154cbdbab208f082ddc150835e71f49d8b6858a38456b25be7b",
+      "resource_digest": "577caa660b9e06ce609a8a16921d6a0142ff4105e85d5d25610c7485df2ce8f8",
       "valid": true,
-      "validator_version": "hapi-unexecuted"
+      "validator_version": "6.10.4+git.1b90fb13f77b"
     }
   },
-  "generated_at": "2026-09-27T12:00:19Z",
-  "git_revision": "040339a",
-  "hapi_validator_executed": false,
-  "hapi_validator_note": "No HAPI binary or jar exists in this repository. internal/contract/validator.py:require_official() is a fail-closed evidence gate that only accepts an externally supplied official outcome record.",
+  "generated_at": "2026-09-27T12:39:37Z",
+  "git_revision": "dd37e04",
+  "hapi_validator_executed": true,
+  "hapi_validator_note": "validator_cli.jar runs as a subprocess when ATLAS_FHIR_VALIDATOR_JAR and a JRE are configured, and its OperationOutcome becomes the official record. Without an engine this runner records an official-shaped synthetic record and says so explicitly.",
   "log": [
     "[stage 0] synthetic fixtures loaded: valid-patient-bundle.json, observation.json",
-    "[stage 0] canonical resource digest: 1253cd4d9da11154cbdbab208f082ddc150835e71f49d8b6858a38456b25be7b",
+    "[stage 0] envelope fields stripped before validation: ['purposeCode', 'synthetic']",
+    "[stage 0] canonical resource digest (projection only): 577caa660b9e06ce609a8a16921d6a0142ff4105e85d5d25610c7485df2ce8f8",
+    "[stage 0] official validator 6.10.4+git.1b90fb13f77b outcome=pass errors=0 warnings=5 info=3 elapsedMs=19061",
     "[stage 1] bundle: {\"entries\": [\"Observation/observation-synthetic\", \"ServiceRequest/service-request-synthetic\"]}",
     "[stage 2] gate: {\"issues\": [], \"resource\": \"Observation/observation-synthetic\"}",
-    "[stage 3] validator: {\"engine\": \"supplied-record\", \"official\": true, \"outcome_id\": \"hapi-outcome-acceptance\", \"resource_digest\": \"1253cd4d9da11154cbdbab208f082ddc150835e71f49d8b6858a38456b25be7b\", \"validator_version\": \"\"}",
-    "[stage 4] audit: {\"audit_event_id\": \"fhir-validate-observation-synthetic-1\", \"event_hash\": \"a4da00a6b8cd57817292a0172d80ffb6b6f34237f0ae51fb78e5e755148bcfb7\", \"previous_hash\": \"0000000000000000000000000000000000000000000000000000000000000000\", \"sequence\": 1}",
+    "[stage 3] validator: {\"engine\": \"official-engine\", \"official\": true, \"outcome_id\": \"8736927e8b66aee16b205f3d66913a31d8ded6dc1564601e91944604330df1c3\", \"resource_digest\": \"577caa660b9e06ce609a8a16921d6a0142ff4105e85d5d25610c7485df2ce8f8\", \"validator_version\": \"6.10.4+git.1b90fb13f77b\"}",
+    "[stage 4] audit: {\"audit_event_id\": \"fhir-validate-observation-synthetic-1\", \"event_hash\": \"d89dc683c236c14cfaad24ad87d3cb1ab92497190258c5dacc8ae65c377adda4\", \"previous_hash\": \"0000000000000000000000000000000000000000000000000000000000000000\", \"sequence\": 1}",
     "[stage 5] workflow: {\"audit_event_id\": \"fhir-validate-observation-synthetic-1\", \"task_id\": \"task-fhir-validate-observation-synthetic-1\", \"task_state\": \"OPEN\"}",
     "[stage 6] hitl-review: {\"audit_event_id\": \"fhir-validate-observation-synthetic-1\", \"content_digest\": \"dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\", \"review_event_id\": \"suggestion-synthetic-approve-second-4\", \"state\": \"APPROVED\", \"state_version\": \"6\", \"suggestion_id\": \"suggestion-synthetic\", \"suggestion_version\": \"6\"}",
     "[stage 7] hitl-commit: {\"audit_event_id\": \"fhir-validate-observation-synthetic-1\", \"commit_audit_event_id\": \"suggestion-synthetic-ordinary-commit-5\", \"committed\": true, \"target_version\": \"target-slice\", \"write_intent_id\": \"proof-slice\", \"write_kind\": \"ordinary\"}",
@@ -81,6 +84,7 @@
     "[fail-closed] bundle-type-invalid -> bundle-type-invalid",
     "[fail-closed] gate-purpose-missing -> purpose-missing",
     "[fail-closed] validator-digest-mismatch -> validator-digest-mismatch",
+    "[fail-closed] validator-envelope-invalid -> validator-envelope-invalid",
     "[fail-closed] validator-not-official -> validator-not-official",
     "[fail-closed] validator-record-absent -> validator-result-unknown",
     "[fail-closed] workflow-audit-event-mismatch -> workflow-audit-event-mismatch",
@@ -89,8 +93,14 @@
     "[fail-closed] workflow-commit-before-review -> workflow-task-state-invalid",
     "[check] no rejected branch appended a success event"
   ],
+  "official_error_count": 0,
+  "official_information_count": 3,
+  "official_issue_count": 8,
+  "official_outcome": "pass",
+  "official_outcome_id": "8736927e8b66aee16b205f3d66913a31d8ded6dc1564601e91944604330df1c3",
+  "official_warning_count": 5,
   "python_version": "3.11.15",
-  "resource_digest": "1253cd4d9da11154cbdbab208f082ddc150835e71f49d8b6858a38456b25be7b",
+  "resource_digest": "577caa660b9e06ce609a8a16921d6a0142ff4105e85d5d25610c7485df2ce8f8",
   "resource_fixture": "testdata/fhir/synthetic/observation.json",
   "review_receipt": {
     "audit_event_id": "fhir-validate-observation-synthetic-1",
@@ -111,5 +121,7 @@
     "hitl-commit"
   ],
   "synthetic": true,
-  "test_command": "python -B -m unittest internal.workflow.test_slice"
+  "test_command": "python -B -m unittest internal.workflow.test_slice",
+  "validator_engine": "official-engine",
+  "validator_version": "6.10.4+git.1b90fb13f77b"
 }

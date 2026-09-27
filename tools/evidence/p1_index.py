@@ -27,18 +27,9 @@ from internal.contract.hapi_validator import engine_available  # noqa: E402
 
 _INDEX = _ROOT / "docs" / "evidence" / "p1" / "index.json"
 
-MODULES = (
-    "tools.phi-scan.test_scan", "tools.locaudit.test_scan",
-    "internal.hitl.state.test_machine", "internal.hitl.test_review", "internal.hitl.test_audited",
-    "internal.hitl.test_service", "internal.contract.test_errors", "internal.contract.test_policy",
-    "internal.contract.test_evidence", "internal.contract.test_query", "internal.contract.test_replay",
-    "internal.contract.test_identity", "internal.contract.test_privacy", "internal.contract.test_domain",
-    "internal.contract.test_batch", "internal.contract.test_stream", "internal.contract.test_write_intent",
-    "internal.contract.test_fhir_gate", "internal.contract.test_config", "internal.audit.test_chain",
-    "internal.audit.test_file", "internal.contract.test_idempotency",
-    "internal.contract.test_hapi_validator", "internal.workflow.test_slice",
-    "tools.evidence.test_p0_index",
-)
+# The Python suite is discovered, not listed: tools/evidence/python_gates.py is
+# the single source of truth shared with CI, so the index cannot claim coverage
+# that the working tree no longer has.
 
 ARTIFACTS = (
     "docs/evidence/p1/README.md",
@@ -72,6 +63,7 @@ ARTIFACTS = (
     "tools/evidence/fhir_slice_acceptance.py",
     "tools/evidence/p1_index.py",
     "tools/evidence/provision_fhir_validator.py",
+    "tools/evidence/python_gates.py",
     "tools/evidence/traceability.py",
     "tools/phi-scan/rules-atlas.json",
     "tools/phi-scan/rules.py",
@@ -81,9 +73,8 @@ ARTIFACTS = (
 )
 
 UNVERIFIED = (
-    "vertical slice default path still uses an official-shaped synthetic record; official_engine=True is "
-    "implemented but the Atlas fixture envelope (synthetic/actorId/whyCode/purposeCode at the resource root) "
-    "is not base-R4 valid yet",
+    "the Bundle stage still consumes an Atlas transaction manifest (entry[].reference), not a real FHIR "
+    "transaction Bundle, so only the Observation is judged by the official engine inside the slice",
     "jar GPG signature not verified: validator_cli.jar.asc is published but no gpg binary exists here",
     "proto service stubs and server implementation (api/gen absent), so FhirValidationService/HitlService have no server",
     "Go-side workflow consumption of audit_event_id (services/atlas-workflow has no reference)",
@@ -145,7 +136,7 @@ def build(skip_official: bool) -> dict[str, object]:
                   "--out", str(_ROOT.parent / "_scratch" / "phi-p1.json")]),
         run_gate([sys.executable, "-B", "tools/evidence/fhir_slice_acceptance.py"]),
         run_gate([sys.executable, "-B", "tools/evidence/traceability.py"]),
-        run_gate([sys.executable, "-B", "-m", "unittest", *MODULES]),
+        run_gate([sys.executable, "-B", "tools/evidence/python_gates.py"]),
     ]
     if skip_official or not engine:
         reason = "skipped by --skip-official" if skip_official else (

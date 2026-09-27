@@ -1,13 +1,13 @@
 {
-  "atlas_synthetic_fixture": {
-    "content_digest": "1253cd4d9da11154cbdbab208f082ddc150835e71f49d8b6858a38456b25be7b",
-    "elapsed_ms": 18797,
-    "error_count": 4,
+  "atlas_envelope": {
+    "content_digest": "da138fcd1fc077aa670dff52af754e2c4abe7b42f58d4c3313d70a763e1068b7",
+    "elapsed_ms": 19202,
+    "error_count": 2,
     "exit_code": 1,
     "fhir_version": "4.0.1",
     "gate": "rejected:validator-outcome-failed",
-    "information_count": 1,
-    "issue_count": 9,
+    "information_count": 3,
+    "issue_count": 10,
     "issues": [
       {
         "code": "structure",
@@ -22,22 +22,16 @@
         "severity": "error"
       },
       {
-        "code": "structure",
-        "diagnostics_sha256": "3b0b7dda8d94b114bbe8b8bfc4fec13a3a0a1708c2fbd1d5198c6942bc6171d6",
-        "expression": "Observation",
-        "severity": "error"
-      },
-      {
-        "code": "structure",
-        "diagnostics_sha256": "835a474580c9622372af3926ab9f5e2c48fa9c019c31539bfbff1e3a805e2f07",
-        "expression": "Observation",
-        "severity": "error"
-      },
-      {
         "code": "invalid",
         "diagnostics_sha256": "769a5f1e4095d0bea6927f5719631ad0d0513b1a8da3a72ba4453017bd649ce1",
         "expression": "Observation.meta.profile[0]",
         "severity": "information"
+      },
+      {
+        "code": "business-rule",
+        "diagnostics_sha256": "2c7a9f0c9ce515c13f3fe1aeddf17aef9e57246272be582c7513fae26d4ef55a",
+        "expression": "Observation.value.ofType(Quantity)",
+        "severity": "warning"
       },
       {
         "code": "invariant",
@@ -46,14 +40,26 @@
         "severity": "warning"
       },
       {
-        "code": "invalid",
-        "diagnostics_sha256": "ff2c4bdb3d6dccf614a72cbacfb575de3ff8d75d36a3639c773a367652a7c920",
+        "code": "informational",
+        "diagnostics_sha256": "d687b07e3309861d09f8aa5cf869061a0f7e681ec899ce1b9a36e0df69c58bc2",
         "expression": "Observation",
+        "severity": "information"
+      },
+      {
+        "code": "code-invalid",
+        "diagnostics_sha256": "d8db64fc228d22b4a26287f7bd875831ab9af49cb4d4be76d41519beecded2c4",
+        "expression": "Observation.code",
+        "severity": "information"
+      },
+      {
+        "code": "informational",
+        "diagnostics_sha256": "6ce9d30007eeb9a0051b0f2d86d64401dff95befcd0b5375f5a97fcaad981c3c",
+        "expression": "Observation.value.ofType(Quantity).code",
         "severity": "warning"
       },
       {
         "code": "invalid",
-        "diagnostics_sha256": "727f6b30990f9081caea2f425cd7dc37f1c52966fdbb2135af5b571bbccb6946",
+        "diagnostics_sha256": "ff2c4bdb3d6dccf614a72cbacfb575de3ff8d75d36a3639c773a367652a7c920",
         "expression": "Observation",
         "severity": "warning"
       },
@@ -65,10 +71,75 @@
       }
     ],
     "outcome": "fail",
-    "outcome_id": "43d7763a21635594db6a627d6b3ce3f188b9e092e912458f01bd9d781fcc339b",
+    "outcome_id": "583397b081f1c57d9630a63967ef997c88ed1808f3b2659021fbf6d10e7a2902",
     "path": "testdata/fhir/synthetic/observation.json",
     "validator_version": "6.10.4+git.1b90fb13f77b",
-    "warning_count": 4
+    "warning_count": 5
+  },
+  "atlas_projection": {
+    "content_digest": "577caa660b9e06ce609a8a16921d6a0142ff4105e85d5d25610c7485df2ce8f8",
+    "elapsed_ms": 19000,
+    "error_count": 0,
+    "exit_code": 0,
+    "fhir_version": "4.0.1",
+    "gate": "accepted",
+    "information_count": 3,
+    "issue_count": 8,
+    "issues": [
+      {
+        "code": "invalid",
+        "diagnostics_sha256": "769a5f1e4095d0bea6927f5719631ad0d0513b1a8da3a72ba4453017bd649ce1",
+        "expression": "Observation.meta.profile[0]",
+        "severity": "information"
+      },
+      {
+        "code": "business-rule",
+        "diagnostics_sha256": "2c7a9f0c9ce515c13f3fe1aeddf17aef9e57246272be582c7513fae26d4ef55a",
+        "expression": "Observation.value.ofType(Quantity)",
+        "severity": "warning"
+      },
+      {
+        "code": "invariant",
+        "diagnostics_sha256": "ba4168c496a2a218e14b7f99de2f79371c03a9e91e06bc2a5a09352f9d9f96d4",
+        "expression": "Observation",
+        "severity": "warning"
+      },
+      {
+        "code": "informational",
+        "diagnostics_sha256": "d687b07e3309861d09f8aa5cf869061a0f7e681ec899ce1b9a36e0df69c58bc2",
+        "expression": "Observation",
+        "severity": "information"
+      },
+      {
+        "code": "code-invalid",
+        "diagnostics_sha256": "d8db64fc228d22b4a26287f7bd875831ab9af49cb4d4be76d41519beecded2c4",
+        "expression": "Observation.code",
+        "severity": "information"
+      },
+      {
+        "code": "informational",
+        "diagnostics_sha256": "6ce9d30007eeb9a0051b0f2d86d64401dff95befcd0b5375f5a97fcaad981c3c",
+        "expression": "Observation.value.ofType(Quantity).code",
+        "severity": "warning"
+      },
+      {
+        "code": "invalid",
+        "diagnostics_sha256": "ff2c4bdb3d6dccf614a72cbacfb575de3ff8d75d36a3639c773a367652a7c920",
+        "expression": "Observation",
+        "severity": "warning"
+      },
+      {
+        "code": "structure",
+        "diagnostics_sha256": "12f117e38f6cffb7102de2b4a829c4112faad44092a78e79e56c1d1ac3831835",
+        "expression": "Observation.meta.profile[0]",
+        "severity": "warning"
+      }
+    ],
+    "outcome": "pass",
+    "outcome_id": "f2a99b50445583386f62772955b8a8f6b35b9cd2864ab6a5c34b2805529834eb",
+    "path": "testdata/fhir/synthetic/observation.json -> pure FHIR projection",
+    "validator_version": "6.10.4+git.1b90fb13f77b",
+    "warning_count": 5
   },
   "corpus_license": {
     "note": "HL7 permits redistribution of the specification; the document is licensed CC0.",
@@ -87,12 +158,11 @@
     "python_version": "3.11.15"
   },
   "fhir_version": "4.0.1",
-  "gap_note": "The Atlas synthetic fixture carries provenance fields (synthetic, actorId, whyCode, purposeCode) at the resource root and declares an example.invalid profile, so the official validator reports structural errors for it. Unifying both tracks requires separating the FHIR payload from the Atlas provenance envelope; until then the vertical slice validates with an official-shaped record while the standard corpus is validated with the real engine.",
-  "generated_at": "2026-09-27T12:04:30Z",
+  "generated_at": "2026-09-27T12:44:10Z",
   "known_rejected": [
     {
       "content_digest": "33b7db8a8d63a190c111f2a32e93ae12b5676409cdb8574d33054b4ab73a87ee",
-      "elapsed_ms": 19062,
+      "elapsed_ms": 20202,
       "error_count": 2,
       "exit_code": 1,
       "fhir_version": "4.0.1",
@@ -132,28 +202,30 @@
     "engine jar sha256  : 1106b9d58f9e363e47bea7c4fc065841e5fc91fe9d062775c3bfdd212bd653cc",
     "validator version  : 6.10.4+git.1b90fb13f77b",
     "fhir version       : 4.0.1    tx server: n/a    offline: True",
-    "[must-pass      ] testdata/fhir/r4-examples/patient-example.json     pass err=0 warn=0 info=1 exit=0 18030ms gate=accepted",
-    "[must-pass      ] testdata/fhir/r4-examples/observation-example.json pass err=0 warn=3 info=2 exit=0 18530ms gate=accepted",
-    "[must-pass      ] testdata/fhir/r4-examples/bundle-example.json      pass err=0 warn=0 info=1 exit=0 18485ms gate=accepted",
-    "[must-pass      ] testdata/fhir/r4-examples/condition-example.json   pass err=0 warn=0 info=1 exit=0 17968ms gate=accepted",
-    "[must-pass      ] testdata/fhir/r4-examples/encounter-example.json   pass err=0 warn=0 info=1 exit=0 18125ms gate=accepted",
+    "[must-pass      ] testdata/fhir/r4-examples/patient-example.json     pass err=0 warn=0 info=1 exit=0 19093ms gate=accepted",
+    "[must-pass      ] testdata/fhir/r4-examples/observation-example.json pass err=0 warn=3 info=2 exit=0 19375ms gate=accepted",
+    "[must-pass      ] testdata/fhir/r4-examples/bundle-example.json      pass err=0 warn=0 info=1 exit=0 19406ms gate=accepted",
+    "[must-pass      ] testdata/fhir/r4-examples/condition-example.json   pass err=0 warn=0 info=1 exit=0 19468ms gate=accepted",
+    "[must-pass      ] testdata/fhir/r4-examples/encounter-example.json   pass err=0 warn=0 info=1 exit=0 20468ms gate=accepted",
     "[known-rejected ] testdata/fhir/r4-examples/practitioner-example.json fail err=2 exit=1 gate=rejected:validator-outcome-failed",
     "                   error       invalid      Practitioner.qualification[0].identifier[0].system",
     "                   warning     not-found    Practitioner.qualification[0].code.coding[0].system",
     "                   error       invalid      Practitioner.qualification[0].code.coding[0].system",
     "[negative-ctrl  ] testdata/fhir/synthetic/r4-observation-invalid-status.json fail err=2 gate=rejected:validator-outcome-failed",
-    "[atlas-fixture  ] testdata/fhir/synthetic/observation.json           fail err=4 warn=4 gate=rejected:validator-outcome-failed",
-    "                   error       structure    Observation",
-    "                   error       structure    Observation",
+    "[atlas-envelope] testdata/fhir/synthetic/observation.json           fail err=2 warn=5 gate=rejected:validator-outcome-failed",
     "                   error       structure    Observation",
     "                   error       structure    Observation",
     "                   information invalid      Observation.meta.profile[0]",
-    "                   warning     invariant    Observation"
+    "                   warning     business-rule Observation.value.ofType(Quantity)",
+    "                   warning     invariant    Observation",
+    "                   information informational Observation",
+    "[separation     ] stripped envelope fields: ['purposeCode', 'synthetic']",
+    "[atlas-project ] testdata/fhir/synthetic/observation.json -> pure FHIR projection pass err=0 warn=5 gate=accepted"
   ],
   "must_pass": [
     {
       "content_digest": "4bd96f76475b7d0ca51f8045a644d5634876beeb58aad5c38f0eeea33a17918d",
-      "elapsed_ms": 18030,
+      "elapsed_ms": 19093,
       "error_count": 0,
       "exit_code": 0,
       "fhir_version": "4.0.1",
@@ -176,7 +248,7 @@
     },
     {
       "content_digest": "87c6416aee4be2460742acb3dd5f19adfc522fb785680e613fb88c95f8a66740",
-      "elapsed_ms": 18530,
+      "elapsed_ms": 19375,
       "error_count": 0,
       "exit_code": 0,
       "fhir_version": "4.0.1",
@@ -223,7 +295,7 @@
     },
     {
       "content_digest": "6eab13821e228e82732db91313c151b90d5c1a885b88330a08dfac858867fd33",
-      "elapsed_ms": 18485,
+      "elapsed_ms": 19406,
       "error_count": 0,
       "exit_code": 0,
       "fhir_version": "4.0.1",
@@ -246,7 +318,7 @@
     },
     {
       "content_digest": "669c76c4daa0f1b6d51ff92ae6972c0d04c32dc8dc85a59e88501bd481cd073e",
-      "elapsed_ms": 17968,
+      "elapsed_ms": 19468,
       "error_count": 0,
       "exit_code": 0,
       "fhir_version": "4.0.1",
@@ -269,7 +341,7 @@
     },
     {
       "content_digest": "42d8f7d68c05d5c7b47a95361cf4610c7666b2785dbb83143eba268c90c9eac3",
-      "elapsed_ms": 18125,
+      "elapsed_ms": 20468,
       "error_count": 0,
       "exit_code": 0,
       "fhir_version": "4.0.1",
@@ -293,7 +365,7 @@
   ],
   "negative_control": {
     "content_digest": "eb9108df5a239181b68fb153a7177caa4828c6a23fe5b4203de3846509982145",
-    "elapsed_ms": 19750,
+    "elapsed_ms": 19000,
     "error_count": 2,
     "exit_code": 1,
     "fhir_version": "4.0.1",
@@ -352,9 +424,10 @@
   },
   "official_engine_executed": true,
   "schema_version": "1.1",
+  "separation_note": "The Atlas fixture is an envelope: internal/workflow/slice.py:pure_resource() strips the declared ATLAS_ENVELOPE_FIELDS (synthetic, purposeCode, actorId, whyCode, consentState, codeSystem, reviewedAt) and the official engine validates only the projection. Both halves are asserted here: the envelope must fail as FHIR and the projection must pass, and the projection digest must equal the digest the audit chain binds. The validator infers the bodyweight profile from LOINC 29463-7, which is why the projection carries category vital-signs and effectiveDateTime.",
   "synthetic": true,
   "totals": {
-    "engine_runs": 8,
+    "engine_runs": 9,
     "known_rejected": 1,
     "must_pass": 5,
     "must_pass_passed": 5,

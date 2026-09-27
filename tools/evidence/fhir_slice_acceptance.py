@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import platform
 import subprocess
 import sys
@@ -28,6 +29,7 @@ if str(_ROOT) not in sys.path:
 
 from internal.audit.file import AuditFile  # noqa: E402
 from internal.contract.errors import ContractError  # noqa: E402
+from internal.contract.hapi_validator import engine_available, validate_payload  # noqa: E402
 from internal.hitl.fixtures import review_draft  # noqa: E402
 from internal.hitl.service import ReviewService  # noqa: E402
 from internal.workflow.slice import (  # noqa: E402
@@ -36,6 +38,7 @@ from internal.workflow.slice import (  # noqa: E402
     canonical_digest,
     load_fixture,
     official_record,
+    pure_resource,
     run_vertical_slice,
     stage_audit,
     stage_bundle,
@@ -101,14 +104,43 @@ def run_acceptance() -> dict[str, object]:
         lines.append(text)
         print(text)
 
-    digest = canonical_digest(load_fixture(_OBSERVATION))
-    record = official_record(digest, _OUTCOME)
+    envelope = load_fixture(_OBSERVATION)
+    projection = pure_resource(envelope)
+    digest = canonical_digest(projection)
     note(f"[stage 0] synthetic fixtures loaded: {_BUNDLE}.json, {_OBSERVATION}.json")
-    note(f"[stage 0] canonical resource digest: {digest}")
+    note(f"[stage 0] envelope fields stripped before validation: "
+         f"{sorted(set(envelope) - set(projection))}")
+    note(f"[stage 0] canonical resource digest (projection only): {digest}")
+
+    engine_used = engine_available()
+    if engine_used:
+        # The real official engine judges exactly the bytes this digest names.
+        record = validate_payload(projection)
+        validator_version = str(record.get("validatorVersion", ""))
+        validator_engine = "official-engine"
+        if record.get("outcome") != "pass" or record.get("errorCount"):
+            raise AssertionError(f"official validator rejected the projection: {record.get('issues')}")
+        note(f"[stage 0] official validator {validator_version} outcome={record.get('outcome')} "
+             f"errors={record.get('errorCount')} warnings={record.get('warningCount')} "
+             f"info={record.get('informationCount')} elapsedMs={record.get('elapsedMs')}")
+    else:
+        if os.environ.get("ATLAS_FHIR_VALIDATOR_REQUIRE_OFFICIAL") == "1":
+            raise AssertionError("official engine required but unavailable")
+        record = official_record(digest, _OUTCOME)
+        validator_version = "hapi-unexecuted"
+        validator_engine = "synthetic-record"
+        note("[stage 0] official engine unavailable; using an official-shaped synthetic record "
+             "(CI job official-fhir-validator runs the real engine)")
 
     with tempfile.TemporaryDirectory() as directory:
         service = _service(directory)
-        trace = run_vertical_slice(service, review_draft(), validator_record=record)
+        trace = run_vertical_slice(
+            service,
+            review_draft(),
+            validator_record=record,
+            validator_version=validator_version,
+            validator_engine="official-engine" if engine_used else "",
+        )
         for stage in trace["stages"]:
             name = str(stage["stage"])
             detail = {key: value for key, value in stage.items() if key != "stage"}
@@ -190,6 +222,9 @@ def run_acceptance() -> dict[str, object]:
         negatives["validator-digest-mismatch"] = _expect_code(
             lambda: stage_validator(resource, official_record("0" * 64, _OUTCOME)), "validator-digest-mismatch",
         )
+        negatives["validator-envelope-invalid"] = _expect_code(
+            lambda: stage_validator(pure_resource(resource), record), "validator-envelope-invalid",
+        )
         negatives["bundle-type-invalid"] = _expect_code(
             lambda: stage_bundle({**load_fixture(_BUNDLE), "type": "document"}), "bundle-type-invalid",
         )
@@ -253,12 +288,20 @@ def run_acceptance() -> dict[str, object]:
         "fail_closed_checks": negatives,
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "git_revision": _git_revision(),
-        "hapi_validator_executed": False,
+        "hapi_validator_executed": engine_used,
         "hapi_validator_note": (
-            "No HAPI binary or jar exists in this repository. "
-            "internal/contract/validator.py:require_official() is a fail-closed evidence gate "
-            "that only accepts an externally supplied official outcome record."
+            "validator_cli.jar runs as a subprocess when ATLAS_FHIR_VALIDATOR_JAR and a JRE are "
+            "configured, and its OperationOutcome becomes the official record. Without an engine "
+            "this runner records an official-shaped synthetic record and says so explicitly."
         ),
+        "official_error_count": record.get("errorCount", 0),
+        "official_information_count": record.get("informationCount", 0),
+        "official_issue_count": record.get("issueCount", 0),
+        "official_outcome": str(record.get("outcome", "")),
+        "official_outcome_id": str(record.get("outcomeId", _OUTCOME)),
+        "official_warning_count": record.get("warningCount", 0),
+        "validator_engine": validator_engine,
+        "validator_version": validator_version,
         "log": lines,
         "python_version": platform.python_version(),
         "resource_digest": digest,

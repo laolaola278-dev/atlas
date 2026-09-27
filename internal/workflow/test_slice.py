@@ -21,11 +21,13 @@ from internal.contract.fhir_gate import validate_resource  # noqa: E402
 from internal.contract.write_intent import ApprovalProof  # noqa: E402
 from internal.hitl.service import ReviewService  # noqa: E402
 from internal.workflow.slice import (  # noqa: E402
+    ATLAS_ENVELOPE_FIELDS,
     STAGES,
     SliceWorkflow,
     canonical_digest,
     load_fixture,
     official_record,
+    pure_resource,
     run_vertical_slice,
     stage_audit,
     stage_bundle,
@@ -51,7 +53,7 @@ def config() -> dict[str, str]:
 
 def observation_digest() -> str:
     """Return the canonical digest of the synthetic observation fixture."""
-    return canonical_digest(load_fixture("observation"))
+    return canonical_digest(pure_resource(load_fixture("observation")))
 
 
 class FhirVerticalSliceTests(unittest.TestCase):
@@ -239,6 +241,65 @@ class FhirVerticalSliceTests(unittest.TestCase):
             stage_gate(broken)
         self.assertEqual(str(blocked.exception), "purpose-missing")
         self.assertEqual(service.log.events, ())
+
+
+class EnvelopeSeparationTests(unittest.TestCase):
+    """The gate consumes the envelope, the validator consumes the projection."""
+
+    def test_pure_resource_strips_every_atlas_provenance_field(self) -> None:
+        envelope = load_fixture("observation")
+        payload = pure_resource(envelope)
+        self.assertEqual(sorted(ATLAS_ENVELOPE_FIELDS.intersection(payload)), [])
+        self.assertLess(len(payload), len(envelope))
+        self.assertEqual(payload["resourceType"], "Observation")
+        self.assertEqual(payload["id"], RESOURCE_ID)
+        self.assertEqual(payload["status"], "final")
+        self.assertIn("code", payload)
+        self.assertEqual(payload["subject"], {"reference": f"Patient/{PATIENT_REF}"})
+        # stripping must not mutate the envelope the gate still needs
+        self.assertIs(envelope["synthetic"], True)
+        self.assertEqual(envelope["purposeCode"], "treatment")
+
+    def test_gate_still_consumes_the_envelope_not_the_projection(self) -> None:
+        envelope = load_fixture("observation")
+        self.assertEqual(stage_gate(envelope), ())
+        with self.assertRaises(ContractError) as stripped:
+            stage_gate(pure_resource(envelope))
+        self.assertEqual(str(stripped.exception), "purpose-missing")
+
+    def test_projection_without_provenance_fails_closed(self) -> None:
+        with self.assertRaises(ContractError) as raised:
+            pure_resource({"resourceType": "Observation", "id": "x", "status": "final"})
+        self.assertEqual(str(raised.exception), "validator-envelope-invalid")
+
+    def test_projection_without_identity_fails_closed(self) -> None:
+        with self.assertRaises(ContractError) as raised:
+            pure_resource({"resourceType": "Observation", "synthetic": True})
+        self.assertEqual(str(raised.exception), "validator-envelope-invalid")
+
+    def test_claiming_the_official_engine_without_engine_provenance_fails_closed(self) -> None:
+        service = ReviewService(config())
+        digest = observation_digest()
+        with self.assertRaises(ContractError) as raised:
+            run_vertical_slice(
+                service,
+                review_draft(),
+                validator_record=official_record(digest, "hapi-outcome-forged"),
+                validator_engine="official-engine",
+            )
+        self.assertEqual(str(raised.exception), "validator-not-official")
+
+    def test_digest_binds_the_projection_not_the_envelope(self) -> None:
+        envelope = load_fixture("observation")
+        projection = pure_resource(envelope)
+        record = official_record(canonical_digest(projection), "hapi-outcome-envelope")
+        digest, outcome_id = stage_validator(envelope, record)
+        self.assertEqual(digest, canonical_digest(projection))
+        self.assertEqual(outcome_id, "hapi-outcome-envelope")
+        self.assertNotEqual(digest, canonical_digest(envelope))
+        with self.assertRaises(ContractError) as mismatched:
+            stage_validator(envelope, official_record(canonical_digest(envelope), "hapi-outcome-envelope"))
+        self.assertEqual(str(mismatched.exception), "validator-digest-mismatch")
 
 
 if __name__ == "__main__":
