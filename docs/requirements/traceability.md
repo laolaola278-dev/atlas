@@ -93,7 +93,8 @@
 - [x] 分类根目录扫描 JSON：164 个临时产物移入 `E:\hds(js)\look\_scratch\atlas-transient\`，11 个临时脚本移入 `_scratch\atlas-scripts\`，仓库根只保留 8 个正式文件。
 - [x] 完善 `.gitignore` 的扫描中间文件规则。
 - [x] 规划门禁、PHI 门禁、Python 测试门禁、P0 证据索引在本环境全部 exit 0。
-- [x] 建立 Git 基线提交（提交号见 `docs/evidence/p1/README.md`）。
+- [x] 建立 Git 基线提交：`535f1aa`（root-commit，339 files，58,560 insertions），提交后 `git status --porcelain` 为空。
+- [x] P1 证据索引带 SHA-256 与门禁退出码：`docs/evidence/p1/index.json`（14 个工件，5 条门禁全部 exit 0）。
 - [ ] 在独立 CI runner 重跑测试和扫描（本环境无 runner）。
 - [ ] 在装有 Go 1.24 工具链的环境执行 `go test -race -cover ./...` 与 `gofmt -l`。
 - [ ] 制品签名、部署包与回滚包验证。

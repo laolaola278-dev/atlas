@@ -1,6 +1,6 @@
 {
   "environment": {
-    "git_revision_at_generation": "no-commits-yet",
+    "git_revision_at_generation": "535f1aa",
     "go_toolchain_available": false,
     "go_toolchain_note": "go is not on PATH here; go test and gofmt were not executed.",
     "python_version": "3.11.15",
@@ -43,22 +43,22 @@
       "command": "python -B -m unittest internal.workflow.test_slice internal.audit.test_file internal.audit.test_chain internal.hitl.test_service internal.hitl.test_audited internal.contract.test_errors internal.contract.test_fhir_gate internal.contract.test_validator tools.phi-scan.test_scan tools.locaudit.test_scan tools.evidence.test_p0_index",
       "exit_code": 0,
       "output_tail": [
-        "Ran 108 tests in 2.843s",
+        "Ran 108 tests in 2.396s",
         "",
         "OK"
       ]
     }
   ],
   "gates_failed": 0,
-  "generated_at": "2026-09-27T10:54:01Z",
+  "generated_at": "2026-09-27T10:56:34Z",
   "index_version": "1.1",
   "phase": "P1",
   "rows": [
     {
-      "bytes": 7109,
+      "bytes": 7102,
       "lines": 115,
       "path": "docs/evidence/p1/fhir-vertical-slice.json",
-      "sha256": "ad1fd424749b1103b4eccda95027283cf4ad7bd9aa1f90833a3bc78f35bb6830"
+      "sha256": "2121371e7399fd9453fd7b89bae3d128b70453b21e17e1e7ee9423d5ddae3e28"
     },
     {
       "bytes": 3166,
@@ -79,10 +79,10 @@
       "sha256": "01458669894244db5ca7fbdadcb71763997d6db8f15ec6ca154131eade9f939b"
     },
     {
-      "bytes": 8583,
-      "lines": 109,
+      "bytes": 8773,
+      "lines": 110,
       "path": "docs/requirements/traceability.md",
-      "sha256": "1f3af0ac235357cf4a36b90f81ae39d08e0165e857832e42eff732c8b88887f0"
+      "sha256": "4c557f553f81dfedcb5550a25956eba803abb9025cc992397f889cc0e1abff56"
     },
     {
       "bytes": 3972,
