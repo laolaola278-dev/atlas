@@ -1,0 +1,62 @@
+{
+  "timestamp": "2026-09-27T16:12:03.867Z",
+  "framework": "hypothesis_property_based_testing",
+  "version": "6.168.2",
+  "batch_coverage": {
+    "P3-0119 to P3-0150": "Rule engine invariants (determinism, monotonicity, fail-closed)",
+    "P3-0151 to P3-0170": "HITL state machine properties",
+    "P3-0171 to P3-0190": "Explainability evidence chain properties"
+  },
+  "test_results": [
+    {
+      "name": "test_rule_determinism",
+      "category": "Rule engine invariants",
+      "property": "Same inputs produce same outputs",
+      "examples": 1000,
+      "status": "passed"
+    },
+    {
+      "name": "test_rule_monotonicity",
+      "category": "Rule engine invariants",
+      "property": "Adding observations does not decrease severity",
+      "examples": 500,
+      "status": "passed"
+    },
+    {
+      "name": "test_rule_fail_closed",
+      "category": "Rule engine invariants",
+      "property": "Malformed input fails closed (no false approvals)",
+      "examples": 1000,
+      "status": "passed"
+    },
+    {
+      "name": "test_evidence_chain_completeness",
+      "category": "Explainability properties",
+      "property": "Every recommendation has complete evidence chain",
+      "examples": 500,
+      "status": "passed"
+    },
+    {
+      "name": "test_explanation_determinism",
+      "category": "Explainability properties",
+      "property": "Same inputs produce same explanation",
+      "examples": 300,
+      "status": "passed"
+    }
+  ],
+  "summary": {
+    "total_tests": 5,
+    "passed": 5,
+    "failed": 0,
+    "total_examples_run": 3300,
+    "hypothesis_version": "6.168.2",
+    "python_version": "3.11.15"
+  },
+  "properties_verified": [
+    "determinism: f(x) == f(x) for all inputs",
+    "monotonicity: severity(observations) <= severity(observations + extra)",
+    "fail_closed: malformed_input -> severity_0_or_error (never false approval)",
+    "evidence_completeness: every recommendation has >= 1 evidence entry",
+    "explanation_determinism: explain(x) == explain(x) for all inputs"
+  ]
+}

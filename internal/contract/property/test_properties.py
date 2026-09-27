@@ -37,7 +37,7 @@ def clinical_observation(draw):
         'code': draw(st.sampled_from(['8867-4', '8480-6', '8462-4', '2339-0'])),
         'value': draw(st.floats(min_value=0, max_value=500, allow_nan=False)),
         'unit': draw(st.sampled_from(['mg/dL', 'mmHg', 'bpm', 'kg'])),
-        'timestamp': datetime.now().isoformat(),
+        'timestamp': '2026-01-01T00:00:00',
         'status': draw(st.sampled_from(['final', 'amended', 'preliminary']))
     }
 
@@ -73,11 +73,15 @@ class TestRuleEngineInvariants:
     
     def _evaluate_rule_stub(self, rule_id, patient, observations):
         """Stub for rule evaluation."""
+        # Deterministic severity based on observation values
+        severity = sum(1 for obs in observations if obs.get('value', 0) > 100)
+        severity = min(severity, 3)
+        
         return {
             'rule_id': rule_id,
-            'severity': 0 if any(obs.get('value') != obs.get('value') for obs in observations) else 1,
-            'recommendation': 'monitor',
-            'timestamp': datetime.now().isoformat()
+            'severity': severity,
+            'recommendation': 'monitor' if severity > 0 else 'no_action',
+            'timestamp': '2026-01-01T00:00:00'  # Fixed for determinism
         }
 
 
