@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package atlas.forms;
+
+option go_package = "atlas/api/atlas-forms";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/struct.proto";
+
+// PrintRenderRequest represents a request to render a form for printing
+message PrintRenderRequest {
+  string render_id = 1;
+  string form_id = 2;
+  string submission_id = 3;
+  string template = 4;
+  string format = 5;
+  google.protobuf.Struct options = 6;
+  string rendered_by = 7;
+  google.protobuf.Timestamp rendered_at = 8;
+  string actor_id = 9;
+  string idempotency_key = 10;
+  bool synthetic = 11;
+}
+
+// PrintRenderResponse represents the response to a print render request
+message PrintRenderResponse {
+  string render_id = 1;
+  string status = 2;
+  string output_url = 3;
+  string format = 4;
+  int64 size = 5;
+  google.protobuf.Timestamp rendered_at = 6;
+  google.protobuf.Timestamp expires_at = 7;
+  google.protobuf.Struct metadata = 8;
+  string error_message = 9;
+}
+
+// GetRenderRequest represents a request to retrieve a render
+message GetRenderRequest {
+  string render_id = 1;
+}
+
+// DeleteRenderRequest represents a request to delete a render
+message DeleteRenderRequest {
+  string render_id = 1;
+  string actor_id = 2;
+}
+
+// DeleteRenderResponse represents the response to a delete render request
+message DeleteRenderResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+// PrintRenderService provides print rendering operations
+service PrintRenderService {
+  rpc RenderForm(PrintRenderRequest) returns (PrintRenderResponse);
+  rpc GetRender(GetRenderRequest) returns (PrintRenderResponse);
+  rpc DeleteRender(DeleteRenderRequest) returns (DeleteRenderResponse);
+  rpc ProcessPrintRender(PrintRenderRequest) returns (PrintRenderResponse);
+}

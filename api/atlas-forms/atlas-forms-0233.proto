@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package atlas.forms;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "atlas/api/atlas-forms";
+
+// RevocationRequest represents a request to revoke a submitted form.
+message RevocationRequest {
+  string submission_id = 1;
+  string form_id = 2;
+  string revoked_by = 3;
+  string reason = 4;
+  google.protobuf.Timestamp revoked_at = 5;
+  string actor_id = 6;
+  string idempotency_key = 7;
+  bool synthetic = 8;
+  map<string, string> metadata = 9;
+}
+
+// RevocationResponse contains the result of a revocation operation.
+message RevocationResponse {
+  string revocation_id = 1;
+  string submission_id = 2;
+  string form_id = 3;
+  string status = 4;
+  google.protobuf.Timestamp revoked_at = 5;
+  string message = 6;
+}
+
+// RevocationService provides operations for revoking submitted forms.
+service RevocationService {
+  rpc RevokeSubmission(RevocationRequest) returns (RevocationResponse);
+  rpc GetRevocation(RevocationRequest) returns (RevocationResponse);
+  rpc ProcessRevocation(RevocationRequest) returns (RevocationResponse);
+}

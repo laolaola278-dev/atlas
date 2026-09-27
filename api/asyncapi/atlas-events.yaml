@@ -1,0 +1,61 @@
+asyncapi: 2.6.0
+info:
+  title: Atlas Clinical Event Contracts
+  version: 1.0.0
+  description: >-
+    Events are at-least-once. Consumers must use event_id, causal_id and
+    schema_version for idempotency; no event payload may contain an unapproved
+    direct patient identifier.
+channels:
+  suggestion.generated.v1:
+    subscribe:
+      message:
+        $ref: '#/components/messages/SuggestionGenerated'
+  suggestion.reviewed.v1:
+    subscribe:
+      message:
+        $ref: '#/components/messages/SuggestionReviewed'
+  write.intent.committed.v1:
+    subscribe:
+      message:
+        $ref: '#/components/messages/WriteIntentCommitted'
+  audit.checkpoint.v1:
+    subscribe:
+      message:
+        $ref: '#/components/messages/AuditCheckpoint'
+components:
+  messages:
+    SuggestionGenerated:
+      name: SuggestionGenerated
+      title: Suggestion generated as a non-executable suggestion
+      payload:
+        $ref: '#/components/schemas/EventEnvelope'
+    SuggestionReviewed:
+      name: SuggestionReviewed
+      title: Human review decision receipt
+      payload:
+        $ref: '#/components/schemas/EventEnvelope'
+    WriteIntentCommitted:
+      name: WriteIntentCommitted
+      title: Confirmed target write receipt
+      payload:
+        $ref: '#/components/schemas/EventEnvelope'
+    AuditCheckpoint:
+      name: AuditCheckpoint
+      title: Signed audit checkpoint
+      payload:
+        $ref: '#/components/schemas/EventEnvelope'
+  schemas:
+    EventEnvelope:
+      type: object
+      required: [event_id, schema_version, tenant_id, campus_id, producer, occurred_at, payload_digest, payload]
+      properties:
+        event_id: {type: string}
+        causal_id: {type: string}
+        schema_version: {type: string}
+        tenant_id: {type: string}
+        campus_id: {type: string}
+        producer: {type: string}
+        occurred_at: {type: string, format: date-time}
+        payload_digest: {type: string}
+        payload: {type: object, additionalProperties: true}

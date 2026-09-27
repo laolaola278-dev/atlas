@@ -1,0 +1,31 @@
+{
+  "index_version": "1.0",
+  "synthetic": true,
+  "rows": [
+    {
+      "batch_id": "ATLAS-P0-0013",
+      "output_path": "api/fhir/profiles/catalog.json",
+      "test_name": "internal.contract.test_profiles"
+    },
+    {
+      "batch_id": "ATLAS-P0-0014",
+      "output_path": "api/terminology/manifest.json",
+      "test_name": "internal.contract.test_terminology"
+    },
+    {
+      "batch_id": "ATLAS-P0-0015",
+      "output_path": "docs/requirements/traceability.md",
+      "test_name": "tools.evidence.test_p0_index"
+    },
+    {
+      "batch_id": "ATLAS-P0-0016",
+      "output_path": "docs/evidence/p0-report-classification.md",
+      "test_name": "tools.evidence.test_p0_index"
+    },
+    {
+      "batch_id": "ATLAS-P0-0017",
+      "output_path": "docs/evidence/report-inventory.md",
+      "test_name": "tools.evidence.test_p0_index"
+    }
+  ]
+}

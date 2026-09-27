@@ -1,0 +1,121 @@
+syntax = "proto3";
+
+package atlas.forms;
+
+option go_package = "github.com/atlas/api/atlas-forms;forms";
+
+// ValidationErrorService manages form validation error recording and retrieval
+service ValidationErrorService {
+  // RecordValidationError records a form validation error
+  rpc RecordValidationError(RecordValidationErrorRequest) returns (RecordValidationErrorResponse);
+  
+  // GetValidationError retrieves a recorded validation error
+  rpc GetValidationError(GetValidationErrorRequest) returns (GetValidationErrorResponse);
+  
+  // ListValidationErrors lists validation errors for a form
+  rpc ListValidationErrors(ListValidationErrorsRequest) returns (ListValidationErrorsResponse);
+  
+  // GetValidationErrorsByField retrieves validation errors for a specific field
+  rpc GetValidationErrorsByField(GetValidationErrorsByFieldRequest) returns (GetValidationErrorsByFieldResponse);
+  
+  // DeleteValidationError removes a validation error
+  rpc DeleteValidationError(DeleteValidationErrorRequest) returns (DeleteValidationErrorResponse);
+  
+  // ClearValidationErrors removes all validation errors for a form
+  rpc ClearValidationErrors(ClearValidationErrorsRequest) returns (ClearValidationErrorsResponse);
+  
+  // GenerateValidationErrorDigest creates a SHA256 hash of validation error details
+  rpc GenerateValidationErrorDigest(GenerateValidationErrorDigestRequest) returns (GenerateValidationErrorDigestResponse);
+}
+
+message RecordValidationErrorRequest {
+  string error_id = 1;
+  string form_id = 2;
+  string field_name = 3;
+  string error_type = 4;
+  string error_message = 5;
+  string attempted_value = 6;
+  map<string, string> metadata = 7;
+  string idempotency_key = 8;
+  bool synthetic = 9;
+}
+
+message RecordValidationErrorResponse {
+  string error_id = 1;
+  string form_id = 2;
+  string field_name = 3;
+  string error_type = 4;
+  string error_message = 5;
+  string attempted_value = 6;
+  map<string, string> metadata = 7;
+  string recorded_at = 8;
+}
+
+message GetValidationErrorRequest {
+  string error_id = 1;
+}
+
+message GetValidationErrorResponse {
+  string error_id = 1;
+  string form_id = 2;
+  string field_name = 3;
+  string error_type = 4;
+  string error_message = 5;
+  string attempted_value = 6;
+  map<string, string> metadata = 7;
+  string recorded_at = 8;
+}
+
+message ListValidationErrorsRequest {
+  string form_id = 1;
+}
+
+message ListValidationErrorsResponse {
+  repeated ValidationError errors = 1;
+}
+
+message GetValidationErrorsByFieldRequest {
+  string form_id = 1;
+  string field_name = 2;
+}
+
+message GetValidationErrorsByFieldResponse {
+  repeated ValidationError errors = 1;
+}
+
+message DeleteValidationErrorRequest {
+  string error_id = 1;
+}
+
+message DeleteValidationErrorResponse {
+  bool success = 1;
+}
+
+message ClearValidationErrorsRequest {
+  string form_id = 1;
+}
+
+message ClearValidationErrorsResponse {
+  int32 count = 1;
+}
+
+message GenerateValidationErrorDigestRequest {
+  string form_id = 1;
+  string field_name = 2;
+  string error_type = 3;
+}
+
+message GenerateValidationErrorDigestResponse {
+  string digest = 1;
+}
+
+message ValidationError {
+  string error_id = 1;
+  string form_id = 2;
+  string field_name = 3;
+  string error_type = 4;
+  string error_message = 5;
+  string attempted_value = 6;
+  map<string, string> metadata = 7;
+  string recorded_at = 8;
+}

@@ -1,0 +1,14 @@
+{
+  "catalog_version": "1.0",
+  "synthetic": true,
+  "profiles": [
+    {
+      "resource_type": "Observation",
+      "profile_url": "http://example.invalid/atlas/StructureDefinition/observation"
+    },
+    {
+      "resource_type": "ServiceRequest",
+      "profile_url": "http://example.invalid/atlas/StructureDefinition/service-request"
+    }
+  ]
+}

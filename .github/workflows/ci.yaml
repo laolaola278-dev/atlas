@@ -1,0 +1,26 @@
+name: atlas-gates
+on:
+  push:
+  pull_request:
+jobs:
+  python-gates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Planning gate
+        run: python -B plan/verify_first_round.py
+      - name: Scanner unit tests
+        run: python -B -m unittest tools.phi-scan.test_scan tools.locaudit.test_scan internal.hitl.state.test_machine internal.hitl.test_review internal.hitl.test_audited internal.hitl.test_service internal.contract.test_errors internal.contract.test_policy internal.contract.test_evidence internal.contract.test_query internal.contract.test_replay internal.contract.test_identity internal.contract.test_privacy internal.contract.test_domain internal.contract.test_batch internal.contract.test_stream internal.contract.test_write_intent internal.contract.test_fhir_gate internal.contract.test_config internal.audit.test_chain internal.audit.test_file internal.contract.test_idempotency internal.workflow.test_slice
+      - name: FHIR vertical slice acceptance
+        run: python -B tools/evidence/fhir_slice_acceptance.py
+      - name: P0-P8 traceability matrix
+        run: python -B tools/evidence/traceability.py
+      - name: PHI gate
+        run: python -B tools/phi-scan/scan.py --root . --fail-on blocked
+      - name: Contract YAML parse
+        run: python -B -c "import yaml, pathlib; [yaml.safe_load(pathlib.Path(p).read_text(encoding='utf-8')) for p in ['api/openapi/atlas-v1.yaml','api/asyncapi/atlas-events.yaml']]"
+      - name: P0 evidence index
+        run: python -B -c "from tools.evidence.p0_index import require_complete; require_complete()"

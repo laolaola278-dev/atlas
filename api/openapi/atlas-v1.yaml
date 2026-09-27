@@ -1,0 +1,143 @@
+openapi: 3.1.0
+info:
+  title: Atlas Clinical Collaboration API
+  version: 1.0.0
+  description: >-
+    Hospital-internal API. Every clinical write is a suggestion workflow and
+    requires a server-issued approval proof; this document is a contract,
+    not an authorization bypass.
+servers:
+  - url: https://atlas.invalid
+    description: Placeholder only; deployment URL is supplied by the hospital.
+security:
+  - bearerAuth: []
+tags:
+  - name: hitl
+    description: Human review and controlled write intent.
+paths:
+  /v1/suggestions/{suggestionId}/review:
+    post:
+      tags: [hitl]
+      operationId: reviewSuggestion
+      parameters:
+        - $ref: '#/components/parameters/SuggestionId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReviewCommand'
+      responses:
+        '200':
+          description: Review receipt.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReviewReceipt'
+        '409':
+          description: State, version, or idempotency conflict.
+        '403':
+          description: Policy, consent, or role denied.
+  /v1/write-intents:
+    post:
+      tags: [hitl]
+      operationId: commitWriteIntent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WriteIntent'
+      responses:
+        '200':
+          description: Target receipt.
+        '409':
+          description: Approval proof conflict or target version conflict.
+        '422':
+          description: Proof, evidence, or target validation failed.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    SuggestionId:
+      name: suggestionId
+      in: path
+      required: true
+      schema:
+        type: string
+        minLength: 1
+  schemas:
+    ReviewCommand:
+      type: object
+      required: [suggestion_id, suggestion_version, decision, reviewer_id, idempotency_key, purpose]
+      properties:
+        suggestion_id: {type: string}
+        suggestion_version: {type: string}
+        decision:
+          type: string
+          enum: [APPROVE, REJECT, REQUEST_INFO]
+        reviewer_id: {type: string}
+        expected_state_version: {type: string}
+        idempotency_key: {type: string}
+        purpose:
+          $ref: '#/components/schemas/PurposeContext'
+    PurposeContext:
+      type: object
+      required: [purpose_code, business_context_id, policy_version]
+      properties:
+        purpose_code: {type: string}
+        business_context_id: {type: string}
+        policy_version: {type: string}
+        consent_version: {type: string}
+        emergency: {type: boolean, default: false}
+    ReviewReceipt:
+      type: object
+      required: [suggestion_id, suggestion_version, state, review_event_id, state_version, audit_event_id]
+      properties:
+        suggestion_id: {type: string}
+        suggestion_version: {type: string}
+        state: {type: string}
+        review_event_id: {type: string}
+        state_version: {type: string}
+        content_digest: {type: string}
+        audit_event_id: {type: string}
+        idempotency_key: {type: string}
+    WriteIntent:
+      type: object
+      required: [write_intent_id, suggestion_id, suggestion_version, approval_proof, target, content_digest, idempotency_key]
+      properties:
+        write_intent_id: {type: string}
+        suggestion_id: {type: string}
+        suggestion_version: {type: string}
+        approval_proof:
+          $ref: '#/components/schemas/ApprovalProof'
+        target:
+          $ref: '#/components/schemas/ResourceRef'
+        content_digest: {type: string}
+        idempotency_key: {type: string}
+    ApprovalProof:
+      type: object
+      required: [proof_id, suggestion_id, suggestion_version, reviewer_id, target_action, policy_version, issued_at, expires_at, nonce, proof_digest]
+      properties:
+        proof_id: {type: string}
+        suggestion_id: {type: string}
+        suggestion_version: {type: string}
+        reviewer_id: {type: string}
+        target_action: {type: string}
+        policy_version: {type: string}
+        issued_at: {type: string, format: date-time}
+        expires_at: {type: string, format: date-time}
+        nonce: {type: string}
+        proof_digest: {type: string}
+    ResourceRef:
+      type: object
+      required: [resource_type, resource_id, tenant_id, campus_id]
+      properties:
+        resource_type: {type: string}
+        resource_id: {type: string}
+        version_id: {type: string}
+        tenant_id: {type: string}
+        campus_id: {type: string}

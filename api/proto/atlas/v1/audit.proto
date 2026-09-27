@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package atlas.v1;
+
+import "atlas/v1/common.proto";
+
+option go_package = "atlas/api/gen/atlas/v1;atlasv1";
+option java_multiple_files = true;
+option java_package = "com.atlas.v1";
+
+message AuditEvent {
+  string event_id = 1;
+  string stream_id = 2;
+  uint64 sequence = 3;
+  string tenant_id = 4;
+  string campus_id = 5;
+  string actor_id = 6;
+  string actor_role = 7;
+  string operation = 8;
+  string resource_type = 9;
+  string resource_id = 10;
+  string purpose_code = 11;
+  string why_code = 12;
+  string policy_version = 13;
+  string contract_version = 14;
+  string occurred_at = 15;
+  string received_at = 16;
+  string previous_hash = 17;
+  string payload_digest = 18;
+  string event_hash = 19;
+  string signature_batch_id = 20;
+  string clock_quality = 21;
+}
+
+message AuditBatch {
+  string batch_id = 1;
+  string merkle_root = 2;
+  repeated string stream_roots = 3;
+  string signed_at = 4;
+  string key_id = 5;
+  string signature = 6;
+  string worm_receipt_digest = 7;
+}
+
+message VerifyAuditRequest {
+  repeated AuditEvent events = 1;
+  AuditBatch checkpoint = 2;
+  string public_key_set_digest = 3;
+}
+
+message VerifyAuditResponse {
+  bool valid = 1;
+  string first_invalid_sequence = 2;
+  string failure_code = 3;
+  string verified_at = 4;
+  string evidence_digest = 5;
+}
+
+service AuditVerificationService {
+  rpc Verify(VerifyAuditRequest) returns (VerifyAuditResponse);
+}

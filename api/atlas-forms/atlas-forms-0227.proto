@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package atlas.forms;
+
+option go_package = "atlas/api/atlas-forms";
+
+// FormVersionRequest represents a request to create or retrieve a form version
+message FormVersionRequest {
+  string form_id = 1;              // Required: unique form identifier
+  string version = 2;              // Required: semantic version (e.g., "1.0", "1.2")
+  string schema_json = 3;          // Required: JSON schema defining form structure
+  string actor_id = 4;             // Required: who is creating/requesting this version
+  string idempotency_key = 5;      // Required: for idempotent version creation
+  bool synthetic = 6;              // Required: true for test/synthetic data
+  string reason = 7;               // Required: reason for version creation
+}
+
+// FormVersionResponse contains the result of a form version operation
+message FormVersionResponse {
+  string version_id = 1;           // Unique version identifier
+  string form_id = 2;              // Form identifier
+  string version = 3;              // Semantic version
+  string status = 4;               // Status: "draft", "active", "deprecated"
+  string created_at = 5;           // ISO 8601 timestamp
+  repeated string validation_results = 6; // Schema and terminology validation results
+}

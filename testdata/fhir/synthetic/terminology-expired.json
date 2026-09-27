@@ -1,0 +1,16 @@
+{
+  "resourceType": "Observation",
+  "synthetic": true,
+  "meta": {
+    "versionId": "1",
+    "profile": [
+      "http://example.invalid/atlas/StructureDefinition/observation"
+    ]
+  },
+  "purposeCode": "treatment",
+  "codeSystem": "http://example.invalid/atlas/CodeSystem/purpose",
+  "reviewedAt": "2027-01-01",
+  "subject": {
+    "reference": "Patient/patient-ref-synthetic"
+  }
+}

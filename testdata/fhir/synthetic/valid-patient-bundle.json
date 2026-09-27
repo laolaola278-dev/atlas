@@ -1,0 +1,13 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "synthetic": true,
+  "entry": [
+    {
+      "reference": "Observation/observation-synthetic"
+    },
+    {
+      "reference": "ServiceRequest/service-request-synthetic"
+    }
+  ]
+}

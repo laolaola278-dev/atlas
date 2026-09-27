@@ -1,0 +1,12 @@
+{
+  "manifest_version": "1.0",
+  "synthetic": true,
+  "releases": [
+    {
+      "system_url": "http://example.invalid/atlas/CodeSystem/purpose",
+      "release_id": "purpose-2026",
+      "effective_from": "2026-01-01",
+      "effective_to": "2027-01-01"
+    }
+  ]
+}

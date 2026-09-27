@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package atlas.forms;
+
+message AttachmentRequest {
+  string form_id = 1;
+  string submission_id = 2;
+  string attachment_id = 3;
+  string filename = 4;
+  string mime_type = 5;
+  int64 size_bytes = 6;
+  string checksum = 7;
+  string actor_id = 8;
+  string idempotency_key = 9;
+  bool synthetic = 10;
+}
+
+message AttachmentResponse {
+  string validation_id = 1;
+  string attachment_id = 2;
+  string status = 3;
+  repeated string validation_errors = 4;
+  string validated_at = 5;
+}

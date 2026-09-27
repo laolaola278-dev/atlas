@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package atlas.schedule.v1;
+
+option go_package = "atlas/api/atlas-schedule/v1;schedulepb";
+
+// RollbackRequest represents a request to roll back a schedule operation
+message RollbackRequest {
+  string operation_id = 1;        // Operation to roll back
+  string reason = 2;              // Reason for rollback
+  string actor_ref = 3;           // Actor performing rollback
+  bool synthetic = 4;             // Synthetic flag for testing
+  string idempotency_key = 5;     // Idempotency key
+}
+
+// RollbackResponse represents the response to a rollback request
+message RollbackResponse {
+  string rollback_id = 1;         // Rollback operation ID
+  string status = 2;              // Status: completed, failed
+  string timestamp = 3;           // Rollback timestamp
+  repeated string reverted_changes = 4; // List of reverted changes
+}
+
+// RollbackValidationRequest represents a validation request for rollback
+message RollbackValidationRequest {
+  string operation_id = 1;        // Operation to validate for rollback
+  bool synthetic = 2;             // Synthetic flag
+}
+
+// RollbackValidationResponse represents the validation response
+message RollbackValidationResponse {
+  bool can_rollback = 1;          // Whether rollback is allowed
+  string reason = 2;              // Reason if rollback not allowed
+  repeated string dependent_operations = 3; // Dependent operations
+}
+
+// RollbackAuditEntry represents an audit entry for rollback operations
+message RollbackAuditEntry {
+  string rollback_id = 1;         // Rollback operation ID
+  string operation_id = 2;        // Original operation ID
+  string actor_ref = 3;           // Actor who performed rollback
+  string timestamp = 4;           // Timestamp
+  string reason = 5;              // Rollback reason
+  string status = 6;              // Status
+  bool synthetic = 7;             // Synthetic flag
+}

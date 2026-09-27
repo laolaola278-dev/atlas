@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package atlas.forms;
+
+option go_package = "atlas/api/atlas-forms";
+
+message SubmissionRequest {
+  string submission_id = 1;
+  string form_id = 2;
+  string user_id = 3;
+  map<string, string> form_data = 4;
+  string operation = 5;
+  string actor_id = 6;
+  string idempotency_key = 7;
+  bool synthetic = 8;
+  string submission_nonce = 9;
+}
+
+message SubmissionResponse {
+  string submission_id = 1;
+  string status = 2;
+  string checksum = 3;
+  string submitted_at = 4;
+  string message = 5;
+}
+
+service SubmissionService {
+  rpc SubmitForm(SubmissionRequest) returns (SubmissionResponse);
+  rpc UpdateSubmission(SubmissionRequest) returns (SubmissionResponse);
+  rpc WithdrawSubmission(SubmissionRequest) returns (SubmissionResponse);
+  rpc ProcessSubmission(SubmissionRequest) returns (SubmissionResponse);
+}

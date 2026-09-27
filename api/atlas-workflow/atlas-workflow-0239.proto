@@ -1,0 +1,77 @@
+syntax = "proto3";
+
+package atlas.workflow.v1;
+
+option go_package = "atlas/api/workflow/v1;workflowv1";
+
+// WorkflowDefinitionService manages workflow definitions.
+service WorkflowDefinitionService {
+  rpc DefineWorkflow(DefineWorkflowRequest) returns (DefineWorkflowResponse);
+  rpc GetWorkflowDefinition(GetWorkflowDefinitionRequest) returns (GetWorkflowDefinitionResponse);
+  rpc ListWorkflowDefinitions(ListWorkflowDefinitionsRequest) returns (ListWorkflowDefinitionsResponse);
+  rpc DeleteWorkflowDefinition(DeleteWorkflowDefinitionRequest) returns (DeleteWorkflowDefinitionResponse);
+}
+
+message WorkflowStep {
+  string step_id = 1;
+  string step_type = 2;
+  string name = 3;
+  string description = 4;
+  map<string, string> config = 5;
+}
+
+message StateTransition {
+  string from_state = 1;
+  string to_state = 2;
+  string event = 3;
+  repeated string conditions = 4;
+}
+
+message DefineWorkflowRequest {
+  string definition_id = 1;
+  string name = 2;
+  string version = 3;
+  repeated WorkflowStep steps = 4;
+  repeated StateTransition transitions = 5;
+  string initial_state = 6;
+  repeated string final_states = 7;
+  map<string, string> metadata = 8;
+  string idempotency_key = 9;
+  bool synthetic = 10;
+}
+
+message DefineWorkflowResponse {
+  string definition_id = 1;
+  string name = 2;
+  string version = 3;
+  string checksum = 4;
+  string created_at = 5;
+  map<string, string> metadata = 6;
+}
+
+message GetWorkflowDefinitionRequest {
+  string definition_id = 1;
+}
+
+message GetWorkflowDefinitionResponse {
+  string definition_id = 1;
+  string name = 2;
+  string version = 3;
+  string checksum = 4;
+  string created_at = 5;
+  map<string, string> metadata = 6;
+}
+
+message ListWorkflowDefinitionsRequest {}
+
+message ListWorkflowDefinitionsResponse {
+  repeated GetWorkflowDefinitionResponse definitions = 1;
+}
+
+message DeleteWorkflowDefinitionRequest {
+  string definition_id = 1;
+}
+
+message DeleteWorkflowDefinitionResponse {
+  bool success = 1;
+}

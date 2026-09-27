@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package atlas.schedule.v1;
+
+option go_package = "atlas/api/gen/atlas/schedule/v1;schedulev1";
+option java_multiple_files = true;
+option java_package = "com.atlas.schedule.v1";
+
+import "atlas/v1/common.proto";
+
+// Synthetic scheduling generation for testing and load scenarios.
+// All identifiers must be synthetic; real patient data is prohibited.
+message GenerateScheduleRequest {
+  string tenant_id = 1;
+  string campus_id = 2;
+  string department_id = 3;
+  string start_date = 4;
+  string end_date = 5;
+  int32 practitioner_count = 6;
+  int32 slot_duration_minutes = 7;
+  bool synthetic = 8;
+  atlas.v1.Provenance provenance = 9;
+}
+
+message GenerateScheduleResponse {
+  repeated ScheduleEntry entries = 1;
+  int32 total_slots = 2;
+  string generation_id = 3;
+  atlas.v1.ErrorDetail error = 4;
+}
+
+message ScheduleEntry {
+  string schedule_id = 1;
+  string practitioner_id = 2;
+  string department_id = 3;
+  string slot_start = 4;
+  string slot_end = 5;
+  string status = 6;
+  bool synthetic = 7;
+}
+
+message ValidateScheduleRequest {
+  string schedule_id = 1;
+  string tenant_id = 2;
+  string campus_id = 3;
+  repeated string required_fields = 4;
+  atlas.v1.Provenance provenance = 5;
+}
+
+message ValidateScheduleResponse {
+  bool valid = 1;
+  repeated string validation_errors = 2;
+  atlas.v1.ErrorDetail error = 3;
+}
+
+service ScheduleService {
+  rpc GenerateSchedule(GenerateScheduleRequest) returns (GenerateScheduleResponse);
+  rpc ValidateSchedule(ValidateScheduleRequest) returns (ValidateScheduleResponse);
+}

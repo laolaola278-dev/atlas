@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package atlas.v1;
+
+option go_package = "atlas/api/gen/atlas/v1;atlasv1";
+option java_multiple_files = true;
+option java_package = "com.atlas.v1";
+
+// Common identifiers and envelopes. IDs are opaque; no patient identifier is
+// permitted in logs, metrics, or cross-campus telemetry.
+message ResourceRef {
+  string resource_type = 1;
+  string resource_id = 2;
+  string version_id = 3;
+  string tenant_id = 4;
+  string campus_id = 5;
+}
+
+message TimestampRange {
+  string start_inclusive = 1;
+  string end_exclusive = 2;
+  string timezone = 3;
+  string precision = 4;
+}
+
+message PurposeContext {
+  string purpose_code = 1;
+  string business_context_id = 2;
+  string policy_version = 3;
+  string consent_version = 4;
+  bool emergency = 5;
+}
+
+message Provenance {
+  string trace_id = 1;
+  string producer = 2;
+  string contract_version = 3;
+  string received_at = 4;
+  string source_digest = 5;
+}
+
+message PageRequest {
+  int32 page_size = 1;
+  string page_token = 2;
+  string tenant_id = 3;
+  string campus_id = 4;
+}
+
+message PageResponse {
+  string next_page_token = 1;
+  bool complete = 2;
+}
+
+message ErrorDetail {
+  string code = 1;
+  string message = 2;
+  string retryable = 3;
+  string trace_id = 4;
+  string policy_version = 5;
+}
+
+message Empty {}

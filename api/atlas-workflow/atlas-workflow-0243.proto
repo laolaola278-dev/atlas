@@ -1,0 +1,96 @@
+syntax = "proto3";
+
+package atlas.workflow.v1;
+
+option go_package = "atlas/api/workflow/v1;workflowpb";
+
+// ClinicalWriteGuardService manages clinical write guards.
+service ClinicalWriteGuardService {
+  rpc CreateClinicalWriteGuard(CreateClinicalWriteGuardRequest) returns (CreateClinicalWriteGuardResponse);
+  rpc GetClinicalWriteGuard(GetClinicalWriteGuardRequest) returns (GetClinicalWriteGuardResponse);
+  rpc UpdateClinicalWriteGuard(UpdateClinicalWriteGuardRequest) returns (UpdateClinicalWriteGuardResponse);
+  rpc ListClinicalWriteGuards(ListClinicalWriteGuardsRequest) returns (ListClinicalWriteGuardsResponse);
+  rpc ListClinicalWriteGuardsByWorkflow(ListClinicalWriteGuardsByWorkflowRequest) returns (ListClinicalWriteGuardsByWorkflowResponse);
+  rpc DeleteClinicalWriteGuard(DeleteClinicalWriteGuardRequest) returns (DeleteClinicalWriteGuardResponse);
+}
+
+message CreateClinicalWriteGuardRequest {
+  bool synthetic = 1;
+  string idempotency_key = 2;
+  string guard_id = 3;
+  string workflow_id = 4;
+  string step_id = 5;
+  string operation_type = 6;
+  string resource_type = 7;
+  string execution_mode = 8;
+  bool requires_review = 9;
+  string reviewer_role = 10;
+  bool justification_required = 11;
+  map<string, string> metadata = 12;
+}
+
+message CreateClinicalWriteGuardResponse {
+  string guard_id = 1;
+  string checksum = 2;
+}
+
+message GetClinicalWriteGuardRequest {
+  string guard_id = 1;
+}
+
+message GetClinicalWriteGuardResponse {
+  ClinicalWriteGuardDetails guard = 1;
+}
+
+message UpdateClinicalWriteGuardRequest {
+  string guard_id = 1;
+  bool synthetic = 2;
+  string idempotency_key = 3;
+  string workflow_id = 4;
+  string step_id = 5;
+  string operation_type = 6;
+  string resource_type = 7;
+  string execution_mode = 8;
+  bool requires_review = 9;
+  string reviewer_role = 10;
+  bool justification_required = 11;
+  map<string, string> metadata = 12;
+}
+
+message UpdateClinicalWriteGuardResponse {
+  string checksum = 1;
+}
+
+message ListClinicalWriteGuardsRequest {}
+
+message ListClinicalWriteGuardsResponse {
+  repeated ClinicalWriteGuardDetails guards = 1;
+}
+
+message ListClinicalWriteGuardsByWorkflowRequest {
+  string workflow_id = 1;
+}
+
+message ListClinicalWriteGuardsByWorkflowResponse {
+  repeated ClinicalWriteGuardDetails guards = 1;
+}
+
+message DeleteClinicalWriteGuardRequest {
+  string guard_id = 1;
+}
+
+message DeleteClinicalWriteGuardResponse {}
+
+message ClinicalWriteGuardDetails {
+  string guard_id = 1;
+  string workflow_id = 2;
+  string step_id = 3;
+  string operation_type = 4;
+  string resource_type = 5;
+  string execution_mode = 6;
+  bool requires_review = 7;
+  string reviewer_role = 8;
+  bool justification_required = 9;
+  map<string, string> metadata = 10;
+  string checksum = 11;
+}

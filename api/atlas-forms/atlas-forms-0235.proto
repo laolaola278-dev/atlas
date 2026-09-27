@@ -1,0 +1,92 @@
+syntax = "proto3";
+
+package atlas.forms.v1;
+
+option go_package = "atlas/api/atlas-forms;forms";
+
+// Offline Cache Service - PHI-protected offline data caching
+service OfflineCacheService {
+  // Store encrypted offline cache data
+  rpc StoreOfflineCache(StoreOfflineCacheRequest) returns (StoreOfflineCacheResponse);
+  
+  // Retrieve cached data
+  rpc RetrieveOfflineCache(RetrieveOfflineCacheRequest) returns (RetrieveOfflineCacheResponse);
+  
+  // Invalidate cache entry
+  rpc InvalidateOfflineCache(InvalidateOfflineCacheRequest) returns (InvalidateOfflineCacheResponse);
+  
+  // List expired caches
+  rpc ListExpiredCaches(ListExpiredCachesRequest) returns (ListExpiredCachesResponse);
+  
+  // Cleanup expired caches
+  rpc CleanupExpiredCaches(CleanupExpiredCachesRequest) returns (CleanupExpiredCachesResponse);
+  
+  // Validate cache data integrity
+  rpc ValidateCacheIntegrity(ValidateCacheIntegrityRequest) returns (ValidateCacheIntegrityResponse);
+}
+
+message StoreOfflineCacheRequest {
+  bool synthetic = 1;
+  string form_id = 2;
+  string cache_key = 3;
+  string data_hash = 4;
+  bytes encrypted_data = 5;
+  int32 cache_ttl_hours = 6;
+  string idempotency_key = 7;
+}
+
+message StoreOfflineCacheResponse {
+  string cache_id = 1;
+  int64 expiration_timestamp = 2;
+}
+
+message RetrieveOfflineCacheRequest {
+  bool synthetic = 1;
+  string cache_id = 2;
+  string cache_key = 3;
+}
+
+message RetrieveOfflineCacheResponse {
+  bytes encrypted_data = 1;
+  string data_hash = 2;
+  int64 expiration_timestamp = 3;
+  int64 created_timestamp = 4;
+}
+
+message InvalidateOfflineCacheRequest {
+  bool synthetic = 1;
+  string cache_id = 2;
+}
+
+message InvalidateOfflineCacheResponse {
+  bool success = 1;
+}
+
+message ListExpiredCachesRequest {
+  bool synthetic = 1;
+  int32 limit = 2;
+}
+
+message ListExpiredCachesResponse {
+  repeated string cache_ids = 1;
+  int32 total_count = 2;
+}
+
+message CleanupExpiredCachesRequest {
+  bool synthetic = 1;
+}
+
+message CleanupExpiredCachesResponse {
+  int32 cleaned_count = 1;
+}
+
+message ValidateCacheIntegrityRequest {
+  bool synthetic = 1;
+  string cache_id = 2;
+  string expected_hash = 3;
+}
+
+message ValidateCacheIntegrityResponse {
+  bool valid = 1;
+  string actual_hash = 2;
+}

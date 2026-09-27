@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package atlas.forms;
+
+message RequiredFieldRequest {
+  string form_id = 1;
+  string submission_id = 2;
+  map<string, string> field_values = 3;
+  string schema_json = 4;
+  string actor_id = 5;
+  string idempotency_key = 6;
+  bool synthetic = 7;
+  string reason = 8;
+}
+
+message RequiredFieldResponse {
+  string validation_id = 1;
+  string submission_id = 2;
+  string form_id = 3;
+  string status = 4;
+  repeated string missing_fields = 5;
+  repeated string conditional_errors = 6;
+  string validated_at = 7;
+}

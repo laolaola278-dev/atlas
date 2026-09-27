@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package atlas.v1;
+
+import "atlas/v1/common.proto";
+
+option go_package = "atlas/api/gen/atlas/v1;atlasv1";
+option java_multiple_files = true;
+option java_package = "com.atlas.v1";
+
+message FhirResourceRef {
+  string resource_type = 1;
+  string logical_id = 2;
+  string version_id = 3;
+  string profile_url = 4;
+  string profile_version = 5;
+  string terminology_version = 6;
+}
+
+message ValidationIssue {
+  string path = 1;
+  string code = 2;
+  string severity = 3;
+  string message = 4;
+  string source_version = 5;
+}
+
+message FhirValidationResult {
+  bool valid = 1;
+  repeated ValidationIssue issues = 2;
+  string validator_version = 3;
+  string profile_digest = 4;
+  string resource_digest = 5;
+}
+
+message FhirResourceRequest {
+  FhirResourceRef resource = 1;
+  bytes canonical_resource = 2;
+  PurposeContext purpose = 3;
+  string idempotency_key = 4;
+}
+
+message FhirResourceResponse {
+  FhirResourceRef resource = 1;
+  FhirValidationResult validation = 2;
+  string audit_event_id = 3;
+}
+
+service FhirValidationService {
+  rpc Validate(FhirResourceRequest) returns (FhirResourceResponse);
+}

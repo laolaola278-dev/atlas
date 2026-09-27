@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+package atlas.forms.v1;
+
+option go_package = "atlas/api/atlas-forms;forms";
+
+// TrackFormEventRequest tracks a form lifecycle event
+message TrackFormEventRequest {
+  string event_id = 1;
+  string form_id = 2;
+  string event_type = 3;
+  string actor_role = 4;
+  string timestamp = 5;
+  map<string, string> details = 6;
+  string idempotency_key = 7;
+  bool synthetic = 8;
+}
+
+// FormEventResponse contains tracked event details
+message FormEventResponse {
+  string event_id = 1;
+  string form_id = 2;
+  string event_type = 3;
+  string actor_role = 4;
+  string timestamp = 5;
+  map<string, string> details = 6;
+  string digest = 7;
+}
+
+// GetFormEventRequest retrieves a tracked event
+message GetFormEventRequest {
+  string event_id = 1;
+}
+
+// ListFormEventsRequest lists events for a form
+message ListFormEventsRequest {
+  string form_id = 1;
+}
+
+// ListFormEventsResponse contains multiple events
+message ListFormEventsResponse {
+  repeated FormEventResponse events = 1;
+}
+
+// GetEventsByTypeRequest filters events by type
+message GetEventsByTypeRequest {
+  string event_type = 1;
+}
+
+// DeleteFormEventRequest removes a tracked event
+message DeleteFormEventRequest {
+  string event_id = 1;
+}
+
+// ClearFormEventsRequest removes all events for a form
+message ClearFormEventsRequest {
+  string form_id = 1;
+}
+
+service FormTracking {
+  rpc TrackFormEvent(TrackFormEventRequest) returns (FormEventResponse);
+  rpc GetFormEvent(GetFormEventRequest) returns (FormEventResponse);
+  rpc ListFormEvents(ListFormEventsRequest) returns (ListFormEventsResponse);
+  rpc GetEventsByType(GetEventsByTypeRequest) returns (ListFormEventsResponse);
+  rpc DeleteFormEvent(DeleteFormEventRequest) returns (google.protobuf.Empty);
+  rpc ClearFormEvents(ClearFormEventsRequest) returns (google.protobuf.Empty);
+}

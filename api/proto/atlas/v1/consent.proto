@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package atlas.v1;
+
+import "atlas/v1/common.proto";
+
+option go_package = "atlas/api/gen/atlas/v1;atlasv1";
+option java_multiple_files = true;
+option java_package = "com.atlas.v1";
+
+enum ConsentState {
+  CONSENT_STATE_UNSPECIFIED = 0;
+  CONSENT_STATE_ACTIVE = 1;
+  CONSENT_STATE_WITHDRAWN = 2;
+  CONSENT_STATE_EXPIRED = 3;
+  CONSENT_STATE_UNDETERMINED = 4;
+}
+
+message ConsentDecision {
+  string consent_id = 1;
+  string consent_version = 2;
+  ConsentState state = 3;
+  string purpose_code = 4;
+  repeated string data_categories = 5;
+  string effective_from = 6;
+  string effective_to = 7;
+  string policy_version = 8;
+  string decision_digest = 9;
+}
+
+message AccessDecision {
+  bool allowed = 1;
+  string decision_id = 2;
+  string policy_version = 3;
+  string consent_version = 4;
+  repeated string reason_codes = 5;
+  string trace_id = 6;
+  bool emergency = 7;
+}
+
+message AccessRequest {
+  ResourceRef resource = 1;
+  string action = 2;
+  PurposeContext purpose = 3;
+  string requested_fields = 4;
+  string emergency_reason_code = 5;
+}
+
+service ConsentPolicyService {
+  rpc Evaluate(AccessRequest) returns (AccessDecision);
+}

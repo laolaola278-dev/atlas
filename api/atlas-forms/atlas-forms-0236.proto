@@ -1,0 +1,98 @@
+syntax = "proto3";
+
+package atlas.forms.v1;
+
+option go_package = "atlas/api/atlas-forms;atlasforms";
+
+// SyntheticFormService provides operations for generating and managing synthetic forms
+service SyntheticFormService {
+  // GenerateSyntheticForm creates a new synthetic form with deterministic field values
+  rpc GenerateSyntheticForm(GenerateSyntheticFormRequest) returns (GenerateSyntheticFormResponse);
+  
+  // GetSyntheticForm retrieves a previously generated synthetic form
+  rpc GetSyntheticForm(GetSyntheticFormRequest) returns (GetSyntheticFormResponse);
+  
+  // ListSyntheticForms lists generated synthetic forms, optionally filtered by type
+  rpc ListSyntheticForms(ListSyntheticFormsRequest) returns (ListSyntheticFormsResponse);
+  
+  // ValidateSyntheticForm validates a generated synthetic form structure
+  rpc ValidateSyntheticForm(ValidateSyntheticFormRequest) returns (ValidateSyntheticFormResponse);
+  
+  // DeleteSyntheticForm removes a synthetic form from storage
+  rpc DeleteSyntheticForm(DeleteSyntheticFormRequest) returns (DeleteSyntheticFormResponse);
+  
+  // CleanupSyntheticForms removes all synthetic forms from storage
+  rpc CleanupSyntheticForms(CleanupSyntheticFormsRequest) returns (CleanupSyntheticFormsResponse);
+}
+
+message GenerateSyntheticFormRequest {
+  string form_id = 1;
+  string form_type = 2;
+  map<string, string> field_spec = 3;
+  string seed = 4;
+  string version = 5;
+  string idempotency_key = 6;
+  bool synthetic = 7;
+}
+
+message GenerateSyntheticFormResponse {
+  string form_id = 1;
+  string form_type = 2;
+  map<string, string> fields = 3;
+  string generated_at = 4;
+  string checksum = 5;
+  string version = 6;
+}
+
+message GetSyntheticFormRequest {
+  string form_id = 1;
+}
+
+message GetSyntheticFormResponse {
+  string form_id = 1;
+  string form_type = 2;
+  map<string, string> fields = 3;
+  string generated_at = 4;
+  string checksum = 5;
+  string version = 6;
+}
+
+message ListSyntheticFormsRequest {
+  string form_type = 1;
+}
+
+message ListSyntheticFormsResponse {
+  repeated SyntheticFormSummary forms = 1;
+}
+
+message SyntheticFormSummary {
+  string form_id = 1;
+  string form_type = 2;
+  string generated_at = 3;
+  string version = 4;
+}
+
+message ValidateSyntheticFormRequest {
+  string form_id = 1;
+}
+
+message ValidateSyntheticFormResponse {
+  bool valid = 1;
+  repeated string errors = 2;
+}
+
+message DeleteSyntheticFormRequest {
+  string form_id = 1;
+}
+
+message DeleteSyntheticFormResponse {
+  bool success = 1;
+}
+
+message CleanupSyntheticFormsRequest {
+  // No parameters needed
+}
+
+message CleanupSyntheticFormsResponse {
+  int32 deleted_count = 1;
+}

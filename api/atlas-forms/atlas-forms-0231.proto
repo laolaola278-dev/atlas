@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package atlas.forms.v1;
+
+option go_package = "github.com/atlas/api/atlas-forms/v1;formsv1";
+
+// DraftRecoveryRequest represents a request to save, recover, or discard a draft
+message DraftRecoveryRequest {
+  string draft_id = 1;
+  string form_id = 2;
+  string user_id = 3;
+  map<string, string> draft_data = 4;
+  string operation = 5; // save, recover, discard
+  string actor_id = 6;
+  string idempotency_key = 7;
+  bool synthetic = 8;
+  string reason = 9;
+}
+
+// DraftRecoveryResponse contains the result of a draft operation
+message DraftRecoveryResponse {
+  string draft_id = 1;
+  string form_id = 2;
+  string status = 3;
+  map<string, string> draft_data = 4;
+  string saved_at = 5;
+  string recovered_at = 6;
+  string data_checksum = 7;
+}
+
+// DraftRecoveryService handles draft save and recovery operations
+service DraftRecoveryService {
+  rpc ProcessDraftRecovery(DraftRecoveryRequest) returns (DraftRecoveryResponse);
+  rpc SaveDraft(DraftRecoveryRequest) returns (DraftRecoveryResponse);
+  rpc RecoverDraft(DraftRecoveryRequest) returns (DraftRecoveryResponse);
+  rpc DiscardDraft(DraftRecoveryRequest) returns (DraftRecoveryResponse);
+}

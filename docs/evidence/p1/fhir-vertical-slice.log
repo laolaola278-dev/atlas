@@ -1,0 +1,28 @@
+[stage 0] synthetic fixtures loaded: valid-patient-bundle.json, observation.json
+[stage 0] canonical resource digest: 1253cd4d9da11154cbdbab208f082ddc150835e71f49d8b6858a38456b25be7b
+[stage 1] bundle: {"entries": ["Observation/observation-synthetic", "ServiceRequest/service-request-synthetic"]}
+[stage 2] gate: {"issues": [], "resource": "Observation/observation-synthetic"}
+[stage 3] validator: {"outcome_id": "hapi-outcome-acceptance", "resource_digest": "1253cd4d9da11154cbdbab208f082ddc150835e71f49d8b6858a38456b25be7b"}
+[stage 4] audit: {"audit_event_id": "fhir-validate-observation-synthetic-1", "event_hash": "a4da00a6b8cd57817292a0172d80ffb6b6f34237f0ae51fb78e5e755148bcfb7", "previous_hash": "0000000000000000000000000000000000000000000000000000000000000000", "sequence": 1}
+[stage 5] workflow: {"audit_event_id": "fhir-validate-observation-synthetic-1", "task_id": "task-fhir-validate-observation-synthetic-1", "task_state": "OPEN"}
+[stage 6] hitl-review: {"audit_event_id": "fhir-validate-observation-synthetic-1", "content_digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd", "review_event_id": "suggestion-synthetic-approve-second-4", "state": "APPROVED", "state_version": "6", "suggestion_id": "suggestion-synthetic", "suggestion_version": "6"}
+[stage 7] hitl-commit: {"audit_event_id": "fhir-validate-observation-synthetic-1", "commit_audit_event_id": "suggestion-synthetic-ordinary-commit-5", "committed": true, "target_version": "target-slice", "write_intent_id": "proof-slice", "write_kind": "ordinary"}
+[check] one audit_event_id propagated across 4 surfaces: fhir-validate-observation-synthetic-1
+[check] stage order matches contract: bundle -> gate -> validator -> audit -> workflow -> hitl-review -> hitl-commit
+[check] workflow task state: COMMITTED
+[check] commit response: {"audit_event_id": "fhir-validate-observation-synthetic-1", "commit_audit_event_id": "suggestion-synthetic-ordinary-commit-5", "committed": true, "target_version": "target-slice", "write_intent_id": "proof-slice", "write_kind": "ordinary"}
+[check] audit chain operations: fhir-validate -> queue-review -> approve-one -> approve-second -> ordinary-commit
+[check] hash chain verified over 5 events
+[check] to_fhir_audit_event projection: id=fhir-validate-observation-synthetic-1 action=fhir-validate
+[check] durable reload is idempotent: 5 lines before and after two reloads
+[check] restarted service restores suggestion-synthetic as WRITEBACK_COMMITTED
+[fail-closed] bundle-type-invalid -> bundle-type-invalid
+[fail-closed] gate-purpose-missing -> purpose-missing
+[fail-closed] validator-digest-mismatch -> validator-digest-mismatch
+[fail-closed] validator-not-official -> validator-not-official
+[fail-closed] validator-record-absent -> validator-result-unknown
+[fail-closed] workflow-audit-event-mismatch -> workflow-audit-event-mismatch
+[fail-closed] workflow-audit-event-missing -> workflow-audit-event-missing
+[fail-closed] workflow-audit-event-unknown -> workflow-audit-event-unknown
+[fail-closed] workflow-commit-before-review -> workflow-task-state-invalid
+[check] no rejected branch appended a success event

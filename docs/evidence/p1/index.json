@@ -1,0 +1,151 @@
+{
+  "environment": {
+    "git_revision_at_generation": "no-commits-yet",
+    "go_toolchain_available": false,
+    "go_toolchain_note": "go is not on PATH here; go test and gofmt were not executed.",
+    "python_version": "3.11.15",
+    "workdir": "E:\\hds(js)\\look\\atlas"
+  },
+  "gates": [
+    {
+      "command": "python -B plan/verify_first_round.py",
+      "exit_code": 0,
+      "output_tail": [
+        "Batch records: 384",
+        "Phase LOC: P0=28000, P1=86000, P2=60000, P3=106000, P4=94000, P5=24000, P6=66000, P7=76000, P8=20000",
+        "Total LOC: 560000"
+      ]
+    },
+    {
+      "command": "python -B tools/phi-scan/scan.py --root . --fail-on blocked --out E:\\hds(js)\\look\\_scratch\\phi-p1.json",
+      "exit_code": 0,
+      "output_tail": []
+    },
+    {
+      "command": "python -B tools/evidence/fhir_slice_acceptance.py",
+      "exit_code": 0,
+      "output_tail": [
+        "[check] no rejected branch appended a success event",
+        "evidence json: docs\\evidence\\p1\\fhir-vertical-slice.json",
+        "evidence log : docs\\evidence\\p1\\fhir-vertical-slice.log"
+      ]
+    },
+    {
+      "command": "python -B tools/evidence/traceability.py",
+      "exit_code": 0,
+      "output_tail": [
+        "TOTAL      384             38        8     338           1022         22714        560000      560000             376",
+        "declared-vs-target mismatches (0): none",
+        "completion claims without full file evidence (0): none"
+      ]
+    },
+    {
+      "command": "python -B -m unittest internal.workflow.test_slice internal.audit.test_file internal.audit.test_chain internal.hitl.test_service internal.hitl.test_audited internal.contract.test_errors internal.contract.test_fhir_gate internal.contract.test_validator tools.phi-scan.test_scan tools.locaudit.test_scan tools.evidence.test_p0_index",
+      "exit_code": 0,
+      "output_tail": [
+        "Ran 108 tests in 2.843s",
+        "",
+        "OK"
+      ]
+    }
+  ],
+  "gates_failed": 0,
+  "generated_at": "2026-09-27T10:54:01Z",
+  "index_version": "1.1",
+  "phase": "P1",
+  "rows": [
+    {
+      "bytes": 7109,
+      "lines": 115,
+      "path": "docs/evidence/p1/fhir-vertical-slice.json",
+      "sha256": "ad1fd424749b1103b4eccda95027283cf4ad7bd9aa1f90833a3bc78f35bb6830"
+    },
+    {
+      "bytes": 3166,
+      "lines": 28,
+      "path": "docs/evidence/p1/fhir-vertical-slice.log",
+      "sha256": "7600503cbd2f0e4c311b64b0af245b7fafe95d80393bc9ae3d8e46bd586d0fd1"
+    },
+    {
+      "bytes": 1727,
+      "lines": 30,
+      "path": "docs/evidence/p1/README.md",
+      "sha256": "75fb66c9b988b4468c742112d7a93ac8e4ff602139da414d89ea15fd28f9e804"
+    },
+    {
+      "bytes": 313822,
+      "lines": 9741,
+      "path": "docs/requirements/traceability-matrix.json",
+      "sha256": "01458669894244db5ca7fbdadcb71763997d6db8f15ec6ca154131eade9f939b"
+    },
+    {
+      "bytes": 8583,
+      "lines": 109,
+      "path": "docs/requirements/traceability.md",
+      "sha256": "1f3af0ac235357cf4a36b90f81ae39d08e0165e857832e42eff732c8b88887f0"
+    },
+    {
+      "bytes": 3972,
+      "lines": 53,
+      "path": "docs/requirements/fhir-audit-hitl-evidence.md",
+      "sha256": "4c558d6d89c0565ff73046bde8d3b12980d480e0877078b68d42d076bf95801d"
+    },
+    {
+      "bytes": 2307,
+      "lines": 43,
+      "path": "docs/requirements/fhir-contract-test-plan.md",
+      "sha256": "5e29da167e8144fc491c685fa49b3de0d9c823665ff603ec39faf87888e6f6b4"
+    },
+    {
+      "bytes": 15114,
+      "lines": 410,
+      "path": "internal/workflow/slice.py",
+      "sha256": "5a7574b3d126c944a211e1e0770a5ef218c16f59027bbfbbeb5ffeca5448478e"
+    },
+    {
+      "bytes": 11431,
+      "lines": 245,
+      "path": "internal/workflow/test_slice.py",
+      "sha256": "e4693c607eaa89c12180693523ec1fea64d271a6e6c59b84136e37eef6dbea0b"
+    },
+    {
+      "bytes": 2305,
+      "lines": 62,
+      "path": "internal/audit/file.py",
+      "sha256": "365945cf63bae65caffc697fc7bde424bc0966cb002188053b5e62d19dc92fe7"
+    },
+    {
+      "bytes": 28601,
+      "lines": 170,
+      "path": "internal/contract/errors.py",
+      "sha256": "3f926d1c5c51f0d27588a6789bea5158a623581905f14b468bc49edf65139a85"
+    },
+    {
+      "bytes": 12478,
+      "lines": 295,
+      "path": "tools/evidence/fhir_slice_acceptance.py",
+      "sha256": "ccb47ddba1329df84bdd989baa2d6c236fc967af0f0a9965de68f13900a72a64"
+    },
+    {
+      "bytes": 10895,
+      "lines": 258,
+      "path": "tools/evidence/traceability.py",
+      "sha256": "5fb3458ffd6b0fe88a2051e9dafbc02071b9672bb23b04e10fd0b0d09d211900"
+    },
+    {
+      "bytes": 25318,
+      "lines": 731,
+      "path": "tools/phi-scan/rules.py",
+      "sha256": "91eef6149bfeebf36fec1fd5d99357c2765c28c7bb5e7ab283d03f834579a46c"
+    }
+  ],
+  "scope": "FHIR vertical slice: Bundle -> Gate -> Validator -> AuditEvent -> Workflow -> HITL Review -> HITL Commit",
+  "synthetic": true,
+  "unverified": [
+    "official HAPI FHIR Validator execution (no binary or jar in repository)",
+    "proto service stubs and server implementation (api/gen absent)",
+    "Go-side workflow consumption of audit_event_id (services/atlas-workflow has no reference)",
+    "go test -race -cover ./... and gofmt -l (no Go toolchain in this environment)",
+    "independent CI runner re-execution"
+  ]
+}

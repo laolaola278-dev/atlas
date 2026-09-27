@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package atlas.forms;
+
+message SignatureRequest {
+  string form_id = 1;
+  string submission_id = 2;
+  string signer_id = 3;
+  string signature_hash = 4;
+  string signature_timestamp = 5;
+  string idempotency_key = 6;
+  bool synthetic = 7;
+  string reason = 8;
+}
+
+message SignatureResponse {
+  string signature_id = 1;
+  string submission_id = 2;
+  string status = 3;
+  string signed_at = 4;
+}

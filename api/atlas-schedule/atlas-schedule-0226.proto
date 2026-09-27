@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package atlas.schedule.v1;
+
+option go_package = "github.com/atlas/schedule/v1;schedulepb";
+
+// AuditRequest represents a request to audit scheduling operations
+message AuditRequest {
+  // schedule_id is the unique identifier of the schedule to audit
+  string schedule_id = 1;
+  
+  // operation_type describes the operation being audited
+  string operation_type = 2;
+  
+  // actor_id identifies the user or system performing the operation
+  string actor_id = 3;
+  
+  // timestamp of the operation in RFC3339 format
+  string timestamp = 4;
+  
+  // changes contains the before and after states
+  Changes changes = 5;
+  
+  // reason for the operation
+  string reason = 6;
+}
+
+// Changes captures the state transition
+message Changes {
+  // before state as JSON
+  string before = 1;
+  
+  // after state as JSON
+  string after = 2;
+}
+
+// AuditResponse returns the audit trail entry
+message AuditResponse {
+  // audit_id is the unique identifier for this audit entry
+  string audit_id = 1;
+  
+  // status indicates success or failure
+  string status = 2;
+  
+  // message provides additional context
+  string message = 3;
+  
+  // recorded_at is the timestamp when the audit was recorded
+  string recorded_at = 4;
+}

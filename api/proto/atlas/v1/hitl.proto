@@ -1,0 +1,166 @@
+syntax = "proto3";
+
+package atlas.v1;
+
+import "atlas/v1/common.proto";
+
+option go_package = "atlas/api/gen/atlas/v1;atlasv1";
+option java_multiple_files = true;
+option java_package = "com.atlas.v1";
+
+// HITL is a write-eligibility projection. Operational states are refined by
+// the state machine but an unsigned suggestion can never produce a proof.
+enum SuggestionState {
+  SUGGESTION_STATE_UNSPECIFIED = 0;
+  SUGGESTION_STATE_GENERATED = 1;
+  SUGGESTION_STATE_PENDING_REVIEW = 2;
+  SUGGESTION_STATE_APPROVED = 3;
+  SUGGESTION_STATE_REJECTED = 4;
+  SUGGESTION_STATE_EXPIRED = 5;
+  SUGGESTION_STATE_REVOKED = 6;
+  SUGGESTION_STATE_COMMITTED = 7;
+}
+
+enum ReviewDecision {
+  REVIEW_DECISION_UNSPECIFIED = 0;
+  REVIEW_DECISION_APPROVE = 1;
+  REVIEW_DECISION_REJECT = 2;
+  REVIEW_DECISION_REQUEST_INFO = 3;
+}
+
+message EvidenceRef {
+  string evidence_id = 1;
+  ResourceRef source = 2;
+  string locator = 3;
+  string source_version = 4;
+  string observed_at = 5;
+  string value_digest = 6;
+}
+
+message Suggestion {
+  string suggestion_id = 1;
+  string suggestion_version = 2;
+  string tenant_id = 3;
+  string campus_id = 4;
+  ResourceRef patient_context = 5;
+  ResourceRef encounter_context = 6;
+  SuggestionState state = 7;
+  string content_digest = 8;
+  string model_release_id = 9;
+  string rule_bundle_digest = 10;
+  repeated EvidenceRef evidence = 11;
+  TimestampRange validity = 12;
+  Provenance provenance = 13;
+  string risk_tier = 14;
+  string target_action = 15;
+}
+
+message ReviewCommand {
+  string suggestion_id = 1;
+  string suggestion_version = 2;
+  ReviewDecision decision = 3;
+  string reason_code = 4;
+  string reviewer_id = 5;
+  string expected_state_version = 6;
+  string idempotency_key = 7;
+  PurposeContext purpose = 8;
+  string client_signature = 9;
+}
+
+message ReviewReceipt {
+  string suggestion_id = 1;
+  string suggestion_version = 2;
+  SuggestionState state = 3;
+  string review_event_id = 4;
+  string state_version = 5;
+  string content_digest = 6;
+  string audit_event_id = 7;
+  string idempotency_key = 8;
+}
+
+message ApprovalProof {
+  string proof_id = 1;
+  string suggestion_id = 2;
+  string suggestion_version = 3;
+  string reviewer_id = 4;
+  string patient_ref_digest = 5;
+  string target_action = 6;
+  string policy_version = 7;
+  string issued_at = 8;
+  string expires_at = 9;
+  string nonce = 10;
+  string proof_digest = 11;
+  string signature_key_id = 12;
+}
+
+message WriteIntent {
+  string write_intent_id = 1;
+  string suggestion_id = 2;
+  string suggestion_version = 3;
+  ApprovalProof approval_proof = 4;
+  ResourceRef target = 5;
+  string content_digest = 6;
+  string idempotency_key = 7;
+}
+
+// EmergencyActionGrant is deliberately a separate type. It can authorize
+// one emergency action but can never be substituted for ApprovalProof or
+// produce the ordinary COMMITTED state.
+message EmergencyActionGrant {
+  string grant_id = 1;
+  string suggestion_id = 2;
+  string suggestion_version = 3;
+  string patient_ref_digest = 4;
+  string target_action = 5;
+  string authorized_by = 6;
+  string reason_code = 7;
+  string emergency_contact_ref = 8;
+  string issued_at = 9;
+  string expires_at = 10;
+  string nonce = 11;
+  string policy_version = 12;
+  string grant_digest = 13;
+  string signature_key_id = 14;
+}
+
+message EmergencyWriteIntent {
+  string write_intent_id = 1;
+  EmergencyActionGrant grant = 2;
+  ResourceRef target = 3;
+  string content_digest = 4;
+  string idempotency_key = 5;
+}
+
+message EmergencyCommitRequest {
+  EmergencyWriteIntent intent = 1;
+  PurposeContext purpose = 2;
+  string expected_target_version = 3;
+}
+
+message EmergencyCommitResponse {
+  string write_intent_id = 1;
+  string target_receipt_id = 2;
+  string target_version = 3;
+  string execution_state = 4;
+  string audit_event_id = 5;
+}
+
+message CommitRequest {
+  WriteIntent intent = 1;
+  PurposeContext purpose = 2;
+  string expected_target_version = 3;
+}
+
+message CommitResponse {
+  string write_intent_id = 1;
+  string target_receipt_id = 2;
+  string target_version = 3;
+  bool committed = 4;
+  string audit_event_id = 5;
+}
+
+service HitlService {
+  rpc Review(ReviewCommand) returns (ReviewReceipt);
+  rpc Commit(CommitRequest) returns (CommitResponse);
+  rpc CommitEmergency(EmergencyCommitRequest) returns (EmergencyCommitResponse);
+}

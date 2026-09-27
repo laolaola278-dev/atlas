@@ -1,0 +1,122 @@
+syntax = "proto3";
+
+package atlas.workflow.v1;
+
+option go_package = "github.com/atlas/api/workflow/v1;workflowv1";
+
+// HumanTaskService manages human task nodes in workflows.
+service HumanTaskService {
+  // CreateHumanTask creates a new human task node.
+  rpc CreateHumanTask(CreateHumanTaskRequest) returns (CreateHumanTaskResponse);
+  
+  // GetHumanTask retrieves a human task by ID.
+  rpc GetHumanTask(GetHumanTaskRequest) returns (GetHumanTaskResponse);
+  
+  // UpdateHumanTaskStatus updates the status of a human task.
+  rpc UpdateHumanTaskStatus(UpdateHumanTaskStatusRequest) returns (UpdateHumanTaskStatusResponse);
+  
+  // ListHumanTasks retrieves all human tasks.
+  rpc ListHumanTasks(ListHumanTasksRequest) returns (ListHumanTasksResponse);
+  
+  // ListHumanTasksByWorkflow retrieves all human tasks for a specific workflow.
+  rpc ListHumanTasksByWorkflow(ListHumanTasksByWorkflowRequest) returns (ListHumanTasksByWorkflowResponse);
+  
+  // ListHumanTasksByAssignee retrieves all human tasks assigned to a specific user.
+  rpc ListHumanTasksByAssignee(ListHumanTasksByAssigneeRequest) returns (ListHumanTasksByAssigneeResponse);
+  
+  // DeleteHumanTask deletes a human task by ID.
+  rpc DeleteHumanTask(DeleteHumanTaskRequest) returns (DeleteHumanTaskResponse);
+}
+
+message CreateHumanTaskRequest {
+  string task_id = 1;
+  string workflow_id = 2;
+  string step_id = 3;
+  string assigned_to = 4;
+  string task_title = 5;
+  string task_description = 6;
+  string priority = 7;
+  string due_date = 8;
+  map<string, string> metadata = 9;
+  string idempotency_key = 10;
+  bool synthetic = 11;
+}
+
+message CreateHumanTaskResponse {
+  string task_id = 1;
+  string workflow_id = 2;
+  string step_id = 3;
+  string assigned_to = 4;
+  string task_title = 5;
+  string status = 6;
+  string created_at = 7;
+  string checksum = 8;
+  map<string, string> metadata = 9;
+}
+
+message GetHumanTaskRequest {
+  string task_id = 1;
+}
+
+message GetHumanTaskResponse {
+  string task_id = 1;
+  string workflow_id = 2;
+  string step_id = 3;
+  string assigned_to = 4;
+  string task_title = 5;
+  string status = 6;
+  string created_at = 7;
+  string checksum = 8;
+  map<string, string> metadata = 9;
+}
+
+message UpdateHumanTaskStatusRequest {
+  string task_id = 1;
+  string status = 2;
+}
+
+message UpdateHumanTaskStatusResponse {
+  bool success = 1;
+}
+
+message ListHumanTasksRequest {}
+
+message ListHumanTasksResponse {
+  repeated HumanTask tasks = 1;
+}
+
+message ListHumanTasksByWorkflowRequest {
+  string workflow_id = 1;
+}
+
+message ListHumanTasksByWorkflowResponse {
+  repeated HumanTask tasks = 1;
+}
+
+message ListHumanTasksByAssigneeRequest {
+  string assigned_to = 1;
+}
+
+message ListHumanTasksByAssigneeResponse {
+  repeated HumanTask tasks = 1;
+}
+
+message DeleteHumanTaskRequest {
+  string task_id = 1;
+}
+
+message DeleteHumanTaskResponse {
+  bool success = 1;
+}
+
+message HumanTask {
+  string task_id = 1;
+  string workflow_id = 2;
+  string step_id = 3;
+  string assigned_to = 4;
+  string task_title = 5;
+  string status = 6;
+  string created_at = 7;
+  string checksum = 8;
+  map<string, string> metadata = 9;
+}
