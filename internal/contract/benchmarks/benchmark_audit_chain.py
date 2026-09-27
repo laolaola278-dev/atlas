@@ -80,11 +80,11 @@ def benchmark_audit_writes(
         'chain_length': len(chain.events),
         'timestamp': datetime.now().isoformat()
     }
-    print(f"  Throughput: {results[\"ops_per_second\"]} writes/sec")
-    print(f"  P50: {results[\"p50_ms\"]} ms")
-    print(f"  P95: {results[\"p95_ms\"]} ms")
-    print(f"  P99: {results[\"p99_ms\"]} ms")
-    print(f"  Chain length: {results[\"chain_length\"]} events")
+    print(f"  Throughput: {results['ops_per_second']} writes/sec")
+    print(f"  P50: {results['p50_ms']} ms")
+    print(f"  P95: {results['p95_ms']} ms")
+    print(f"  P99: {results['p99_ms']} ms")
+    print(f"  Chain length: {results['chain_length']} events")
     return results
 
 

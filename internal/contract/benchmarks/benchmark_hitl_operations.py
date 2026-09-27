@@ -109,10 +109,10 @@ def benchmark_hitl_operations(
         'timestamp': datetime.now().isoformat()
     }
     
-    print(f"  Throughput: {results[\"ops_per_second\"]} ops/sec")
-    print(f"  P50: {results[\"p50_ms\"]} ms")
-    print(f"  P95: {results[\"p95_ms\"]} ms")
-    print(f"  P99: {results[\"p99_ms\"]} ms")
+    print(f"  Throughput: {results['ops_per_second']} ops/sec")
+    print(f"  P50: {results['p50_ms']} ms")
+    print(f"  P95: {results['p95_ms']} ms")
+    print(f"  P99: {results['p99_ms']} ms")
     
     return results
 

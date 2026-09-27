@@ -82,10 +82,10 @@ def benchmark_fhir_validation(
         'p99_ms': round(latencies_sorted[int(len(latencies_sorted) * 0.99)], 3),
         'timestamp': datetime.now().isoformat()
     }
-    print(f"  Throughput: {results[\"ops_per_second\"]} ops/sec")
-    print(f"  P50: {results[\"p50_ms\"]} ms")
-    print(f"  P95: {results[\"p95_ms\"]} ms")
-    print(f"  P99: {results[\"p99_ms\"]} ms")
+    print(f"  Throughput: {results['ops_per_second']} ops/sec")
+    print(f"  P50: {results['p50_ms']} ms")
+    print(f"  P95: {results['p95_ms']} ms")
+    print(f"  P99: {results['p99_ms']} ms")
     return results
 
 
