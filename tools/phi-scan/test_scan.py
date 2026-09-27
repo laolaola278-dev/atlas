@@ -2,6 +2,7 @@
 """Temporary synthetic fixtures for the PHI scanner fail-closed gate."""
 from __future__ import annotations
 
+import hashlib
 import json
 import tempfile
 import unittest
@@ -226,6 +227,83 @@ class PhiScanTests(unittest.TestCase):
             report = json.loads(result.stdout)
             self.assertEqual(report["blocked_findings"], 0)
             self.assertEqual(report["scanned_files"], 0)
+
+    def _rules_with_allow(self, root: Path, path: str, digest: str, expires: str | None = None) -> Path:
+        entry = {"path": path, "sha256": digest, "reason": "synthetic test fixture", "owner": "privacy-lead"}
+        if expires is not None:
+            entry["expires"] = expires
+        payload = {
+            "version": 1,
+            "rules": [{"id": "atlas-cloud-access-key", "pattern": "AKIA[0-9A-Z]{16}",
+                       "severity": "blocked", "confidence": 0.99}],
+            "allow": [entry],
+        }
+        rules = root.parent / "rules.json"
+        rules.write_text(json.dumps(payload), encoding="utf-8")
+        return rules
+
+    def test_digest_bound_allow_entry_skips_the_pinned_file(self) -> None:
+        body = json.dumps({"patient_id": synthetic_cn_id(), "phone": synthetic_phone()})
+        digest = hashlib.sha256(body.encode("utf-8")).hexdigest()
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "work"
+            root.mkdir()
+            (root / "patient.json").write_text(body, encoding="utf-8")
+            rules = self._rules_with_allow(root, "patient.json", digest)
+            result = run_scanner(root, "--rules", str(rules), "--fail-on", "blocked")
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            report = json.loads(result.stdout)
+            self.assertEqual(report["blocked_findings"], 0)
+            self.assertEqual([item["path"] for item in report["skipped"]], ["patient.json"])
+
+    def test_tampering_with_a_pinned_file_re_enables_blocking(self) -> None:
+        body = json.dumps({"patient_id": synthetic_cn_id(), "phone": synthetic_phone()})
+        stale = hashlib.sha256(b"a different file").hexdigest()
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "work"
+            root.mkdir()
+            (root / "patient.json").write_text(body, encoding="utf-8")
+            rules = self._rules_with_allow(root, "patient.json", stale)
+            result = run_scanner(root, "--rules", str(rules), "--fail-on", "blocked")
+            self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
+            report = json.loads(result.stdout)
+            self.assertEqual(report["skipped"], [])
+            self.assertGreater(report["blocked_findings"], 0)
+            self.assertNotIn(body, result.stdout + result.stderr)
+
+    def test_expired_allow_entry_is_ignored(self) -> None:
+        body = json.dumps({"patient_id": synthetic_cn_id(), "phone": synthetic_phone()})
+        digest = hashlib.sha256(body.encode("utf-8")).hexdigest()
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / "work"
+            root.mkdir()
+            (root / "patient.json").write_text(body, encoding="utf-8")
+            rules = self._rules_with_allow(root, "patient.json", digest, expires="2000-01-01")
+            result = run_scanner(root, "--rules", str(rules), "--fail-on", "blocked")
+            self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
+            report = json.loads(result.stdout)
+            self.assertEqual(report["skipped"], [])
+            self.assertGreater(report["blocked_findings"], 0)
+
+    def test_committed_allow_entries_match_the_committed_corpus_digests(self) -> None:
+        repository = Path(__file__).resolve().parents[2]
+        rules_path = repository / "tools" / "phi-scan" / "rules-atlas.json"
+        rules = json.loads(rules_path.read_text(encoding="utf-8"))
+        entries = rules["allow"]
+        self.assertTrue(entries, "the allowlist must not be empty or it is dead configuration")
+        for entry in entries:
+            target = repository / entry["path"]
+            self.assertTrue(target.is_file(), f"allow entry points at a missing file: {entry['path']}")
+            actual = hashlib.sha256(target.read_bytes()).hexdigest()
+            self.assertEqual(actual, entry["sha256"], f"digest drift for {entry['path']}")
+            self.assertNotIn("*", entry["path"])
+            self.assertTrue(entry["reason"].strip() and entry["owner"].strip())
+            self.assertIn(entry["expires"], ("2027-03-31",), f"unexpected expiry for {entry['path']}")
+        result = run_scanner(repository, "--rules", str(rules_path), "--fail-on", "blocked")
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        report = json.loads(result.stdout)
+        self.assertEqual(report["blocked_findings"], 0)
+        self.assertEqual(len(report["skipped"]), len(entries))
 
 
 if __name__ == "__main__":

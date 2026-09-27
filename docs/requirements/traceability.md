@@ -85,7 +85,7 @@
 | 写入前运行官方 FHIR Validator | **未达成**：仓库内没有 HAPI 二进制，`require_official()` 只是对外部官方结果记录的 fail-closed 校验 |
 | Validator 不可用/未知结果 fail-closed | `validator-result-unknown`、`validator-not-official`、`validator-digest-mismatch`、`validator-outcome-rejected` |
 | 记录 validator 版本、profile 摘要、结果摘要与审计关联 ID | `fhir_validation_result` + `AuditEvent.payload_digest` + `audit_event_id` |
-| fixture 覆盖有效样例与各类失败 | `testdata/fhir/synthetic/` 5 个夹具全部被测试引用 |
+| fixture 覆盖有效样例与各类失败 | `testdata/fhir/synthetic/` 5 个夹具全部被测试引用；另有官方 HL7 R4 语料 6 个文件（`testdata/fhir/r4-examples/`，CC0，SHA-256 固定）与派生负向夹具 `r4-observation-invalid-status.json` |
 
 ## P0 收口清单
 
@@ -94,17 +94,19 @@
 - [x] 完善 `.gitignore` 的扫描中间文件规则。
 - [x] 规划门禁、PHI 门禁、Python 测试门禁、P0 证据索引在本环境全部 exit 0。
 - [x] 建立 Git 基线提交：`535f1aa`（root-commit，339 files，58,560 insertions），提交后 `git status --porcelain` 为空。
-- [x] P1 证据索引带 SHA-256 与门禁退出码：`docs/evidence/p1/index.json`（14 个工件，5 条门禁全部 exit 0）。
+- [x] P1 证据索引带 SHA-256 与门禁退出码：`docs/evidence/p1/index.json`（工件与门禁全部 exit 0）。
+- [x] 官方 Validator 引擎与标准语料按固定摘要可复现供给：`python -B tools/evidence/provision_fhir_validator.py --verify-only` → engine usable=True、jar verified、jre verified、corpus 6/6 verified；二进制不入仓（放在 `../_scratch/tools/`），仓库只保留固定摘要、语料与来源记录。
 - [ ] 在独立 CI runner 重跑测试和扫描（本环境无 runner）。
 - [ ] 在装有 Go 1.24 工具链的环境执行 `go test -race -cover ./...` 与 `gofmt -l`。
 - [ ] 制品签名、部署包与回滚包验证。
 
 ## 后续顺序
 
-1. 在具备 Go 工具链的环境补齐 Go 侧回归，并把结果写入本矩阵。
-2. 接入真实官方 FHIR Validator（HAPI），替换当前的合成官方结果记录。
-3. 按计划补齐 P1 的 58 个批次产出，或修订计划使其与实际交付一致。
-4. 建立临床规则评审、属性测试与回归门禁（P3）。
-5. 在目标环境执行 P50、P95、P99 基准（P8）。
-6. 执行越权、PHI 泄漏、混沌与恢复演练（P6/P8）。
-7. 生成 SBOM、签名制品、部署包、回滚包与版本标签（P8）。
+1. **分离 FHIR 负载与 Atlas 来源信封**，让纵切默认路径直接用真实官方引擎（`official_engine=True` 已实现，只差夹具改造）。
+2. 验证 jar 的 GPG 签名（需要 gpg 与 HL7 公钥），把签名校验并入供给脚本。
+3. 在具备 Go 工具链的环境补齐 Go 侧回归，并把结果写入本矩阵。
+4. 按计划补齐 P1 的 58 个批次产出，或修订计划使其与实际交付一致。
+5. 建立临床规则评审、属性测试与回归门禁（P3）。
+6. 在目标环境执行 P50、P95、P99 基准（P8）。
+7. 执行越权、PHI 泄漏、混沌与恢复演练（P6/P8）。
+8. 生成 SBOM、签名制品、部署包、回滚包与版本标签（P8）。

@@ -1,0 +1,104 @@
+{
+  "checked_at": "2026-09-27T12:01:59Z",
+  "corpus": {
+    "bundle-example.json": {
+      "actual_sha256": "04e02dacfb194294a79b43d5ddf25a0df2af8ef135df4a7f8aa7dd51f85ecf91",
+      "bytes": 1733,
+      "expected_sha256": "04e02dacfb194294a79b43d5ddf25a0df2af8ef135df4a7f8aa7dd51f85ecf91",
+      "path": "testdata/fhir/r4-examples/bundle-example.json",
+      "present": true,
+      "status": "verified"
+    },
+    "condition-example.json": {
+      "actual_sha256": "450c80e71cdad565523c27a62bc94f53db949e02417e1d2dd4fe39927f34adeb",
+      "bytes": 1586,
+      "expected_sha256": "450c80e71cdad565523c27a62bc94f53db949e02417e1d2dd4fe39927f34adeb",
+      "path": "testdata/fhir/r4-examples/condition-example.json",
+      "present": true,
+      "status": "verified"
+    },
+    "encounter-example.json": {
+      "actual_sha256": "6ef7c93b28fa76d3f1f1dcd3e795a8e35c70b5f86ad4659b75f7fc3d93ff0bb5",
+      "bytes": 413,
+      "expected_sha256": "6ef7c93b28fa76d3f1f1dcd3e795a8e35c70b5f86ad4659b75f7fc3d93ff0bb5",
+      "path": "testdata/fhir/r4-examples/encounter-example.json",
+      "present": true,
+      "status": "verified"
+    },
+    "observation-example.json": {
+      "actual_sha256": "95b2b641707cd473902670a65c20008282c09b7e71731d1010a3db6ce24fce7f",
+      "bytes": 2087,
+      "expected_sha256": "95b2b641707cd473902670a65c20008282c09b7e71731d1010a3db6ce24fce7f",
+      "path": "testdata/fhir/r4-examples/observation-example.json",
+      "present": true,
+      "status": "verified"
+    },
+    "patient-example.json": {
+      "actual_sha256": "7cc6b3817264c22e722b6bc10e494d3441341032f8294db7ccec796ca7a0cf81",
+      "bytes": 3748,
+      "expected_sha256": "7cc6b3817264c22e722b6bc10e494d3441341032f8294db7ccec796ca7a0cf81",
+      "path": "testdata/fhir/r4-examples/patient-example.json",
+      "present": true,
+      "status": "verified"
+    },
+    "practitioner-example.json": {
+      "actual_sha256": "f7bdedca23fe131d62bbf7efae8c4dca6c691fe1ab78aa55e81b5fea43a88655",
+      "bytes": 1290,
+      "expected_sha256": "f7bdedca23fe131d62bbf7efae8c4dca6c691fe1ab78aa55e81b5fea43a88655",
+      "path": "testdata/fhir/r4-examples/practitioner-example.json",
+      "present": true,
+      "status": "verified"
+    }
+  },
+  "corpus_base_url": "https://hl7.org/fhir/R4/",
+  "corpus_directory": "testdata/fhir/r4-examples",
+  "engine": {
+    "jar": "E:\\hds(js)\\look\\_scratch\\tools\\fhir-validator\\validator_cli.jar",
+    "jar_verification": {
+      "actual_sha256": "1106b9d58f9e363e47bea7c4fc065841e5fc91fe9d062775c3bfdd212bd653cc",
+      "bytes": 200928617,
+      "expected_sha256": "1106b9d58f9e363e47bea7c4fc065841e5fc91fe9d062775c3bfdd212bd653cc",
+      "path": "validator_cli.jar",
+      "present": true,
+      "status": "verified"
+    },
+    "java": "E:\\hds(js)\\look\\_scratch\\tools\\jdk21\\jdk-21.0.12.1+1\\bin\\java.exe",
+    "jre_verification": {
+      "actual_sha256": "f9d6e191ab098c0d416e7d588a24420a8621cd2f4720dab2459b8b7b2d2d8b4e",
+      "bytes": 205073461,
+      "expected_sha256": "f9d6e191ab098c0d416e7d588a24420a8621cd2f4720dab2459b8b7b2d2d8b4e",
+      "path": "jdk21.zip",
+      "present": true,
+      "status": "verified"
+    },
+    "tool_directory": "E:\\hds(js)\\look\\_scratch\\tools",
+    "usable": true,
+    "validator_help_first_line": "FHIR Validation tool Version 6.10.4 (Git# 1b90fb13f77b). Built 2026-09-04T05:45:41.468Z (23 days old)"
+  },
+  "pins": {
+    "jre": {
+      "artifact": "jdk21.zip",
+      "bytes": 205073461,
+      "extracted_directory": "jdk-21.0.12.1+1",
+      "publisher": "Eclipse Temurin (Adoptium)",
+      "resolved_version": "21.0.12.1+1",
+      "sha256": "f9d6e191ab098c0d416e7d588a24420a8621cd2f4720dab2459b8b7b2d2d8b4e",
+      "url": "https://api.adoptium.net/v3/binary/latest/21/ga/windows/x64/jdk/hotspot/normal/eclipse",
+      "url_note": "floating latest-21-GA alias; the sha256 and resolved_version are the actual pins"
+    },
+    "validator": {
+      "artifact": "validator_cli.jar",
+      "bytes": 200928617,
+      "publisher": "HL7 / hapifhir org.hl7.fhir.core",
+      "release_published_at": "2026-09-04T05:39:02Z",
+      "release_tag": "6.10.4",
+      "sha256": "1106b9d58f9e363e47bea7c4fc065841e5fc91fe9d062775c3bfdd212bd653cc",
+      "signature_asset": "validator_cli.jar.asc",
+      "signature_note": "GPG signature asset published alongside the jar; not verified here because no gpg binary is available in this environment.",
+      "url": "https://github.com/hapifhir/org.hl7.fhir.core/releases/download/6.10.4/validator_cli.jar"
+    }
+  },
+  "provenance_version": "1.0",
+  "repository_binary_policy": "no JRE, jar or package cache is committed; only pins, corpus fixtures and provenance are",
+  "synthetic": true
+}

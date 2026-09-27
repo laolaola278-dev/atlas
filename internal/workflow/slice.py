@@ -15,7 +15,6 @@ This module composes the existing gates and adds no clinical rule of its own.
 """
 from __future__ import annotations
 
-import hashlib
 import json
 from dataclasses import dataclass
 from pathlib import Path
@@ -23,7 +22,9 @@ from pathlib import Path
 from internal.audit.chain import AuditEvent, AuditLog, to_fhir_audit_event
 from internal.contract.bundle import require_bundle
 from internal.contract.errors import ContractError
+from internal.contract.digest import canonical_digest
 from internal.contract.fhir_gate import patient_reference, validate_resource
+from internal.contract.hapi_validator import validate_payload
 from internal.contract.validator import require_official
 from internal.contract.write_intent import ApprovalProof
 
@@ -51,12 +52,6 @@ def load_fixture(name: str) -> dict[str, object]:
     if not isinstance(payload, dict):
         raise ContractError("profile-fixture-corrupt")
     return payload
-
-
-def canonical_digest(payload: dict[str, object]) -> str:
-    """Return the digest that binds validator, audit event and workflow task."""
-    body = json.dumps(payload, sort_keys=True, separators=(",", ":"))
-    return hashlib.sha256(body.encode("utf-8")).hexdigest()
 
 
 def stage_bundle(bundle: dict[str, object]) -> tuple[str, ...]:
@@ -327,6 +322,7 @@ def run_vertical_slice(
     target_version: str = "target-slice",
     validator_record: dict[str, object] | None = None,
     validator_version: str = "hapi-unexecuted",
+    official_engine: bool = False,
 ) -> dict[str, object]:
     """Run Bundle -> Gate -> Validator -> Audit -> Workflow -> Review -> Commit."""
     stages: list[dict[str, object]] = []
@@ -341,8 +337,23 @@ def run_vertical_slice(
     issues = stage_gate(resource)
     stages.append({"issues": list(issues), "resource": reference, "stage": "gate"})
 
-    digest, outcome_id = stage_validator(resource, validator_record)
-    stages.append({"outcome_id": outcome_id, "resource_digest": digest, "stage": "validator"})
+    record = validator_record
+    engine = "supplied-record"
+    if record is None and official_engine:
+        # Real engine execution: validator_cli.jar runs and its OperationOutcome
+        # becomes the official record. Without an engine this fails closed.
+        record = validate_payload(resource)
+        engine = "official-engine"
+        validator_version = str(record.get("validatorVersion", validator_version))
+    digest, outcome_id = stage_validator(resource, record)
+    stages.append({
+        "engine": engine,
+        "official": bool(isinstance(record, dict) and record.get("official") is True),
+        "outcome_id": outcome_id,
+        "resource_digest": digest,
+        "stage": "validator",
+        "validator_version": str(record.get("validatorVersion", "")) if isinstance(record, dict) else "",
+    })
 
     event = stage_audit(
         service.log,  # type: ignore[attr-defined]

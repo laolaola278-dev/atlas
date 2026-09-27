@@ -13,14 +13,48 @@ jobs:
       - name: Planning gate
         run: python -B plan/verify_first_round.py
       - name: Scanner unit tests
-        run: python -B -m unittest tools.phi-scan.test_scan tools.locaudit.test_scan internal.hitl.state.test_machine internal.hitl.test_review internal.hitl.test_audited internal.hitl.test_service internal.contract.test_errors internal.contract.test_policy internal.contract.test_evidence internal.contract.test_query internal.contract.test_replay internal.contract.test_identity internal.contract.test_privacy internal.contract.test_domain internal.contract.test_batch internal.contract.test_stream internal.contract.test_write_intent internal.contract.test_fhir_gate internal.contract.test_config internal.audit.test_chain internal.audit.test_file internal.contract.test_idempotency internal.workflow.test_slice
+        run: python -B -m unittest tools.phi-scan.test_scan tools.locaudit.test_scan internal.hitl.state.test_machine internal.hitl.test_review internal.hitl.test_audited internal.hitl.test_service internal.contract.test_errors internal.contract.test_policy internal.contract.test_evidence internal.contract.test_query internal.contract.test_replay internal.contract.test_identity internal.contract.test_privacy internal.contract.test_domain internal.contract.test_batch internal.contract.test_stream internal.contract.test_write_intent internal.contract.test_fhir_gate internal.contract.test_config internal.audit.test_chain internal.audit.test_file internal.contract.test_idempotency internal.contract.test_hapi_validator internal.workflow.test_slice
       - name: FHIR vertical slice acceptance
         run: python -B tools/evidence/fhir_slice_acceptance.py
       - name: P0-P8 traceability matrix
         run: python -B tools/evidence/traceability.py
+      - name: P1 evidence index drift check
+        run: python -B tools/evidence/p1_index.py --verify
       - name: PHI gate
-        run: python -B tools/phi-scan/scan.py --root . --fail-on blocked
+        run: python -B tools/phi-scan/scan.py --root . --rules tools/phi-scan/rules-atlas.json --fail-on blocked
       - name: Contract YAML parse
         run: python -B -c "import yaml, pathlib; [yaml.safe_load(pathlib.Path(p).read_text(encoding='utf-8')) for p in ['api/openapi/atlas-v1.yaml','api/asyncapi/atlas-events.yaml']]"
       - name: P0 evidence index
         run: python -B -c "from tools.evidence.p0_index import require_complete; require_complete()"
+
+  official-fhir-validator:
+    runs-on: ubuntu-latest
+    env:
+      ATLAS_FHIR_VALIDATOR_JAR: ${{ github.workspace }}/.tools/fhir-validator/validator_cli.jar
+      ATLAS_FHIR_VALIDATOR_JAR_SHA256: 1106b9d58f9e363e47bea7c4fc065841e5fc91fe9d062775c3bfdd212bd653cc
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+      - name: Cache FHIR package store
+        uses: actions/cache@v4
+        with:
+          path: ~/.fhir/packages
+          key: fhir-packages-r4-4.0.1
+      - name: Download pinned official validator
+        run: |
+          mkdir -p .tools/fhir-validator
+          curl -sSL --fail --retry 3 -o .tools/fhir-validator/validator_cli.jar \
+            https://github.com/hapifhir/org.hl7.fhir.core/releases/download/6.10.4/validator_cli.jar
+          sha256sum .tools/fhir-validator/validator_cli.jar
+      - name: Verify provisioning pins
+        run: python -B tools/evidence/provision_fhir_validator.py --verify-only --dest .tools
+      - name: Official engine unit tests
+        run: python -B -m unittest internal.contract.test_hapi_validator -v
+      - name: Official validator acceptance
+        run: python -B tools/evidence/fhir_official_validation.py

@@ -55,8 +55,8 @@
       "validator_version": "hapi-unexecuted"
     }
   },
-  "generated_at": "2026-09-27T11:00:09Z",
-  "git_revision": "5589db3",
+  "generated_at": "2026-09-27T12:00:19Z",
+  "git_revision": "040339a",
   "hapi_validator_executed": false,
   "hapi_validator_note": "No HAPI binary or jar exists in this repository. internal/contract/validator.py:require_official() is a fail-closed evidence gate that only accepts an externally supplied official outcome record.",
   "log": [
@@ -64,7 +64,7 @@
     "[stage 0] canonical resource digest: 1253cd4d9da11154cbdbab208f082ddc150835e71f49d8b6858a38456b25be7b",
     "[stage 1] bundle: {\"entries\": [\"Observation/observation-synthetic\", \"ServiceRequest/service-request-synthetic\"]}",
     "[stage 2] gate: {\"issues\": [], \"resource\": \"Observation/observation-synthetic\"}",
-    "[stage 3] validator: {\"outcome_id\": \"hapi-outcome-acceptance\", \"resource_digest\": \"1253cd4d9da11154cbdbab208f082ddc150835e71f49d8b6858a38456b25be7b\"}",
+    "[stage 3] validator: {\"engine\": \"supplied-record\", \"official\": true, \"outcome_id\": \"hapi-outcome-acceptance\", \"resource_digest\": \"1253cd4d9da11154cbdbab208f082ddc150835e71f49d8b6858a38456b25be7b\", \"validator_version\": \"\"}",
     "[stage 4] audit: {\"audit_event_id\": \"fhir-validate-observation-synthetic-1\", \"event_hash\": \"a4da00a6b8cd57817292a0172d80ffb6b6f34237f0ae51fb78e5e755148bcfb7\", \"previous_hash\": \"0000000000000000000000000000000000000000000000000000000000000000\", \"sequence\": 1}",
     "[stage 5] workflow: {\"audit_event_id\": \"fhir-validate-observation-synthetic-1\", \"task_id\": \"task-fhir-validate-observation-synthetic-1\", \"task_state\": \"OPEN\"}",
     "[stage 6] hitl-review: {\"audit_event_id\": \"fhir-validate-observation-synthetic-1\", \"content_digest\": \"dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\", \"review_event_id\": \"suggestion-synthetic-approve-second-4\", \"state\": \"APPROVED\", \"state_version\": \"6\", \"suggestion_id\": \"suggestion-synthetic\", \"suggestion_version\": \"6\"}",

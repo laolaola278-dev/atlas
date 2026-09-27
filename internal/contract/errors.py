@@ -69,6 +69,10 @@ def _register_raised_codes() -> None:
     unavailable = {
         "ack-result-unknown",
         "dependency-unavailable",
+        "validator-engine-timeout",
+        "validator-engine-unavailable",
+        "validator-output-corrupt",
+        "validator-output-missing",
         "doc-retry-unknown",
         "import-result-unknown",
         "pharmacy-result-unknown",
@@ -121,7 +125,7 @@ _RAISED = (
     "terminology-release-incomplete terminology-release-unknown terminology-responsibility-mismatch terminology-why-missing transaction-already-committed transaction-conflict "
     "transaction-key-invalid transaction-key-unknown transaction-result-unknown transaction-responsibility-mismatch transaction-state-invalid "
     "transaction-stream-invalid transaction-why-missing transfer-consent-not-active transfer-direction-invalid transfer-field-forbidden transfer-field-missing "
-    "transfer-fields-missing transfer-identifier-forbidden transfer-scope-incomplete transfer-responsibility-mismatch transfer-why-missing validator-digest-invalid validator-digest-mismatch validator-not-official validator-outcome-failed validator-outcome-invalid validator-result-unknown upgrade-not-needed upgrade-rollback-forbidden upgrade-version-invalid version-invalid write-credential-incomplete write-digest-invalid write-responsibility-mismatch write-version-incompatible "
+    "transfer-fields-missing transfer-identifier-forbidden transfer-scope-incomplete transfer-responsibility-mismatch transfer-why-missing validator-digest-invalid validator-digest-mismatch validator-engine-timeout validator-engine-unavailable validator-input-invalid validator-jar-digest-mismatch validator-not-official validator-outcome-failed validator-outcome-invalid validator-output-corrupt validator-output-missing validator-result-unknown upgrade-not-needed upgrade-rollback-forbidden upgrade-version-invalid version-invalid write-credential-incomplete write-digest-invalid write-responsibility-mismatch write-version-incompatible "
     "write-window-closed write-why-missing write-window-incomplete withdraw-input-invalid withdraw-too-late "
     "workflow-definition-duplicate-step-id workflow-definition-final-states-empty workflow-definition-id-empty workflow-definition-id-invalid-prefix workflow-definition-idempotency-required workflow-definition-idempotency-too-short workflow-definition-initial-state-empty workflow-definition-metadata-key-invalid workflow-definition-name-empty workflow-definition-not-found workflow-definition-phi-pattern-detected workflow-definition-request-nil workflow-definition-step-id-empty workflow-definition-step-name-empty workflow-definition-step-type-empty workflow-definition-step-type-invalid workflow-definition-steps-empty workflow-definition-synthetic-required workflow-definition-transition-event-empty workflow-definition-transition-from-empty workflow-definition-transition-to-empty workflow-definition-transitions-empty workflow-definition-version-empty "
     "workflow-human-task-assigned-to-empty workflow-human-task-delete-id-empty workflow-human-task-get-id-empty workflow-human-task-idempotency-key-empty workflow-human-task-idempotency-key-short workflow-human-task-metadata-key-phi-pattern workflow-human-task-not-found workflow-human-task-not-synthetic workflow-human-task-priority-invalid workflow-human-task-request-nil workflow-human-task-status-empty workflow-human-task-status-invalid workflow-human-task-step-id-empty workflow-human-task-task-id-empty workflow-human-task-task-id-invalid-prefix workflow-human-task-title-blank workflow-human-task-title-phi-pattern workflow-human-task-update-id-empty workflow-human-task-workflow-id-empty "

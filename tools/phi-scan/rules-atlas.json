@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "rules": [
+    {
+      "id": "atlas-cloud-access-key",
+      "pattern": "AKIA[0-9A-Z]{16}",
+      "severity": "blocked",
+      "confidence": 0.99
+    }
+  ],
+  "allow": [
+    {
+      "path": "testdata/fhir/r4-examples/patient-example.json",
+      "sha256": "7cc6b3817264c22e722b6bc10e494d3441341032f8294db7ccec796ca7a0cf81",
+      "reason": "HL7 official FHIR R4 v4.0.1 published example (CC0, https://hl7.org/fhir/R4/license.html); fictional identifiers only, no real PHI; digest pinned and expiring",
+      "owner": "privacy-lead",
+      "expires": "2027-03-31"
+    },
+    {
+      "path": "testdata/fhir/r4-examples/observation-example.json",
+      "sha256": "95b2b641707cd473902670a65c20008282c09b7e71731d1010a3db6ce24fce7f",
+      "reason": "HL7 official FHIR R4 v4.0.1 published example (CC0, https://hl7.org/fhir/R4/license.html); fictional identifiers only, no real PHI; digest pinned and expiring",
+      "owner": "privacy-lead",
+      "expires": "2027-03-31"
+    },
+    {
+      "path": "testdata/fhir/r4-examples/bundle-example.json",
+      "sha256": "04e02dacfb194294a79b43d5ddf25a0df2af8ef135df4a7f8aa7dd51f85ecf91",
+      "reason": "HL7 official FHIR R4 v4.0.1 published example (CC0, https://hl7.org/fhir/R4/license.html); fictional identifiers only, no real PHI; digest pinned and expiring",
+      "owner": "privacy-lead",
+      "expires": "2027-03-31"
+    },
+    {
+      "path": "testdata/fhir/r4-examples/condition-example.json",
+      "sha256": "450c80e71cdad565523c27a62bc94f53db949e02417e1d2dd4fe39927f34adeb",
+      "reason": "HL7 official FHIR R4 v4.0.1 published example (CC0, https://hl7.org/fhir/R4/license.html); fictional identifiers only, no real PHI; digest pinned and expiring",
+      "owner": "privacy-lead",
+      "expires": "2027-03-31"
+    },
+    {
+      "path": "testdata/fhir/r4-examples/encounter-example.json",
+      "sha256": "6ef7c93b28fa76d3f1f1dcd3e795a8e35c70b5f86ad4659b75f7fc3d93ff0bb5",
+      "reason": "HL7 official FHIR R4 v4.0.1 published example (CC0, https://hl7.org/fhir/R4/license.html); fictional identifiers only, no real PHI; digest pinned and expiring",
+      "owner": "privacy-lead",
+      "expires": "2027-03-31"
+    },
+    {
+      "path": "testdata/fhir/r4-examples/practitioner-example.json",
+      "sha256": "f7bdedca23fe131d62bbf7efae8c4dca6c691fe1ab78aa55e81b5fea43a88655",
+      "reason": "HL7 official FHIR R4 v4.0.1 published example (CC0, https://hl7.org/fhir/R4/license.html); fictional identifiers only, no real PHI; digest pinned and expiring",
+      "owner": "privacy-lead",
+      "expires": "2027-03-31"
+    },
+    {
+      "path": "testdata/fhir/synthetic/r4-observation-invalid-status.json",
+      "sha256": "61da573e5e5ce48fe39e459ec91d0971642894c0931f4780a58e96a66d7f0972",
+      "reason": "Derived from the CC0 HL7 R4 observation-example.json with one required code broken on purpose; official-validator negative control; digest pinned and expiring",
+      "owner": "privacy-lead",
+      "expires": "2027-03-31"
+    }
+  ],
+  "notes": "Digest-bound exceptions only: every entry names one exact file, one exact sha256, one owner role and one expiry date. Wildcards, permanent exclusions and directory scopes are rejected by tools/phi-scan/rules.py (allow-invalid). The entries cover the official HL7 R4 CC0 example corpus and its derived negative control; they require privacy-lead countersignature and re-approval before expiry. The single custom rule adds a hard block on committed AWS-style access key identifiers. Its pattern deliberately cannot match its own literal text, so the rules file never self-blocks."
+}

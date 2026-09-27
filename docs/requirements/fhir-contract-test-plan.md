@@ -38,6 +38,9 @@ Bundle -> Gate -> Validator -> audit_event_id -> Workflow -> HITL Review -> HITL
 
 剩余缺口（按优先级）：
 
-1. **真实 HAPI Validator**：当前是合成官方结果记录 + fail-closed 校验，未执行官方引擎。
+1. **真实 HAPI Validator 已执行**：`validator_cli.jar` 6.10.4 在 Temurin JDK 21 上以子进程实跑，
+   官方 R4 语料 5 pass / 1 known-rejected，负向对照被拒，证据见 `docs/evidence/p1/fhir-official-validation.json`。
+   **剩余缺口**：纵切默认路径仍用官方形状的合成记录，因为 Atlas 夹具把来源字段放在资源根，
+   官方引擎实测报 4 个 structure error；`run_vertical_slice(official_engine=True)` 已就绪，只差信封分离。
 2. **proto 服务端**：`FhirValidationService`/`HitlService` 无生成桩与实现。
 3. **Go 侧 Workflow**：`services/atlas-workflow` 尚未消费 `audit_event_id`。

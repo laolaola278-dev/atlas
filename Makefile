@@ -1,4 +1,4 @@
-.PHONY: verify contracts test build lint slice matrix
+.PHONY: verify contracts test build lint slice matrix official provision
 
 verify:
 	python plan/verify_first_round.py
@@ -12,6 +12,14 @@ slice:
 
 matrix:
 	python -B tools/evidence/traceability.py
+
+# Requires ATLAS_FHIR_VALIDATOR_JAR and a JRE; see tools/evidence/provision_fhir_validator.py
+provision:
+	python -B tools/evidence/provision_fhir_validator.py --verify-only
+
+official:
+	python -B tools/evidence/fhir_official_validation.py
+	python -B -m unittest internal.contract.test_hapi_validator
 
 contracts:
 	@command -v buf >/dev/null 2>&1 && buf lint api/proto || echo 'buf unavailable: contract lint deferred to P0 environment'
