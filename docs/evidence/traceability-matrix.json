@@ -1,0 +1,4076 @@
+[
+  {
+    "id": "ATLAS-P0-0001",
+    "phase": "P0",
+    "title": "公共错误码、资源引用与契约版本",
+    "status": "pending",
+    "files": [
+      "api/proto/atlas/v1/common.proto",
+      "internal/contract/errors.go",
+      "internal/contract/errors_test.go"
+    ]
+  },
+  {
+    "id": "ATLAS-P0-0002",
+    "phase": "P0",
+    "title": "HITL protobuf 与审批证明类型边界",
+    "status": "pending",
+    "files": [
+      "api/proto/atlas/v1/hitl.proto",
+      "api/openapi/atlas-v1.yaml"
+    ]
+  },
+  {
+    "id": "ATLAS-P0-0003",
+    "phase": "P0",
+    "title": "FHIR 校验请求与结果契约",
+    "status": "pending",
+    "files": [
+      "internal/contract/domain.go",
+      "internal/contract/domain_test.go"
+    ]
+  },
+  {
+    "id": "ATLAS-P0-0004",
+    "phase": "P0",
+    "title": "审计事件与第三方验签契约",
+    "status": "pending",
+    "files": [
+      "api/cue/atlas-policy.cue",
+      "internal/contract/index.go"
+    ]
+  },
+  {
+    "id": "ATLAS-P0-0005",
+    "phase": "P0",
+    "title": "同意与访问决策契约",
+    "status": "pending",
+    "files": [
+      "internal/hitl/state/state.go",
+      "internal/hitl/state/state_test.go"
+    ]
+  },
+  {
+    "id": "ATLAS-P0-0006",
+    "phase": "P0",
+    "title": "OpenAPI 审核与写回意图",
+    "status": "pending",
+    "files": [
+      "internal/contract/policy.go",
+      "internal/contract/policy_test.go"
+    ]
+  },
+  {
+    "id": "ATLAS-P0-0007",
+    "phase": "P0",
+    "title": "AsyncAPI 事件信封与幂等键",
+    "status": "pending",
+    "files": [
+      "internal/contract/transaction.go",
+      "internal/contract/transaction_test.go"
+    ]
+  },
+  {
+    "id": "ATLAS-P0-0008",
+    "phase": "P0",
+    "title": "CUE 策略词汇与默认拒绝",
+    "status": "pending",
+    "files": [
+      "internal/contract/replay.py",
+      "internal/contract/test_replay.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P0-0009",
+    "phase": "P0",
+    "title": "领域不变量与合成夹具",
+    "status": "pending",
+    "files": [
+      "internal/contract/cache.py",
+      "internal/contract/test_cache.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P0-0010",
+    "phase": "P0",
+    "title": "普通与抢救状态机穷举",
+    "status": "pending",
+    "files": [
+      "internal/contract/batch.py",
+      "internal/contract/test_batch.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P0-0011",
+    "phase": "P0",
+    "title": "确定性策略接口与失败关闭",
+    "status": "pending",
+    "files": [
+      "internal/contract/stream.py",
+      "internal/contract/test_stream.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P0-0012",
+    "phase": "P0",
+    "title": "幂等键、事务水位与未知结果",
+    "status": "pending",
+    "files": [
+      "internal/contract/query.py",
+      "internal/contract/test_query.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P0-0013",
+    "phase": "P0",
+    "title": "FHIR Profile 与官方校验夹具",
+    "status": "pending",
+    "files": [
+      "internal/contract/transfer.py",
+      "internal/contract/test_transfer.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P0-0014",
+    "phase": "P0",
+    "title": "术语发行清单与有效期",
+    "status": "pending",
+    "files": [
+      "internal/contract/version.py",
+      "internal/contract/test_resource_version.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P0-0015",
+    "phase": "P0",
+    "title": "locaudit 计数口径与批次对账",
+    "status": "pending",
+    "files": [
+      "internal/contract/idempotency.py",
+      "internal/contract/test_idempotency.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P0-0016",
+    "phase": "P0",
+    "title": "phi-scan 规则、掩码与失败关闭",
+    "status": "pending",
+    "files": [
+      "internal/contract/errors.py",
+      "internal/contract/test_errors.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P0-0017",
+    "phase": "P0",
+    "title": "CI 工作流与契约检查入口",
+    "status": "pending",
+    "files": [
+      "tools/phi-scan/rules-atlas.json",
+      "tools/phi-scan/scan.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P0-0018",
+    "phase": "P0",
+    "title": "服务启动骨架与健康探针",
+    "status": "pending",
+    "files": [
+      "tools/locaudit/audit.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P0-0019",
+    "phase": "P0",
+    "title": "配置加载与密钥拒绝",
+    "status": "pending",
+    "files": [
+      ".github/workflows/ci.yaml",
+      "Makefile"
+    ]
+  },
+  {
+    "id": "ATLAS-P0-0020",
+    "phase": "P0",
+    "title": "P0 证据包与追踪索引",
+    "status": "pending",
+    "files": [
+      "go.mod",
+      "README.md",
+      "SECURITY.md"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0021",
+    "phase": "P1",
+    "title": "Patient Profile 与标识符令牌",
+    "status": "pending",
+    "files": [
+      "internal/contract/fhir_gate.py",
+      "internal/contract/test_fhir_gate.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0022",
+    "phase": "P1",
+    "title": "Encounter 时区与就诊状态",
+    "status": "pending",
+    "files": [
+      "internal/contract/hapi_validator.py",
+      "internal/contract/test_hapi_validator.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0023",
+    "phase": "P1",
+    "title": "Observation 单位和参考范围",
+    "status": "pending",
+    "files": [
+      "internal/contract/bundle.py",
+      "internal/contract/test_bundle.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0024",
+    "phase": "P1",
+    "title": "Condition 术语绑定",
+    "status": "pending",
+    "files": [
+      "internal/contract/terminology.py",
+      "internal/contract/test_terminology.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0025",
+    "phase": "P1",
+    "title": "MedicationRequest 剂量结构",
+    "status": "pending",
+    "files": [
+      "internal/contract/identity.py",
+      "internal/contract/test_identity.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0026",
+    "phase": "P1",
+    "title": "AllergyIntolerance 严重程度",
+    "status": "pending",
+    "files": [
+      "internal/contract/match.py",
+      "internal/contract/test_match.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0027",
+    "phase": "P1",
+    "title": "Procedure 执行者与时间",
+    "status": "pending",
+    "files": [
+      "internal/workflow/slice.py",
+      "internal/workflow/test_slice.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0028",
+    "phase": "P1",
+    "title": "DiagnosticReport 与结果引用",
+    "status": "pending",
+    "files": [
+      "docs/evidence/p1/fhir-vertical-slice.json",
+      "docs/evidence/p1/fhir-official-validation.json"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0029",
+    "phase": "P1",
+    "title": "DocumentReference 哈希",
+    "status": "pending",
+    "files": [
+      "internal/contract/digest.py",
+      "internal/contract/test_digest.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0030",
+    "phase": "P1",
+    "title": "ServiceRequest 优先级",
+    "status": "pending",
+    "files": [
+      "internal/contract/priority.py",
+      "internal/contract/test_priority.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0031",
+    "phase": "P1",
+    "title": "Provenance 来源链",
+    "status": "pending",
+    "files": [
+      "internal/contract/provenance.py",
+      "internal/contract/test_provenance.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0032",
+    "phase": "P1",
+    "title": "AuditEvent FHIR 映射",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/audit/test_chain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0033",
+    "phase": "P1",
+    "title": "Bundle 事务边界",
+    "status": "pending",
+    "files": [
+      "internal/contract/bundle.py",
+      "internal/contract/test_bundle.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0034",
+    "phase": "P1",
+    "title": "SearchParameter 白名单",
+    "status": "pending",
+    "files": [
+      "internal/contract/search.py",
+      "internal/contract/test_search.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0035",
+    "phase": "P1",
+    "title": "CapabilityStatement 版本",
+    "status": "pending",
+    "files": [
+      "internal/contract/capability.py",
+      "internal/contract/test_capability.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0036",
+    "phase": "P1",
+    "title": "分页与租户过滤",
+    "status": "pending",
+    "files": [
+      "internal/contract/query.py",
+      "internal/contract/test_query.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0037",
+    "phase": "P1",
+    "title": "Profile 差分校验",
+    "status": "pending",
+    "files": [
+      "internal/contract/profiles.py",
+      "internal/contract/test_profiles.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0038",
+    "phase": "P1",
+    "title": "官方 Validator 适配",
+    "status": "pending",
+    "files": [
+      "internal/contract/hapi_validator.py",
+      "internal/contract/test_hapi_validator.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0039",
+    "phase": "P1",
+    "title": "错误 OperationOutcome",
+    "status": "pending",
+    "files": [
+      "internal/contract/errors.py",
+      "internal/contract/test_errors.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0040",
+    "phase": "P1",
+    "title": "资源版本冲突",
+    "status": "pending",
+    "files": [
+      "internal/contract/version.py",
+      "internal/contract/test_resource_version.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0041",
+    "phase": "P1",
+    "title": "订阅与变更通知",
+    "status": "pending",
+    "files": [
+      "internal/contract/subscription.py",
+      "internal/contract/test_subscription.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0042",
+    "phase": "P1",
+    "title": "导入幂等回执",
+    "status": "pending",
+    "files": [
+      "internal/contract/idempotency.py",
+      "internal/contract/test_idempotency.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0043",
+    "phase": "P1",
+    "title": "导出字段裁剪",
+    "status": "pending",
+    "files": [
+      "internal/contract/transfer.py",
+      "internal/contract/test_transfer.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0044",
+    "phase": "P1",
+    "title": "契约消费者测试",
+    "status": "pending",
+    "files": [
+      "internal/contract/test_consumer.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0045",
+    "phase": "P1",
+    "title": "主索引分区与院区键",
+    "status": "pending",
+    "files": [
+      "internal/contract/index.go",
+      "internal/contract/domain.go"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0046",
+    "phase": "P1",
+    "title": "确定性证件匹配",
+    "status": "pending",
+    "files": [
+      "internal/contract/identity.py",
+      "internal/contract/test_identity.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0047",
+    "phase": "P1",
+    "title": "姓名生日概率匹配",
+    "status": "pending",
+    "files": [
+      "internal/contract/match.py",
+      "internal/contract/test_match.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0048",
+    "phase": "P1",
+    "title": "联系方式抑制",
+    "status": "pending",
+    "files": [
+      "internal/contract/privacy.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0049",
+    "phase": "P1",
+    "title": "人工复核队列",
+    "status": "pending",
+    "files": [
+      "internal/hitl/review.py",
+      "internal/hitl/test_review.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0050",
+    "phase": "P1",
+    "title": "合并审批与双签",
+    "status": "pending",
+    "files": [
+      "internal/hitl/service.py",
+      "internal/hitl/test_service.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0051",
+    "phase": "P1",
+    "title": "拆分与审计回放",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/audit/test_chain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0052",
+    "phase": "P1",
+    "title": "候选阻断规则",
+    "status": "pending",
+    "files": [
+      "internal/contract/policy.py",
+      "internal/contract/test_policy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0053",
+    "phase": "P1",
+    "title": "高风险新生儿策略",
+    "status": "pending",
+    "files": [
+      "internal/contract/safety.py",
+      "internal/contract/test_safety.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0054",
+    "phase": "P1",
+    "title": "同名不同人回归",
+    "status": "pending",
+    "files": [
+      "internal/contract/test_identity.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0055",
+    "phase": "P1",
+    "title": "错误合并零容忍测试",
+    "status": "pending",
+    "files": [
+      "internal/contract/test_match.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0056",
+    "phase": "P1",
+    "title": "跨院摘要令牌",
+    "status": "pending",
+    "files": [
+      "internal/contract/identity.py",
+      "internal/contract/test_identity.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0057",
+    "phase": "P1",
+    "title": "匹配解释证据",
+    "status": "pending",
+    "files": [
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0058",
+    "phase": "P1",
+    "title": "批量导入水位",
+    "status": "pending",
+    "files": [
+      "internal/contract/batch.py",
+      "internal/contract/test_batch.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0059",
+    "phase": "P1",
+    "title": "索引重建演练",
+    "status": "pending",
+    "files": [
+      "internal/contract/replay.py",
+      "internal/contract/test_replay.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0060",
+    "phase": "P1",
+    "title": "容量与热点分片",
+    "status": "pending",
+    "files": [
+      "internal/contract/scale.py",
+      "internal/contract/test_scale.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0061",
+    "phase": "P1",
+    "title": "权限范围查询",
+    "status": "pending",
+    "files": [
+      "internal/contract/query.py",
+      "internal/contract/test_query.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0062",
+    "phase": "P1",
+    "title": "合成千万级夹具",
+    "status": "pending",
+    "files": [
+      "tools/evidence/fhir_slice_acceptance.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0063",
+    "phase": "P1",
+    "title": "ICD 发行包",
+    "status": "pending",
+    "files": [
+      "internal/contract/terminology.py",
+      "internal/contract/test_terminology.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0064",
+    "phase": "P1",
+    "title": "LOINC 单位映射",
+    "status": "pending",
+    "files": [
+      "internal/contract/terminology.py",
+      "internal/contract/test_terminology.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0065",
+    "phase": "P1",
+    "title": "SNOMED 子集",
+    "status": "pending",
+    "files": [
+      "internal/contract/terminology.py",
+      "internal/contract/test_terminology.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0066",
+    "phase": "P1",
+    "title": "药品编码映射",
+    "status": "pending",
+    "files": [
+      "internal/contract/medication.py",
+      "internal/contract/test_medication.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0067",
+    "phase": "P1",
+    "title": "本地扩展登记",
+    "status": "pending",
+    "files": [
+      "internal/contract/terminology.py",
+      "internal/contract/test_terminology.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0068",
+    "phase": "P1",
+    "title": "有效期与回滚",
+    "status": "pending",
+    "files": [
+      "internal/contract/version.py",
+      "internal/contract/test_resource_version.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0069",
+    "phase": "P1",
+    "title": "未知编码拒绝",
+    "status": "pending",
+    "files": [
+      "internal/contract/terminology.py",
+      "internal/contract/test_terminology.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0070",
+    "phase": "P1",
+    "title": "版本差异报告",
+    "status": "pending",
+    "files": [
+      "internal/contract/terminology.py",
+      "internal/contract/test_terminology.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0071",
+    "phase": "P1",
+    "title": "离线导入签名",
+    "status": "pending",
+    "files": [
+      "internal/contract/offline.py",
+      "internal/contract/test_offline.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0072",
+    "phase": "P1",
+    "title": "术语缓存失效",
+    "status": "pending",
+    "files": [
+      "internal/contract/terminology.py",
+      "internal/contract/test_terminology.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0073",
+    "phase": "P1",
+    "title": "多语言显示名",
+    "status": "pending",
+    "files": [
+      "internal/contract/display.py",
+      "internal/contract/test_display.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0074",
+    "phase": "P1",
+    "title": "监管子集标记",
+    "status": "pending",
+    "files": [
+      "internal/contract/terminology.py",
+      "internal/contract/test_terminology.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0075",
+    "phase": "P1",
+    "title": "引用完整性",
+    "status": "pending",
+    "files": [
+      "internal/contract/terminology.py",
+      "internal/contract/test_terminology.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0076",
+    "phase": "P1",
+    "title": "发布审批流",
+    "status": "pending",
+    "files": [
+      "internal/hitl/service.py",
+      "internal/hitl/test_service.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0077",
+    "phase": "P1",
+    "title": "消费方契约",
+    "status": "pending",
+    "files": [
+      "internal/contract/test_consumer.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P1-0078",
+    "phase": "P1",
+    "title": "回放兼容测试",
+    "status": "pending",
+    "files": [
+      "internal/contract/test_replay.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P2-0079",
+    "phase": "P2",
+    "title": "HL7 v2 分段解析",
+    "status": "pending",
+    "files": [
+      "internal/contract/device.py",
+      "internal/contract/test_device.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P2-0080",
+    "phase": "P2",
+    "title": "缺失 PID 拒绝",
+    "status": "pending",
+    "files": [
+      "internal/contract/stream.py",
+      "internal/contract/test_stream.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P2-0081",
+    "phase": "P2",
+    "title": "重复消息幂等",
+    "status": "pending",
+    "files": [
+      "internal/contract/alarm.py",
+      "internal/contract/test_alarm.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P2-0082",
+    "phase": "P2",
+    "title": "时钟漂移隔离",
+    "status": "pending",
+    "files": [
+      "internal/contract/dicom.py",
+      "internal/contract/test_dicom.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P2-0083",
+    "phase": "P2",
+    "title": "ACK 与死信",
+    "status": "pending",
+    "files": [
+      "internal/contract/batch.py",
+      "internal/contract/test_batch.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P2-0084",
+    "phase": "P2",
+    "title": "租户路由",
+    "status": "pending",
+    "files": [
+      "internal/contract/queue.py",
+      "internal/contract/test_queue.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P2-0085",
+    "phase": "P2",
+    "title": "脏编码矩阵",
+    "status": "pending",
+    "files": [
+      "internal/contract/stream.py",
+      "internal/contract/test_stream.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P2-0086",
+    "phase": "P2",
+    "title": "背压与限流",
+    "status": "pending",
+    "files": [
+      "internal/contract/alarm.py",
+      "internal/contract/test_alarm.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P2-0087",
+    "phase": "P2",
+    "title": "原始报文封存",
+    "status": "pending",
+    "files": [
+      "internal/contract/device.py",
+      "internal/contract/test_device.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P2-0088",
+    "phase": "P2",
+    "title": "接入审计",
+    "status": "pending",
+    "files": [
+      "internal/contract/dicom.py",
+      "internal/contract/test_dicom.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P2-0089",
+    "phase": "P2",
+    "title": "点位 schema",
+    "status": "pending",
+    "files": [
+      "internal/contract/stream.py",
+      "internal/contract/test_stream.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P2-0090",
+    "phase": "P2",
+    "title": "每秒批量写入",
+    "status": "pending",
+    "files": [
+      "internal/contract/batch.py",
+      "internal/contract/test_batch.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P2-0091",
+    "phase": "P2",
+    "title": "乱序与迟到",
+    "status": "pending",
+    "files": [
+      "internal/contract/stream.py",
+      "internal/contract/test_stream.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P2-0092",
+    "phase": "P2",
+    "title": "探头脱落标记",
+    "status": "pending",
+    "files": [
+      "internal/contract/stream.py",
+      "internal/contract/test_stream.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P2-0093",
+    "phase": "P2",
+    "title": "告警去抖",
+    "status": "pending",
+    "files": [
+      "internal/contract/stream.py",
+      "internal/contract/test_stream.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P2-0094",
+    "phase": "P2",
+    "title": "episode 聚合",
+    "status": "pending",
+    "files": [
+      "internal/contract/stream.py",
+      "internal/contract/test_stream.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P2-0095",
+    "phase": "P2",
+    "title": "危急通道隔离",
+    "status": "pending",
+    "files": [
+      "internal/contract/stream.py",
+      "internal/contract/test_stream.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P2-0096",
+    "phase": "P2",
+    "title": "降采样策略",
+    "status": "pending",
+    "files": [
+      "internal/contract/stream.py",
+      "internal/contract/test_stream.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P2-0097",
+    "phase": "P2",
+    "title": "断点续传",
+    "status": "pending",
+    "files": [
+      "internal/contract/stream.py",
+      "internal/contract/test_stream.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P2-0098",
+    "phase": "P2",
+    "title": "丢失对账",
+    "status": "pending",
+    "files": [
+      "internal/contract/stream.py",
+      "internal/contract/test_stream.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P2-0099",
+    "phase": "P2",
+    "title": "DICOM 元数据索引",
+    "status": "pending",
+    "files": [
+      "internal/contract/stream.py",
+      "internal/contract/test_stream.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P2-0100",
+    "phase": "P2",
+    "title": "像素数据不进模型",
+    "status": "pending",
+    "files": []
+  },
+  {
+    "id": "ATLAS-P2-0101",
+    "phase": "P2",
+    "title": "对象存储校验",
+    "status": "pending",
+    "files": []
+  },
+  {
+    "id": "ATLAS-P2-0102",
+    "phase": "P2",
+    "title": "检查号令牌化",
+    "status": "pending",
+    "files": []
+  },
+  {
+    "id": "ATLAS-P2-0103",
+    "phase": "P2",
+    "title": "传输语法白名单",
+    "status": "pending",
+    "files": []
+  },
+  {
+    "id": "ATLAS-P2-0104",
+    "phase": "P2",
+    "title": "影像访问审计",
+    "status": "pending",
+    "files": []
+  },
+  {
+    "id": "ATLAS-P2-0105",
+    "phase": "P2",
+    "title": "大对象拒绝跨院",
+    "status": "pending",
+    "files": []
+  },
+  {
+    "id": "ATLAS-P2-0106",
+    "phase": "P2",
+    "title": "合成影像夹具",
+    "status": "pending",
+    "files": []
+  },
+  {
+    "id": "ATLAS-P2-0107",
+    "phase": "P2",
+    "title": "存储水位",
+    "status": "pending",
+    "files": []
+  },
+  {
+    "id": "ATLAS-P2-0108",
+    "phase": "P2",
+    "title": "完整性抽检",
+    "status": "pending",
+    "files": []
+  },
+  {
+    "id": "ATLAS-P2-0109",
+    "phase": "P2",
+    "title": "设备身份证书",
+    "status": "pending",
+    "files": []
+  },
+  {
+    "id": "ATLAS-P2-0110",
+    "phase": "P2",
+    "title": "MQTT 会话",
+    "status": "pending",
+    "files": []
+  },
+  {
+    "id": "ATLAS-P2-0111",
+    "phase": "P2",
+    "title": "时钟质量（atlas-edge）",
+    "status": "pending",
+    "files": []
+  },
+  {
+    "id": "ATLAS-P2-0112",
+    "phase": "P2",
+    "title": "离线缓冲",
+    "status": "pending",
+    "files": []
+  },
+  {
+    "id": "ATLAS-P2-0113",
+    "phase": "P2",
+    "title": "配置签名",
+    "status": "pending",
+    "files": []
+  },
+  {
+    "id": "ATLAS-P2-0114",
+    "phase": "P2",
+    "title": "网络分区演练",
+    "status": "pending",
+    "files": []
+  },
+  {
+    "id": "ATLAS-P2-0115",
+    "phase": "P2",
+    "title": "点频容量核算",
+    "status": "pending",
+    "files": []
+  },
+  {
+    "id": "ATLAS-P2-0116",
+    "phase": "P2",
+    "title": "升级回滚",
+    "status": "pending",
+    "files": []
+  },
+  {
+    "id": "ATLAS-P2-0117",
+    "phase": "P2",
+    "title": "故障隔离",
+    "status": "pending",
+    "files": []
+  },
+  {
+    "id": "ATLAS-P2-0118",
+    "phase": "P2",
+    "title": "接入清单对账",
+    "status": "pending",
+    "files": []
+  },
+  {
+    "id": "ATLAS-P3-0119",
+    "phase": "P3",
+    "title": "硬规则包签名与版本",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0120",
+    "phase": "P3",
+    "title": "药物相互作用确定性判定",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0121",
+    "phase": "P3",
+    "title": "禁忌症规则",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0122",
+    "phase": "P3",
+    "title": "剂量上限与单位换算",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0123",
+    "phase": "P3",
+    "title": "过敏交叉反应",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0124",
+    "phase": "P3",
+    "title": "年龄体重边界",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0125",
+    "phase": "P3",
+    "title": "妊娠哺乳规则",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0126",
+    "phase": "P3",
+    "title": "检验危急值规则",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0127",
+    "phase": "P3",
+    "title": "证据引用强制",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0128",
+    "phase": "P3",
+    "title": "规则不确定即拒绝",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0129",
+    "phase": "P3",
+    "title": "模型超时不拖累硬规则",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0130",
+    "phase": "P3",
+    "title": "规则回放（atlas-cdss）",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0131",
+    "phase": "P3",
+    "title": "假阳性分项",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0132",
+    "phase": "P3",
+    "title": "关键类别召回",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0133",
+    "phase": "P3",
+    "title": "知识双签",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0134",
+    "phase": "P3",
+    "title": "规则灰度",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0135",
+    "phase": "P3",
+    "title": "停用开关",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0136",
+    "phase": "P3",
+    "title": "合成病例夹具",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0137",
+    "phase": "P3",
+    "title": "规则解释",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0138",
+    "phase": "P3",
+    "title": "冲突优先级",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0139",
+    "phase": "P3",
+    "title": "建议状态投影",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0140",
+    "phase": "P3",
+    "title": "一级签核",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0141",
+    "phase": "P3",
+    "title": "双人复核范围",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0142",
+    "phase": "P3",
+    "title": "第二签核拒绝",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0143",
+    "phase": "P3",
+    "title": "ApprovalProof 签发",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0144",
+    "phase": "P3",
+    "title": "证明绑定患者动作版本",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0145",
+    "phase": "P3",
+    "title": "一次性 nonce",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0146",
+    "phase": "P3",
+    "title": "过期证明",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0147",
+    "phase": "P3",
+    "title": "普通写回意图",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0148",
+    "phase": "P3",
+    "title": "目标版本冲突",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0149",
+    "phase": "P3",
+    "title": "未知回执对账",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0150",
+    "phase": "P3",
+    "title": "重复提交幂等",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0151",
+    "phase": "P3",
+    "title": "撤回与回滚条件",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0152",
+    "phase": "P3",
+    "title": "EmergencyActionGrant",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0153",
+    "phase": "P3",
+    "title": "紧急意图独立表",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0154",
+    "phase": "P3",
+    "title": "紧急证明不能普通提交",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0155",
+    "phase": "P3",
+    "title": "事后复核队列",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0156",
+    "phase": "P3",
+    "title": "受控更正事件",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0157",
+    "phase": "P3",
+    "title": "破窗理由码",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0158",
+    "phase": "P3",
+    "title": "签核策略版本",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0159",
+    "phase": "P3",
+    "title": "审计事件关联",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0160",
+    "phase": "P3",
+    "title": "100 条绕过路径",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0161",
+    "phase": "P3",
+    "title": "医嘱草稿",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0162",
+    "phase": "P3",
+    "title": "医嘱提交门禁",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0163",
+    "phase": "P3",
+    "title": "缺证明拒绝",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0164",
+    "phase": "P3",
+    "title": "错患者拒绝",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0165",
+    "phase": "P3",
+    "title": "药房回执",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0166",
+    "phase": "P3",
+    "title": "重复医嘱检测",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0167",
+    "phase": "P3",
+    "title": "取消与更正",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0168",
+    "phase": "P3",
+    "title": "急诊医嘱隔离",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0169",
+    "phase": "P3",
+    "title": "医嘱审计",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0170",
+    "phase": "P3",
+    "title": "合成医嘱旅程",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0171",
+    "phase": "P3",
+    "title": "指南条目定位",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0172",
+    "phase": "P3",
+    "title": "检验值时间点",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0173",
+    "phase": "P3",
+    "title": "规则命中路径",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0174",
+    "phase": "P3",
+    "title": "模型贡献边界",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0175",
+    "phase": "P3",
+    "title": "证据缺失阻断",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0176",
+    "phase": "P3",
+    "title": "解释版本",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0177",
+    "phase": "P3",
+    "title": "审核台证据包",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0178",
+    "phase": "P3",
+    "title": "反事实禁止自动执行",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0179",
+    "phase": "P3",
+    "title": "解释审计",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0180",
+    "phase": "P3",
+    "title": "临床可读性检查",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0181",
+    "phase": "P3",
+    "title": "绕过路径目录",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0182",
+    "phase": "P3",
+    "title": "数据库约束测试",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0183",
+    "phase": "P3",
+    "title": "服务层拒绝测试",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0184",
+    "phase": "P3",
+    "title": "API 层拒绝测试",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0185",
+    "phase": "P3",
+    "title": "迁移脚本拒绝",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0186",
+    "phase": "P3",
+    "title": "高权限账号拒绝",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0187",
+    "phase": "P3",
+    "title": "紧急跳过开关不存在",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0188",
+    "phase": "P3",
+    "title": "灰度期间安全门禁",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0189",
+    "phase": "P3",
+    "title": "缺陷分级",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P3-0190",
+    "phase": "P3",
+    "title": "安全签署记录",
+    "status": "pending",
+    "files": [
+      "internal/contract/rules.py",
+      "internal/hitl/service.py",
+      "internal/contract/explain.py",
+      "internal/contract/test_explain.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0191",
+    "phase": "P4",
+    "title": "文书到达率模型",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0192",
+    "phase": "P4",
+    "title": "模板 schema",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0193",
+    "phase": "P4",
+    "title": "章节必填",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0194",
+    "phase": "P4",
+    "title": "术语校验",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0195",
+    "phase": "P4",
+    "title": "模型草稿隔离",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0196",
+    "phase": "P4",
+    "title": "人工采纳边界",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0197",
+    "phase": "P4",
+    "title": "P95 分段计时",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0198",
+    "phase": "P4",
+    "title": "版本回滚",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0199",
+    "phase": "P4",
+    "title": "引用证据",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0200",
+    "phase": "P4",
+    "title": "合成文书负载",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0201",
+    "phase": "P4",
+    "title": "失败重试",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0202",
+    "phase": "P4",
+    "title": "输出脱敏",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0203",
+    "phase": "P4",
+    "title": "分组器隔离",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0204",
+    "phase": "P4",
+    "title": "编码版本锁定",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0205",
+    "phase": "P4",
+    "title": "本地差异",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0206",
+    "phase": "P4",
+    "title": "分组解释",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0207",
+    "phase": "P4",
+    "title": "人工复核",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0208",
+    "phase": "P4",
+    "title": "费用明细校验",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0209",
+    "phase": "P4",
+    "title": "拒付原因",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0210",
+    "phase": "P4",
+    "title": "批量对账",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0211",
+    "phase": "P4",
+    "title": "规则回放（atlas-billing）",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0212",
+    "phase": "P4",
+    "title": "越权导出拒绝",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0213",
+    "phase": "P4",
+    "title": "合成账单",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0214",
+    "phase": "P4",
+    "title": "审计链路",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0215",
+    "phase": "P4",
+    "title": "班次模型",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0216",
+    "phase": "P4",
+    "title": "角色约束",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0217",
+    "phase": "P4",
+    "title": "技能匹配",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0218",
+    "phase": "P4",
+    "title": "冲突检测",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0219",
+    "phase": "P4",
+    "title": "调班审批",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0220",
+    "phase": "P4",
+    "title": "急诊排班隔离",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0221",
+    "phase": "P4",
+    "title": "通知幂等",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0222",
+    "phase": "P4",
+    "title": "容量余量",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0223",
+    "phase": "P4",
+    "title": "公平性报告",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0224",
+    "phase": "P4",
+    "title": "合成排班",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0225",
+    "phase": "P4",
+    "title": "回滚（atlas-schedule）",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0226",
+    "phase": "P4",
+    "title": "审计（atlas-schedule）",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0227",
+    "phase": "P4",
+    "title": "表单版本",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0228",
+    "phase": "P4",
+    "title": "必填与条件",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0229",
+    "phase": "P4",
+    "title": "电子签名",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0230",
+    "phase": "P4",
+    "title": "附件白名单",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0231",
+    "phase": "P4",
+    "title": "草稿恢复",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0232",
+    "phase": "P4",
+    "title": "提交幂等",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0233",
+    "phase": "P4",
+    "title": "撤回",
+    "status": "complete",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0234",
+    "phase": "P4",
+    "title": "打印渲染",
+    "status": "complete",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0235",
+    "phase": "P4",
+    "title": "离线缓存无 PHI 明文",
+    "status": "complete",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0236",
+    "phase": "P4",
+    "title": "合成表单",
+    "status": "incomplete",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0237",
+    "phase": "P4",
+    "title": "校验错误",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0238",
+    "phase": "P4",
+    "title": "追踪",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0239",
+    "phase": "P4",
+    "title": "工作流定义",
+    "status": "complete",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0240",
+    "phase": "P4",
+    "title": "人工节点",
+    "status": "complete",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0241",
+    "phase": "P4",
+    "title": "超时升级",
+    "status": "incomplete",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0242",
+    "phase": "P4",
+    "title": "补偿动作",
+    "status": "incomplete",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0243",
+    "phase": "P4",
+    "title": "禁止自动临床写",
+    "status": "complete",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0244",
+    "phase": "P4",
+    "title": "事件去重",
+    "status": "incomplete",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0245",
+    "phase": "P4",
+    "title": "可视化追踪",
+    "status": "incomplete",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0246",
+    "phase": "P4",
+    "title": "失败隔离",
+    "status": "incomplete",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0247",
+    "phase": "P4",
+    "title": "版本迁移",
+    "status": "incomplete",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0248",
+    "phase": "P4",
+    "title": "压测夹具",
+    "status": "incomplete",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0249",
+    "phase": "P4",
+    "title": "权限",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0250",
+    "phase": "P4",
+    "title": "审计（atlas-workflow）",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0251",
+    "phase": "P4",
+    "title": "指标",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0252",
+    "phase": "P4",
+    "title": "回放",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0253",
+    "phase": "P4",
+    "title": "签署",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P4-0254",
+    "phase": "P4",
+    "title": "归档",
+    "status": "pending",
+    "files": [
+      "internal/billing/",
+      "internal/contract/docgen.py",
+      "internal/contract/test_docgen.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P5-0255",
+    "phase": "P5",
+    "title": "评测清单",
+    "status": "pending",
+    "files": [
+      "internal/contract/safety.py",
+      "internal/contract/test_safety.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P5-0256",
+    "phase": "P5",
+    "title": "阴性对照",
+    "status": "pending",
+    "files": [
+      "internal/contract/safety.py",
+      "internal/contract/test_safety.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P5-0257",
+    "phase": "P5",
+    "title": "双盲标注",
+    "status": "pending",
+    "files": [
+      "internal/contract/safety.py",
+      "internal/contract/test_safety.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P5-0258",
+    "phase": "P5",
+    "title": "仲裁流程",
+    "status": "pending",
+    "files": [
+      "internal/contract/safety.py",
+      "internal/contract/test_safety.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P5-0259",
+    "phase": "P5",
+    "title": "召回与假阳性",
+    "status": "pending",
+    "files": [
+      "internal/contract/safety.py",
+      "internal/contract/test_safety.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P5-0260",
+    "phase": "P5",
+    "title": "ECE 分箱",
+    "status": "pending",
+    "files": [
+      "internal/contract/safety.py",
+      "internal/contract/test_safety.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P5-0261",
+    "phase": "P5",
+    "title": "亚组报告",
+    "status": "pending",
+    "files": [
+      "internal/contract/safety.py",
+      "internal/contract/test_safety.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P5-0262",
+    "phase": "P5",
+    "title": "数据卡",
+    "status": "pending",
+    "files": [
+      "internal/contract/safety.py",
+      "internal/contract/test_safety.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P5-0263",
+    "phase": "P5",
+    "title": "模型注册",
+    "status": "pending",
+    "files": [
+      "internal/contract/safety.py",
+      "internal/contract/test_safety.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P5-0264",
+    "phase": "P5",
+    "title": "影子发布",
+    "status": "pending",
+    "files": [
+      "internal/contract/safety.py",
+      "internal/contract/test_safety.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P5-0265",
+    "phase": "P5",
+    "title": "灰度门禁",
+    "status": "pending",
+    "files": [
+      "internal/contract/safety.py",
+      "internal/contract/test_safety.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P5-0266",
+    "phase": "P5",
+    "title": "漂移监控",
+    "status": "pending",
+    "files": [
+      "internal/contract/safety.py",
+      "internal/contract/test_safety.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P5-0267",
+    "phase": "P5",
+    "title": "不良反应事件",
+    "status": "pending",
+    "files": [
+      "internal/contract/safety.py",
+      "internal/contract/test_safety.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P5-0268",
+    "phase": "P5",
+    "title": "强制停用",
+    "status": "pending",
+    "files": [
+      "internal/contract/safety.py",
+      "internal/contract/test_safety.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P5-0269",
+    "phase": "P5",
+    "title": "回滚版本",
+    "status": "pending",
+    "files": [
+      "internal/contract/safety.py",
+      "internal/contract/test_safety.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P5-0270",
+    "phase": "P5",
+    "title": "评测证据索引",
+    "status": "pending",
+    "files": [
+      "internal/contract/safety.py",
+      "internal/contract/test_safety.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0271",
+    "phase": "P6",
+    "title": "规范编码",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0272",
+    "phase": "P6",
+    "title": "分区哈希链",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0273",
+    "phase": "P6",
+    "title": "批量签名",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0274",
+    "phase": "P6",
+    "title": "检查点",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0275",
+    "phase": "P6",
+    "title": "WORM 收据",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0276",
+    "phase": "P6",
+    "title": "第三方验证",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0277",
+    "phase": "P6",
+    "title": "断链告警",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0278",
+    "phase": "P6",
+    "title": "时钟质量（atlas-audit）",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0279",
+    "phase": "P6",
+    "title": "保留策略",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0280",
+    "phase": "P6",
+    "title": "查询权限",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0281",
+    "phase": "P6",
+    "title": "导出审批",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0282",
+    "phase": "P6",
+    "title": "容量外推",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0283",
+    "phase": "P6",
+    "title": "字段分级",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0284",
+    "phase": "P6",
+    "title": "直接标识拒绝",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0285",
+    "phase": "P6",
+    "title": "准标识泛化",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0286",
+    "phase": "P6",
+    "title": "k-匿名管线",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0287",
+    "phase": "P6",
+    "title": "小样本抑制",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0288",
+    "phase": "P6",
+    "title": "再识别测试",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0289",
+    "phase": "P6",
+    "title": "聚合白名单",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0290",
+    "phase": "P6",
+    "title": "目的绑定",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0291",
+    "phase": "P6",
+    "title": "保留期限",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0292",
+    "phase": "P6",
+    "title": "销毁证明",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0293",
+    "phase": "P6",
+    "title": "跨境评估分流",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0294",
+    "phase": "P6",
+    "title": "合成隐私夹具",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0295",
+    "phase": "P6",
+    "title": "同意版本",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0296",
+    "phase": "P6",
+    "title": "范围与期限",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0297",
+    "phase": "P6",
+    "title": "撤回传播",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0298",
+    "phase": "P6",
+    "title": "紧急访问例外",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0299",
+    "phase": "P6",
+    "title": "法律依据核验",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0300",
+    "phase": "P6",
+    "title": "默认拒绝",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0301",
+    "phase": "P6",
+    "title": "决策解释",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0302",
+    "phase": "P6",
+    "title": "过期重评",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0303",
+    "phase": "P6",
+    "title": "审计关联",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0304",
+    "phase": "P6",
+    "title": "合成同意旅程",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0305",
+    "phase": "P6",
+    "title": "mTLS 身份",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0306",
+    "phase": "P6",
+    "title": "密钥层级",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0307",
+    "phase": "P6",
+    "title": "轮换演练",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0308",
+    "phase": "P6",
+    "title": "证书吊销",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0309",
+    "phase": "P6",
+    "title": "SBOM",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0310",
+    "phase": "P6",
+    "title": "镜像签名",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0311",
+    "phase": "P6",
+    "title": "依赖例外",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0312",
+    "phase": "P6",
+    "title": "漏洞门禁",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0313",
+    "phase": "P6",
+    "title": "渗透证据索引",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P6-0314",
+    "phase": "P6",
+    "title": "事件响应开关",
+    "status": "pending",
+    "files": [
+      "internal/audit/chain.py",
+      "internal/contract/privacy.py",
+      "internal/contract/consent.py",
+      "internal/contract/test_privacy.py"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0315",
+    "phase": "P7",
+    "title": "审核队列",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0316",
+    "phase": "P7",
+    "title": "证据加载",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0317",
+    "phase": "P7",
+    "title": "加载到回执计时",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0318",
+    "phase": "P7",
+    "title": "签核动作",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0319",
+    "phase": "P7",
+    "title": "双人复核界面",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0320",
+    "phase": "P7",
+    "title": "破窗界面",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0321",
+    "phase": "P7",
+    "title": "冲突提示",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0322",
+    "phase": "P7",
+    "title": "无障碍",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0323",
+    "phase": "P7",
+    "title": "会话 step-up",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0324",
+    "phase": "P7",
+    "title": "离线只读",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0325",
+    "phase": "P7",
+    "title": "错误恢复",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0326",
+    "phase": "P7",
+    "title": "合成用户旅程",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0327",
+    "phase": "P7",
+    "title": "渲染性能",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0328",
+    "phase": "P7",
+    "title": "审计跳转",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0329",
+    "phase": "P7",
+    "title": "患者上下文",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0330",
+    "phase": "P7",
+    "title": "建议卡片",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0331",
+    "phase": "P7",
+    "title": "医嘱确认",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0332",
+    "phase": "P7",
+    "title": "危急值",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0333",
+    "phase": "P7",
+    "title": "多屏状态",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0334",
+    "phase": "P7",
+    "title": "本地缓存加密",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0335",
+    "phase": "P7",
+    "title": "断网降级",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0336",
+    "phase": "P7",
+    "title": "设备证书",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0337",
+    "phase": "P7",
+    "title": "打印控制",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0338",
+    "phase": "P7",
+    "title": "升级（atlas-workstation）",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0339",
+    "phase": "P7",
+    "title": "回滚（atlas-workstation）",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0340",
+    "phase": "P7",
+    "title": "信创探针",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0341",
+    "phase": "P7",
+    "title": "客户端契约",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0342",
+    "phase": "P7",
+    "title": "幂等助手",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0343",
+    "phase": "P7",
+    "title": "错误映射",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0344",
+    "phase": "P7",
+    "title": "禁止绕过签核",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0345",
+    "phase": "P7",
+    "title": "重试预算",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0346",
+    "phase": "P7",
+    "title": "追踪传播",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0347",
+    "phase": "P7",
+    "title": "版本兼容",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0348",
+    "phase": "P7",
+    "title": "示例仅合成",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0349",
+    "phase": "P7",
+    "title": "破坏性差异",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0350",
+    "phase": "P7",
+    "title": "发布签名",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0351",
+    "phase": "P7",
+    "title": "离线镜像",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0352",
+    "phase": "P7",
+    "title": "安装编排",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0353",
+    "phase": "P7",
+    "title": "配置模板",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0354",
+    "phase": "P7",
+    "title": "健康门禁",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0355",
+    "phase": "P7",
+    "title": "两小时演练",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0356",
+    "phase": "P7",
+    "title": "升级（atlas-delivery）",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0357",
+    "phase": "P7",
+    "title": "回滚（atlas-delivery）",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0358",
+    "phase": "P7",
+    "title": "数据迁移预检",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0359",
+    "phase": "P7",
+    "title": "值守手册",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0360",
+    "phase": "P7",
+    "title": "证据打包",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0361",
+    "phase": "P7",
+    "title": "签名校验",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0362",
+    "phase": "P7",
+    "title": "环境指纹",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0363",
+    "phase": "P7",
+    "title": "故障恢复",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P7-0364",
+    "phase": "P7",
+    "title": "交付签署",
+    "status": "pending",
+    "files": [
+      "services/atlas-workflow/",
+      "api/openapi/"
+    ]
+  },
+  {
+    "id": "ATLAS-P8-0365",
+    "phase": "P8",
+    "title": "MP-01 FHIR 稳态",
+    "status": "pending",
+    "files": [
+      "tools/evidence/",
+      ".github/workflows/"
+    ]
+  },
+  {
+    "id": "ATLAS-P8-0366",
+    "phase": "P8",
+    "title": "MP-02 新患者索引",
+    "status": "pending",
+    "files": [
+      "tools/evidence/",
+      ".github/workflows/"
+    ]
+  },
+  {
+    "id": "ATLAS-P8-0367",
+    "phase": "P8",
+    "title": "MP-03 生理流",
+    "status": "pending",
+    "files": [
+      "tools/evidence/",
+      ".github/workflows/"
+    ]
+  },
+  {
+    "id": "ATLAS-P8-0368",
+    "phase": "P8",
+    "title": "MP-04 审核端到端",
+    "status": "pending",
+    "files": [
+      "tools/evidence/",
+      ".github/workflows/"
+    ]
+  },
+  {
+    "id": "ATLAS-P8-0369",
+    "phase": "P8",
+    "title": "MP-05 审计写入",
+    "status": "pending",
+    "files": [
+      "tools/evidence/",
+      ".github/workflows/"
+    ]
+  },
+  {
+    "id": "ATLAS-P8-0370",
+    "phase": "P8",
+    "title": "MP-06 急诊隔离",
+    "status": "pending",
+    "files": [
+      "tools/evidence/",
+      ".github/workflows/"
+    ]
+  },
+  {
+    "id": "ATLAS-P8-0371",
+    "phase": "P8",
+    "title": "MP-07 文书峰值",
+    "status": "pending",
+    "files": [
+      "tools/evidence/",
+      ".github/workflows/"
+    ]
+  },
+  {
+    "id": "ATLAS-P8-0372",
+    "phase": "P8",
+    "title": "MP-08 七十二小时",
+    "status": "pending",
+    "files": [
+      "tools/evidence/",
+      ".github/workflows/"
+    ]
+  },
+  {
+    "id": "ATLAS-P8-0373",
+    "phase": "P8",
+    "title": "容量报告汇总",
+    "status": "pending",
+    "files": [
+      "tools/evidence/",
+      ".github/workflows/"
+    ]
+  },
+  {
+    "id": "ATLAS-P8-0374",
+    "phase": "P8",
+    "title": "网络分区",
+    "status": "pending",
+    "files": [
+      "tools/evidence/",
+      ".github/workflows/"
+    ]
+  },
+  {
+    "id": "ATLAS-P8-0375",
+    "phase": "P8",
+    "title": "时钟漂移",
+    "status": "pending",
+    "files": [
+      "tools/evidence/",
+      ".github/workflows/"
+    ]
+  },
+  {
+    "id": "ATLAS-P8-0376",
+    "phase": "P8",
+    "title": "磁盘写满",
+    "status": "pending",
+    "files": [
+      "tools/evidence/",
+      ".github/workflows/"
+    ]
+  },
+  {
+    "id": "ATLAS-P8-0377",
+    "phase": "P8",
+    "title": "数据库主从切换",
+    "status": "pending",
+    "files": [
+      "tools/evidence/",
+      ".github/workflows/"
+    ]
+  },
+  {
+    "id": "ATLAS-P8-0378",
+    "phase": "P8",
+    "title": "消息堆积",
+    "status": "pending",
+    "files": [
+      "tools/evidence/",
+      ".github/workflows/"
+    ]
+  },
+  {
+    "id": "ATLAS-P8-0379",
+    "phase": "P8",
+    "title": "证书过期",
+    "status": "pending",
+    "files": [
+      "tools/evidence/",
+      ".github/workflows/"
+    ]
+  },
+  {
+    "id": "ATLAS-P8-0380",
+    "phase": "P8",
+    "title": "模型超时",
+    "status": "pending",
+    "files": [
+      "tools/evidence/",
+      ".github/workflows/"
+    ]
+  },
+  {
+    "id": "ATLAS-P8-0381",
+    "phase": "P8",
+    "title": "区域故障六十秒",
+    "status": "pending",
+    "files": [
+      "tools/evidence/",
+      ".github/workflows/"
+    ]
+  },
+  {
+    "id": "ATLAS-P8-0382",
+    "phase": "P8",
+    "title": "安全扫描汇总",
+    "status": "pending",
+    "files": [
+      "tools/evidence/",
+      ".github/workflows/"
+    ]
+  },
+  {
+    "id": "ATLAS-P8-0383",
+    "phase": "P8",
+    "title": "PHI CI 门禁",
+    "status": "pending",
+    "files": [
+      "tools/evidence/",
+      ".github/workflows/"
+    ]
+  },
+  {
+    "id": "ATLAS-P8-0384",
+    "phase": "P8",
+    "title": "文档链接与 ADR 追踪",
+    "status": "pending",
+    "files": [
+      "tools/evidence/",
+      ".github/workflows/"
+    ]
+  }
+]
