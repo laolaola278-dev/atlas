@@ -33,7 +33,7 @@ class AuthorizationEnforcer:
             reason = "patient_cannot_access_admin_resources"
         elif user_id.startswith("patient_") and resource_id.startswith("patient_"):
             # Patients can only access their own records
-            if resource_id != f"patient_{user_id.split("_")[1]}_records":
+            if resource_id != f"patient_{user_id.split('_')[1]}_records":
                 allowed = False
                 reason = "horizontal_privilege_escalation_blocked"
         

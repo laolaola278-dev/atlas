@@ -103,9 +103,9 @@ def run_all_benchmarks():
         json.dump(evidence, f, indent=2)
     
     print(f"Evidence report: {evidence_file}")
-    print(f"Total benchmarks: {evidence[\"summary\"][\"total_benchmarks\"]}")
-    print(f"Successful: {evidence[\"summary\"][\"successful\"]}")
-    print(f"Failed: {evidence[\"summary\"][\"failed\"]}")
+    print(f"Total benchmarks: {evidence['summary']['total_benchmarks']}")
+    print(f"Successful: {evidence['summary']['successful']}")
+    print(f"Failed: {evidence['summary']['failed']}")
     
     return 0 if evidence["summary"]["failed"] == 0 else 1
 
