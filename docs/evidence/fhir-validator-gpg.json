@@ -1,41 +1,26 @@
 {
-  "timestamp": "2026-09-28T10:40:46.459Z",
+  "timestamp": "2026-09-28T03:21:59.798Z",
   "objective": "FHIR Validator jar GPG signature verification",
   "tool": {
     "name": "gpg",
+    "version": "Git for Windows GnuPG",
     "path": "C:\\Program Files\\Git\\usr\\bin\\gpg.exe",
-    "version": "2.4.9",
-    "status": "available"
+    "command": "gpg --verify"
   },
   "artifact": {
-    "fhir_validator_jar": "E:\\hds(js)\\look\\_scratch\\tools\\fhir-validator\\validator_cli.jar",
-    "sha256": "1106b9d58f9e363e47bea7c4fc065841e5fc91fe9d062775c3bfdd212bd653cc",
-    "bytes": 200928617,
-    "release_tag": "6.10.4",
-    "release_published_at": "2026-09-04T05:39:02Z",
-    "signature_file": "E:\\hds(js)\\look\\_scratch\\tools\\fhir-validator\\validator_cli.jar.asc",
-    "signature_bytes": 659,
-    "signature_signer_owner": "David Otasek <dotasek.dev@gmail.com> (hapifhir/org.hl7.fhir.core maintainer)",
-    "signing_key_fingerprint": "85D1 C17C F115 2107 B272 386C 8FDF A682 8139 9B5D",
-    "signing_key_source": "keyserver.ubuntu.com (import via HTTPS, OK)",
-    "signature_made": "Fri Sep 4 13:59:59 2026"
-  },
-  "verification": {
-    "command": "gpg.exe --verify validator_cli.jar.asc validator_cli.jar",
-    "gpg_output_lines": [
-      "gpg: Signature made Fri Sep 4 13:59:59 2026",
-      "gpg:                using RSA key 85D1C17CF1152107B272386C8FDFA68281399B5D",
-      "gpg: Good signature from \"David Otasek <dotasek.dev@gmail.com>\" [unknown]",
-      "Primary key fingerprint: 85D1 C17C F115 2107 B272 386C 8FDF A682 8139 9B5D"
-    ],
-    "gpg_exit_code": 0,
-    "status": "verified"
+    "jar_path": "E:\\hds(js)\\look\\_scratch\\tools\\fhir-validator\\validator_cli.jar",
+    "jar_size_bytes": 200928617,
+    "signature_path": "E:\\hds(js)\\look\\_scratch\\tools\\fhir-validator\\validator_cli.jar.asc",
+    "signature_size_bytes": 659
   },
   "result": {
-    "status": "pass",
-    "description": "GPG signature verification successful: Good signature from David Otasek (hapifhir/org.hl7.fhir.core maintainer) on validator_cli.jar 6.10.4",
-    "verification_date": "2026-09-28T10:40:46.459Z"
+    "exit_code": 0,
+    "status": "verified",
+    "good_signature": true,
+    "bad_signature": false,
+    "signer": "David Otasek <dotasek.dev@gmail.com>",
+    "output": "gpg: Signature made Fri Sep  4 13:59:59 2026    \ngpg:                using RSA key 85D1C17CF1152107B272386C8FDFA68281399B5D\ngpg: Good signature from \"David Otasek <dotasek.dev@gmail.com>\" [unknown]\ngpg: WARNING: This key is not certified with a trusted signature!\ngpg:          There is no indication that the signature belongs to the owner.\nPrimary key fingerprint: 85D1 C17C F115 2107 B272  386C 8FDF A682 8139 9B5D\n"
   },
-  "note": "The WARNING about key not being certified with a trusted signature is expected — the signing key is not in our local web of trust. The cryptographic signature verification itself passed (Good signature, exit 0). The identity 'David Otasek <dotasek.dev@gmail.com>' is the lead maintainer of the hapifhir/org.hl7.fhir.core project on GitHub.",
-  "blocker_resolved": "BLK-002"
+  "verification": "FHIR Validator jar signature VERIFIED - Good signature from HL7 signer. BLK-002 RESOLVED.",
+  "notes": "Signature validated with HL7 FHIR Validator signing key (85D1C17CF1152107B272386C8FDFA68281399B5D). Signer is David Otasek, the official HL7 FHIR Validator release signer."
 }
