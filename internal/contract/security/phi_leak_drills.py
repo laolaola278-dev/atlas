@@ -15,12 +15,12 @@ from datetime import datetime
 
 # PHI patterns to detect
 PHI_PATTERNS = {
-    'ssn': r'\\b\\d{3}-\\d{2}-\\d{4}\\b',
-    'credit_card': r'\\b(?:\\d{4}[- ]?){3}\\d{4}\\b',
-    'email': r'\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}\\b',
-    'phone': r'\\b\\d{3}[-.]?\\d{3}[-.]?\\d{4}\\b',
-    'mrn': r'\\bMRN[-:]?\\s*\\d{6,10}\\b',
-    'dob': r'\\b(?:DOB|Birth)[:\\s]+\\d{1,2}[/\\-]\\d{1,2}[/\\-]\\d{2,4}\\b'
+    'ssn': r'\b\d{3}-\d{2}-\d{4}\b',
+    'credit_card': r'\b(?:\d{4}[- ]?){3}\d{4}\b',
+    'email': r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b',
+    'phone': r'\b\d{3}[-.]?\d{3}[-.]?\d{4}\b',
+    'mrn': r'\bMRN[-:]?\s*\d{6,10}\b',
+    'dob': r'\b(?:DOB|Birth)[:\s]+\d{1,2}[/\-]\d{1,2}[/\-]\d{2,4}\b'
 }
 
 

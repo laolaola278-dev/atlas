@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-09-28T00:05:03.182219",
+  "timestamp": "2026-09-28T12:38:21.990233",
   "framework": "security_drill_suite",
   "batch_coverage": {
     "P6-0271 to P6-0280": "PHI leak detection (API responses, error messages, logs)",
@@ -14,20 +14,44 @@
         {
           "drill": "api_response_ssn",
           "expected": "ssn leak detected",
-          "findings": [],
-          "passed": false
+          "findings": [
+            {
+              "type": "ssn",
+              "pattern": "\\b\\d{3}-\\d{2}-\\d{4}\\b",
+              "match": "123-45-6789",
+              "context": "api_response_with_ssn",
+              "timestamp": "2026-09-28T12:38:21.635651"
+            }
+          ],
+          "passed": true
         },
         {
           "drill": "error_message_email",
           "expected": "email leak detected",
-          "findings": [],
-          "passed": false
+          "findings": [
+            {
+              "type": "email",
+              "pattern": "\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}\\b",
+              "match": "john.doe@example.com",
+              "context": "error_message",
+              "timestamp": "2026-09-28T12:38:21.635651"
+            }
+          ],
+          "passed": true
         },
         {
           "drill": "log_entry_phone",
           "expected": "phone leak detected",
-          "findings": [],
-          "passed": false
+          "findings": [
+            {
+              "type": "phone",
+              "pattern": "\\b\\d{3}[-.]?\\d{3}[-.]?\\d{4}\\b",
+              "match": "555-123-4567",
+              "context": "log_entry",
+              "timestamp": "2026-09-28T12:38:21.635651"
+            }
+          ],
+          "passed": true
         },
         {
           "drill": "clean_response",
@@ -37,12 +61,16 @@
         }
       ],
       "summary": {
-        "total_detections": 0,
-        "by_type": {},
-        "timestamp": "2026-09-28T00:05:02.828507"
+        "total_detections": 3,
+        "by_type": {
+          "ssn": 1,
+          "email": 1,
+          "phone": 1
+        },
+        "timestamp": "2026-09-28T12:38:21.635651"
       },
-      "passed": false,
-      "timestamp": "2026-09-28T00:05:02.828507"
+      "passed": true,
+      "timestamp": "2026-09-28T12:38:21.635651"
     },
     {
       "test_name": "authorization_bypass_prevention",
@@ -58,7 +86,7 @@
             "resource_type": "medical_record",
             "resource_id": "patient_456_records",
             "action": "read",
-            "timestamp": "2026-09-28T00:05:02.828507"
+            "timestamp": "2026-09-28T12:38:21.635651"
           },
           "passed": true
         },
@@ -73,7 +101,7 @@
             "resource_type": "admin",
             "resource_id": "system_config",
             "action": "write",
-            "timestamp": "2026-09-28T00:05:02.828507"
+            "timestamp": "2026-09-28T12:38:21.635651"
           },
           "passed": true
         },
@@ -88,7 +116,7 @@
             "resource_type": "medical_record",
             "resource_id": "patient_123_records",
             "action": "read",
-            "timestamp": "2026-09-28T00:05:02.828507"
+            "timestamp": "2026-09-28T12:38:21.635651"
           },
           "passed": true
         },
@@ -103,14 +131,14 @@
             "resource_type": "lab_result",
             "resource_id": "patient_123_lab_001",
             "action": "read",
-            "timestamp": "2026-09-28T00:05:02.828507"
+            "timestamp": "2026-09-28T12:38:21.635651"
           },
           "passed": true
         }
       ],
       "audit_log_entries": 4,
       "passed": true,
-      "timestamp": "2026-09-28T00:05:02.828507"
+      "timestamp": "2026-09-28T12:38:21.635651"
     },
     {
       "test_name": "chaos_engineering_resilience",
@@ -121,12 +149,12 @@
             "type": "network_latency",
             "latency_ms": 500,
             "duration_s": 10,
-            "injected_at": "2026-09-28T00:05:02.828507"
+            "injected_at": "2026-09-28T12:38:21.635651"
           },
           "recovery": {
             "fault_type": "network_latency",
-            "recovery_time_ms": 100,
-            "recovered_at": "2026-09-28T00:05:02.929474"
+            "recovery_time_ms": 101,
+            "recovered_at": "2026-09-28T12:38:21.737239"
           },
           "passed": true
         },
@@ -136,12 +164,12 @@
             "type": "service_failure",
             "service": "fhir-validator",
             "failure_rate": 0.5,
-            "injected_at": "2026-09-28T00:05:02.929474"
+            "injected_at": "2026-09-28T12:38:21.737239"
           },
           "recovery": {
             "fault_type": "service_failure",
-            "recovery_time_ms": 51,
-            "recovered_at": "2026-09-28T00:05:02.980477"
+            "recovery_time_ms": 50,
+            "recovered_at": "2026-09-28T12:38:21.788238"
           },
           "passed": true
         },
@@ -150,12 +178,12 @@
           "fault": {
             "type": "database_timeout",
             "timeout_ms": 100,
-            "injected_at": "2026-09-28T00:05:02.980477"
+            "injected_at": "2026-09-28T12:38:21.788238"
           },
           "recovery": {
             "fault_type": "database_timeout",
-            "recovery_time_ms": 80,
-            "recovered_at": "2026-09-28T00:05:03.061251"
+            "recovery_time_ms": 81,
+            "recovered_at": "2026-09-28T12:38:21.869244"
           },
           "passed": true
         },
@@ -165,12 +193,12 @@
             "type": "cpu_stress",
             "cpu_percent": 90,
             "duration_s": 5,
-            "injected_at": "2026-09-28T00:05:03.061251"
+            "injected_at": "2026-09-28T12:38:21.869244"
           },
           "recovery": {
             "fault_type": "cpu_stress",
             "recovery_time_ms": 120,
-            "recovered_at": "2026-09-28T00:05:03.182219"
+            "recovered_at": "2026-09-28T12:38:21.990233"
           },
           "passed": true
         }
@@ -184,11 +212,11 @@
           "cpu_stress": 1
         },
         "total_recoveries": 4,
-        "avg_recovery_time_ms": 87.75,
-        "timestamp": "2026-09-28T00:05:03.182219"
+        "avg_recovery_time_ms": 88.0,
+        "timestamp": "2026-09-28T12:38:21.990233"
       },
       "passed": true,
-      "timestamp": "2026-09-28T00:05:03.182219"
+      "timestamp": "2026-09-28T12:38:21.990233"
     },
     {
       "test_name": "recovery_verification",
@@ -202,13 +230,13 @@
               "last_backup": "2026-01-15T10:00:00Z"
             },
             "checksum": "57fc67fa2e351c8c1e11428adc98dae419a8fb858082d01a1acabf216674cd63",
-            "created_at": "2026-09-28T00:05:03.182219"
+            "created_at": "2026-09-28T12:38:21.990233"
           },
           "integrity_check": {
             "integrity_ok": true,
             "original_checksum": "57fc67fa2e351c8c1e11428adc98dae419a8fb858082d01a1acabf216674cd63",
             "backup_checksum": "57fc67fa2e351c8c1e11428adc98dae419a8fb858082d01a1acabf216674cd63",
-            "verified_at": "2026-09-28T00:05:03.182219"
+            "verified_at": "2026-09-28T12:38:21.990233"
           },
           "passed": true
         },
@@ -219,7 +247,7 @@
             "secondary_available": true,
             "failover_needed": true,
             "failover_successful": true,
-            "verified_at": "2026-09-28T00:05:03.182219"
+            "verified_at": "2026-09-28T12:38:21.990233"
           },
           "passed": true
         },
@@ -235,7 +263,7 @@
               "config": "old_config"
             },
             "rollback_successful": true,
-            "verified_at": "2026-09-28T00:05:03.182219"
+            "verified_at": "2026-09-28T12:38:21.990233"
           },
           "passed": true
         },
@@ -245,7 +273,7 @@
             "integrity_ok": true,
             "original_checksum": "57fc67fa2e351c8c1e11428adc98dae419a8fb858082d01a1acabf216674cd63",
             "backup_checksum": "57fc67fa2e351c8c1e11428adc98dae419a8fb858082d01a1acabf216674cd63",
-            "verified_at": "2026-09-28T00:05:03.182219"
+            "verified_at": "2026-09-28T12:38:21.990233"
           },
           "passed": true
         }
@@ -258,15 +286,15 @@
           "failover_verification": 1,
           "rollback_verification": 1
         },
-        "timestamp": "2026-09-28T00:05:03.182219"
+        "timestamp": "2026-09-28T12:38:21.990233"
       },
       "passed": true,
-      "timestamp": "2026-09-28T00:05:03.182219"
+      "timestamp": "2026-09-28T12:38:21.990233"
     }
   ],
   "summary": {
     "total_drill_categories": 4,
-    "successful": 3,
-    "failed": 1
+    "successful": 4,
+    "failed": 0
   }
 }

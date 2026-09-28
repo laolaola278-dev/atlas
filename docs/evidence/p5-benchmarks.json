@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-09-28T00:05:02.736474",
+  "timestamp": "2026-09-28T12:35:53.918203",
   "framework": "custom_benchmark_suite",
   "batch_coverage": {
     "P5-0255 to P5-0260": "Rule evaluation latency (P50/P95/P99)",
@@ -14,43 +14,43 @@
       "observations_per_call": 5,
       "p50_ms": 0.002,
       "p95_ms": 0.004,
-      "p99_ms": 0.004,
-      "mean_ms": 0.002,
-      "stddev_ms": 0.002,
+      "p99_ms": 0.005,
+      "mean_ms": 0.003,
+      "stddev_ms": 0.001,
       "min_ms": 0.002,
-      "max_ms": 0.147,
-      "timestamp": "2026-09-28T00:05:02.432325"
+      "max_ms": 0.036,
+      "timestamp": "2026-09-28T12:35:53.541559"
     },
     {
       "test_name": "fhir_validation_throughput",
       "iterations": 10000,
-      "total_time_s": 0.016,
-      "ops_per_second": 638801.5,
+      "total_time_s": 0.02,
+      "ops_per_second": 506616.5,
       "p50_ms": 0.002,
-      "p95_ms": 0.002,
+      "p95_ms": 0.003,
       "p99_ms": 0.003,
-      "timestamp": "2026-09-28T00:05:02.551775"
+      "timestamp": "2026-09-28T12:35:53.687203"
     },
     {
       "test_name": "hitl_state_machine_throughput",
       "iterations": 10000,
-      "total_time_s": 0.03,
-      "ops_per_second": 335270.89,
+      "total_time_s": 0.035,
+      "ops_per_second": 286505.12,
       "p50_ms": 0.003,
-      "p95_ms": 0.004,
-      "p99_ms": 0.004,
-      "timestamp": "2026-09-28T00:05:02.589217"
+      "p95_ms": 0.006,
+      "p99_ms": 0.007,
+      "timestamp": "2026-09-28T12:35:53.732203"
     },
     {
       "test_name": "audit_chain_writes",
       "iterations": 10000,
-      "total_time_s": 0.06,
-      "ops_per_second": 167501.09,
-      "p50_ms": 0.005,
-      "p95_ms": 0.01,
-      "p99_ms": 0.011,
+      "total_time_s": 0.078,
+      "ops_per_second": 128742.87,
+      "p50_ms": 0.006,
+      "p95_ms": 0.012,
+      "p99_ms": 0.016,
       "chain_length": 10000,
-      "timestamp": "2026-09-28T00:05:02.735474"
+      "timestamp": "2026-09-28T12:35:53.914202"
     }
   ],
   "summary": {
