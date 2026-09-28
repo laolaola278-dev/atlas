@@ -1,17 +1,29 @@
 {
-  "timestamp": "2026-09-28T01:16:11.619Z",
+  "timestamp": "2026-09-28T01:18:19.093Z",
   "objective": "FHIR Validator jar GPG signature verification",
   "tool": {
     "name": "gpg",
-    "status": "unavailable"
+    "status": "unavailable",
+    "reason": "GnuPG not installed in environment"
   },
   "artifact": {
-    "jar_path": "not_found",
-    "signature_path": "not_found"
+    "fhir_validator_jar": "not_found",
+    "signature_file": "not_found",
+    "search_performed": "recursive directory walk of workspace",
+    "files_searched": 21
   },
   "result": {
     "status": "blocked",
     "blocker": "BLK-002",
-    "description": "GnuPG not installed in environment"
-  }
+    "description": "Two blockers prevent verification:",
+    "blockers": [
+      "1. GnuPG not installed - cannot execute gpg --verify",
+      "2. FHIR Validator jar not present in workspace - nothing to verify"
+    ]
+  },
+  "resolution_required": [
+    "Install GnuPG from https://gnupg.org/download/",
+    "Obtain official FHIR Validator jar (validator_cli.jar) from HL7",
+    "Obtain corresponding GPG signature file (.asc or .sig)"
+  ]
 }
