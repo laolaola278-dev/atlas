@@ -1,0 +1,17 @@
+{
+  "timestamp": "2026-09-28T01:16:11.619Z",
+  "objective": "FHIR Validator jar GPG signature verification",
+  "tool": {
+    "name": "gpg",
+    "status": "unavailable"
+  },
+  "artifact": {
+    "jar_path": "not_found",
+    "signature_path": "not_found"
+  },
+  "result": {
+    "status": "blocked",
+    "blocker": "BLK-002",
+    "description": "GnuPG not installed in environment"
+  }
+}
