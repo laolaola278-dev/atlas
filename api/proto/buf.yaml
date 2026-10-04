@@ -1,7 +1,7 @@
 version: v1
 lint:
   use:
-    - DEFAULT
+    - STANDARD
   except:
     # Atlas 项目已生成 Go 代码，重命名会破坏下游代码
     # 这些命名约定在内部一致且经过架构评审
