@@ -1,0 +1,1737 @@
+﻿FAIL	.out [setup failed]
+go.exe : # .out
+所在位置 行:1 字符: 402
++ ... +$env:PATH; & "E:\依赖\gopath\pkg\mod\golang.org\toolchain@v0.0.1-go1.2 ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (# .out:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+no required module provides package .out; to add it:
+	go get .out
+=== RUN   TestRunRejectsMissingScope
+--- PASS: TestRunRejectsMissingScope (0.00s)
+=== RUN   TestRunAcceptsSyntheticScope
+atlas-skeleton-ready
+--- PASS: TestRunAcceptsSyntheticScope (0.00s)
+=== RUN   TestRunRejectsBlankPolicy
+--- PASS: TestRunRejectsBlankPolicy (0.00s)
+PASS
+coverage: 60.0% of statements
+ok  	atlas/cmd/atlas-skeleton	1.061s	coverage: 60.0% of statements
+=== RUN   TestLoadAcceptsExternalSecret
+--- PASS: TestLoadAcceptsExternalSecret (0.00s)
+=== RUN   TestLoadRejectsInlineToken
+--- PASS: TestLoadRejectsInlineToken (0.00s)
+=== RUN   TestLoadRejectsMissingScope
+--- PASS: TestLoadRejectsMissingScope (0.00s)
+PASS
+coverage: 77.8% of statements
+ok  	atlas/internal/config	1.080s	coverage: 77.8% of statements
+=== RUN   TestReadyAcceptsSyntheticDraft
+--- PASS: TestReadyAcceptsSyntheticDraft (0.00s)
+=== RUN   TestReadyRejectsShortDigest
+--- PASS: TestReadyRejectsShortDigest (0.00s)
+=== RUN   TestReadyRejectsIdentifierPath
+--- PASS: TestReadyRejectsIdentifierPath (0.00s)
+=== RUN   TestLookupKnownCode
+--- PASS: TestLookupKnownCode (0.00s)
+=== RUN   TestLookupUnknownCodeFailsClosed
+--- PASS: TestLookupUnknownCodeFailsClosed (0.00s)
+=== RUN   TestLookupRejectsMalformedStatus
+--- PASS: TestLookupRejectsMalformedStatus (0.00s)
+=== RUN   TestDecideAllowsScopedTreatment
+--- PASS: TestDecideAllowsScopedTreatment (0.00s)
+=== RUN   TestDecideRejectsUnknownReason
+--- PASS: TestDecideRejectsUnknownReason (0.00s)
+=== RUN   TestDecideRejectsEmergencyWithoutReason
+--- PASS: TestDecideRejectsEmergencyWithoutReason (0.00s)
+=== RUN   TestCommitAdvancesWatermark
+--- PASS: TestCommitAdvancesWatermark (0.00s)
+=== RUN   TestUnknownResultDoesNotAdvance
+--- PASS: TestUnknownResultDoesNotAdvance (0.00s)
+=== RUN   TestChangedDigestConflicts
+--- PASS: TestChangedDigestConflicts (0.00s)
+PASS
+coverage: 76.2% of statements
+ok  	atlas/internal/contract	1.064s	coverage: 76.2% of statements
+=== RUN   TestReviewCommandRequiresReviewer
+--- PASS: TestReviewCommandRequiresReviewer (0.00s)
+=== RUN   TestApprovalProofRequiresDigest
+--- PASS: TestApprovalProofRequiresDigest (0.00s)
+=== RUN   TestEmergencyGrantIsNotApproval
+--- PASS: TestEmergencyGrantIsNotApproval (0.00s)
+PASS
+coverage: 61.5% of statements
+ok  	atlas/internal/hitl	1.080s	coverage: 61.5% of statements
+=== RUN   TestOrdinaryCommitAdvances
+--- PASS: TestOrdinaryCommitAdvances (0.00s)
+=== RUN   TestEmergencyCannotEnterOrdinaryCommit
+--- PASS: TestEmergencyCannotEnterOrdinaryCommit (0.00s)
+=== RUN   TestUnknownTransitionIsRejected
+--- PASS: TestUnknownTransitionIsRejected (0.00s)
+PASS
+coverage: 76.5% of statements
+ok  	atlas/internal/hitl/state	1.094s	coverage: 76.5% of statements
+=== RUN   TestManifestIsSyntheticAndDated
+--- PASS: TestManifestIsSyntheticAndDated (0.00s)
+PASS
+coverage: [no statements]
+ok  	atlas/internal/terminology	1.077s	coverage: [no statements]
+=== RUN   TestValidateFormVersionRequest_Valid
+--- PASS: TestValidateFormVersionRequest_Valid (0.00s)
+=== RUN   TestValidateFormVersionRequest_MissingFormID
+--- PASS: TestValidateFormVersionRequest_MissingFormID (0.00s)
+=== RUN   TestValidateFormVersionRequest_InvalidVersion
+--- PASS: TestValidateFormVersionRequest_InvalidVersion (0.00s)
+=== RUN   TestValidateFormVersionRequest_NonSynthetic
+--- PASS: TestValidateFormVersionRequest_NonSynthetic (0.00s)
+=== RUN   TestValidateFormVersionRequest_MissingActorID
+--- PASS: TestValidateFormVersionRequest_MissingActorID (0.00s)
+=== RUN   TestValidateSchema_Valid
+--- PASS: TestValidateSchema_Valid (0.00s)
+=== RUN   TestValidateSchema_MissingFields
+--- PASS: TestValidateSchema_MissingFields (0.00s)
+=== RUN   TestValidateSchema_InvalidTerminology
+--- PASS: TestValidateSchema_InvalidTerminology (0.00s)
+=== RUN   TestValidateSchema_MissingFieldName
+--- PASS: TestValidateSchema_MissingFieldName (0.00s)
+=== RUN   TestCreateFormVersion_Success
+--- PASS: TestCreateFormVersion_Success (0.00s)
+=== RUN   TestCreateFormVersion_Idempotent
+--- PASS: TestCreateFormVersion_Idempotent (0.00s)
+=== RUN   TestCreateFormVersion_VersionConflict
+--- PASS: TestCreateFormVersion_VersionConflict (0.00s)
+=== RUN   TestRetrieveFormVersion_Success
+--- PASS: TestRetrieveFormVersion_Success (0.00s)
+=== RUN   TestRetrieveFormVersion_NotFound
+--- PASS: TestRetrieveFormVersion_NotFound (0.00s)
+=== RUN   TestCheckHumanAdoptionBoundary_RequiresReview
+--- PASS: TestCheckHumanAdoptionBoundary_RequiresReview (0.00s)
+=== RUN   TestCheckHumanAdoptionBoundary_SyntheticAllowed
+--- PASS: TestCheckHumanAdoptionBoundary_SyntheticAllowed (0.00s)
+=== RUN   TestGenerateVersionID_Unique
+--- PASS: TestGenerateVersionID_Unique (0.00s)
+=== RUN   TestValidateSchema_InvalidJSON
+--- PASS: TestValidateSchema_InvalidJSON (0.00s)
+=== RUN   TestValidateSchema_FieldsNotArray
+--- PASS: TestValidateSchema_FieldsNotArray (0.00s)
+=== RUN   TestValidateSchema_MissingFieldType
+--- PASS: TestValidateSchema_MissingFieldType (0.00s)
+=== RUN   TestValidateFormVersionRequest_InvalidSchemaJSON
+--- PASS: TestValidateFormVersionRequest_InvalidSchemaJSON (0.00s)
+=== RUN   TestValidateFormVersionRequest_MissingIdempotencyKey
+--- PASS: TestValidateFormVersionRequest_MissingIdempotencyKey (0.00s)
+=== RUN   TestValidateFormVersionRequest_MissingReason
+--- PASS: TestValidateFormVersionRequest_MissingReason (0.00s)
+=== RUN   TestIsValidTerminology
+--- PASS: TestIsValidTerminology (0.00s)
+=== RUN   TestCheckIdempotency
+--- PASS: TestCheckIdempotency (0.00s)
+=== RUN   TestValidateRequiredFieldRequest
+=== RUN   TestValidateRequiredFieldRequest/valid_request
+=== RUN   TestValidateRequiredFieldRequest/missing_form_id
+=== RUN   TestValidateRequiredFieldRequest/missing_submission_id
+=== RUN   TestValidateRequiredFieldRequest/non-synthetic_request
+--- PASS: TestValidateRequiredFieldRequest (0.00s)
+    --- PASS: TestValidateRequiredFieldRequest/valid_request (0.00s)
+    --- PASS: TestValidateRequiredFieldRequest/missing_form_id (0.00s)
+    --- PASS: TestValidateRequiredFieldRequest/missing_submission_id (0.00s)
+    --- PASS: TestValidateRequiredFieldRequest/non-synthetic_request (0.00s)
+=== RUN   TestParseSchema
+=== RUN   TestParseSchema/valid_schema
+=== RUN   TestParseSchema/empty_fields
+=== RUN   TestParseSchema/invalid_json
+=== RUN   TestParseSchema/duplicate_field_names
+=== RUN   TestParseSchema/valid_conditional
+=== RUN   TestParseSchema/invalid_conditional_operator
+--- PASS: TestParseSchema (0.00s)
+    --- PASS: TestParseSchema/valid_schema (0.00s)
+    --- PASS: TestParseSchema/empty_fields (0.00s)
+    --- PASS: TestParseSchema/invalid_json (0.00s)
+    --- PASS: TestParseSchema/duplicate_field_names (0.00s)
+    --- PASS: TestParseSchema/valid_conditional (0.00s)
+    --- PASS: TestParseSchema/invalid_conditional_operator (0.00s)
+=== RUN   TestValidateRequiredFields
+=== RUN   TestValidateRequiredFields/all_required_present
+=== RUN   TestValidateRequiredFields/missing_one_required
+=== RUN   TestValidateRequiredFields/missing_all_required
+=== RUN   TestValidateRequiredFields/empty_value_treated_as_missing
+--- PASS: TestValidateRequiredFields (0.00s)
+    --- PASS: TestValidateRequiredFields/all_required_present (0.00s)
+    --- PASS: TestValidateRequiredFields/missing_one_required (0.00s)
+    --- PASS: TestValidateRequiredFields/missing_all_required (0.00s)
+    --- PASS: TestValidateRequiredFields/empty_value_treated_as_missing (0.00s)
+=== RUN   TestEvaluateConditional
+=== RUN   TestEvaluateConditional/eq_operator_true
+=== RUN   TestEvaluateConditional/eq_operator_false
+=== RUN   TestEvaluateConditional/ne_operator_true
+=== RUN   TestEvaluateConditional/contains_operator_true
+=== RUN   TestEvaluateConditional/missing_dependent_field
+--- PASS: TestEvaluateConditional (0.00s)
+    --- PASS: TestEvaluateConditional/eq_operator_true (0.00s)
+    --- PASS: TestEvaluateConditional/eq_operator_false (0.00s)
+    --- PASS: TestEvaluateConditional/ne_operator_true (0.00s)
+    --- PASS: TestEvaluateConditional/contains_operator_true (0.00s)
+    --- PASS: TestEvaluateConditional/missing_dependent_field (0.00s)
+=== RUN   TestValidateConditionalFields
+=== RUN   TestValidateConditionalFields/all_conditionals_satisfied
+=== RUN   TestValidateConditionalFields/missing_conditional_field
+=== RUN   TestValidateConditionalFields/conditional_not_triggered
+=== RUN   TestValidateConditionalFields/multiple_conditionals_missing
+--- PASS: TestValidateConditionalFields (0.00s)
+    --- PASS: TestValidateConditionalFields/all_conditionals_satisfied (0.00s)
+    --- PASS: TestValidateConditionalFields/missing_conditional_field (0.00s)
+    --- PASS: TestValidateConditionalFields/conditional_not_triggered (0.00s)
+    --- PASS: TestValidateConditionalFields/multiple_conditionals_missing (0.00s)
+=== RUN   TestValidateRequiredFieldSubmission
+=== RUN   TestValidateRequiredFieldSubmission/valid_submission
+=== RUN   TestValidateRequiredFieldSubmission/missing_required_field
+=== RUN   TestValidateRequiredFieldSubmission/missing_conditional_field
+=== RUN   TestValidateRequiredFieldSubmission/idempotent_request
+--- PASS: TestValidateRequiredFieldSubmission (0.00s)
+    --- PASS: TestValidateRequiredFieldSubmission/valid_submission (0.00s)
+    --- PASS: TestValidateRequiredFieldSubmission/missing_required_field (0.00s)
+    --- PASS: TestValidateRequiredFieldSubmission/missing_conditional_field (0.00s)
+    --- PASS: TestValidateRequiredFieldSubmission/idempotent_request (0.00s)
+=== RUN   TestRetrieveValidation
+=== RUN   TestRetrieveValidation/existing_validation
+=== RUN   TestRetrieveValidation/non-existent_validation
+--- PASS: TestRetrieveValidation (0.00s)
+    --- PASS: TestRetrieveValidation/existing_validation (0.00s)
+    --- PASS: TestRetrieveValidation/non-existent_validation (0.00s)
+=== RUN   TestGenerateValidationID
+--- PASS: TestGenerateValidationID (0.00s)
+=== RUN   TestValidateSignatureRequest
+=== RUN   TestValidateSignatureRequest/missing_form_ID
+=== RUN   TestValidateSignatureRequest/short_signature_hash
+=== RUN   TestValidateSignatureRequest/invalid_timestamp_format
+--- PASS: TestValidateSignatureRequest (0.00s)
+    --- PASS: TestValidateSignatureRequest/missing_form_ID (0.00s)
+    --- PASS: TestValidateSignatureRequest/short_signature_hash (0.00s)
+    --- PASS: TestValidateSignatureRequest/invalid_timestamp_format (0.00s)
+=== RUN   TestIsHex
+--- PASS: TestIsHex (0.00s)
+=== RUN   TestValidateSignatureIntegrity
+--- PASS: TestValidateSignatureIntegrity (0.00s)
+=== RUN   TestCheckSignatureHumanAdoptionBoundary
+--- PASS: TestCheckSignatureHumanAdoptionBoundary (0.00s)
+=== RUN   TestGenerateSignatureID
+--- PASS: TestGenerateSignatureID (0.01s)
+=== RUN   TestCheckSignatureIdempotency
+--- PASS: TestCheckSignatureIdempotency (0.00s)
+=== RUN   TestCreateSignature
+--- PASS: TestCreateSignature (0.00s)
+=== RUN   TestCreateSignature_NonSynthetic
+--- PASS: TestCreateSignature_NonSynthetic (0.00s)
+=== RUN   TestRetrieveSignature
+--- PASS: TestRetrieveSignature (0.00s)
+=== RUN   TestValidateSignerAuthorization
+--- PASS: TestValidateSignerAuthorization (0.00s)
+=== RUN   TestValidateAttachmentRequest
+=== RUN   TestValidateAttachmentRequest/valid_request
+=== RUN   TestValidateAttachmentRequest/missing_form_id
+=== RUN   TestValidateAttachmentRequest/invalid_checksum_length
+--- PASS: TestValidateAttachmentRequest (0.00s)
+    --- PASS: TestValidateAttachmentRequest/valid_request (0.00s)
+    --- PASS: TestValidateAttachmentRequest/missing_form_id (0.00s)
+    --- PASS: TestValidateAttachmentRequest/invalid_checksum_length (0.00s)
+=== RUN   TestValidateMimeType
+=== RUN   TestValidateMimeType/allowed_pdf
+=== RUN   TestValidateMimeType/allowed_jpeg
+=== RUN   TestValidateMimeType/allowed_png
+=== RUN   TestValidateMimeType/allowed_text
+=== RUN   TestValidateMimeType/allowed_json
+=== RUN   TestValidateMimeType/not_allowed_executable
+=== RUN   TestValidateMimeType/not_allowed_script
+--- PASS: TestValidateMimeType (0.00s)
+    --- PASS: TestValidateMimeType/allowed_pdf (0.00s)
+    --- PASS: TestValidateMimeType/allowed_jpeg (0.00s)
+    --- PASS: TestValidateMimeType/allowed_png (0.00s)
+    --- PASS: TestValidateMimeType/allowed_text (0.00s)
+    --- PASS: TestValidateMimeType/allowed_json (0.00s)
+    --- PASS: TestValidateMimeType/not_allowed_executable (0.00s)
+    --- PASS: TestValidateMimeType/not_allowed_script (0.00s)
+=== RUN   TestValidateFileSize
+=== RUN   TestValidateFileSize/within_limit_1KB
+=== RUN   TestValidateFileSize/within_limit_5MB
+=== RUN   TestValidateFileSize/at_limit_10MB
+=== RUN   TestValidateFileSize/exceeds_limit
+=== RUN   TestValidateFileSize/far_exceeds_limit
+--- PASS: TestValidateFileSize (0.00s)
+    --- PASS: TestValidateFileSize/within_limit_1KB (0.00s)
+    --- PASS: TestValidateFileSize/within_limit_5MB (0.00s)
+    --- PASS: TestValidateFileSize/at_limit_10MB (0.00s)
+    --- PASS: TestValidateFileSize/exceeds_limit (0.00s)
+    --- PASS: TestValidateFileSize/far_exceeds_limit (0.00s)
+=== RUN   TestValidateChecksum
+=== RUN   TestValidateChecksum/valid_lowercase_hex
+=== RUN   TestValidateChecksum/valid_uppercase_hex
+=== RUN   TestValidateChecksum/valid_mixed_case
+=== RUN   TestValidateChecksum/too_short
+=== RUN   TestValidateChecksum/contains_non-hex
+--- PASS: TestValidateChecksum (0.00s)
+    --- PASS: TestValidateChecksum/valid_lowercase_hex (0.00s)
+    --- PASS: TestValidateChecksum/valid_uppercase_hex (0.00s)
+    --- PASS: TestValidateChecksum/valid_mixed_case (0.00s)
+    --- PASS: TestValidateChecksum/too_short (0.00s)
+    --- PASS: TestValidateChecksum/contains_non-hex (0.00s)
+=== RUN   TestValidateFilename
+=== RUN   TestValidateFilename/simple_pdf
+=== RUN   TestValidateFilename/with_spaces
+=== RUN   TestValidateFilename/with_subdirectory
+=== RUN   TestValidateFilename/absolute_unix
+=== RUN   TestValidateFilename/executable_extension
+=== RUN   TestValidateFilename/batch_file
+=== RUN   TestValidateFilename/command_file
+=== RUN   TestValidateFilename/path_traversal_dotdot
+=== RUN   TestValidateFilename/path_traversal_middle
+=== RUN   TestValidateFilename/absolute_windows
+=== RUN   TestValidateFilename/shell_script
+=== RUN   TestValidateFilename/powershell
+--- PASS: TestValidateFilename (0.00s)
+    --- PASS: TestValidateFilename/simple_pdf (0.00s)
+    --- PASS: TestValidateFilename/with_spaces (0.00s)
+    --- PASS: TestValidateFilename/with_subdirectory (0.00s)
+    --- PASS: TestValidateFilename/absolute_unix (0.00s)
+    --- PASS: TestValidateFilename/executable_extension (0.00s)
+    --- PASS: TestValidateFilename/batch_file (0.00s)
+    --- PASS: TestValidateFilename/command_file (0.00s)
+    --- PASS: TestValidateFilename/path_traversal_dotdot (0.00s)
+    --- PASS: TestValidateFilename/path_traversal_middle (0.00s)
+    --- PASS: TestValidateFilename/absolute_windows (0.00s)
+    --- PASS: TestValidateFilename/shell_script (0.00s)
+    --- PASS: TestValidateFilename/powershell (0.00s)
+=== RUN   TestCheckValidationHumanAdoptionBoundary
+=== RUN   TestCheckValidationHumanAdoptionBoundary/synthetic_allowed
+=== RUN   TestCheckValidationHumanAdoptionBoundary/non-synthetic_blocked
+--- PASS: TestCheckValidationHumanAdoptionBoundary (0.00s)
+    --- PASS: TestCheckValidationHumanAdoptionBoundary/synthetic_allowed (0.00s)
+    --- PASS: TestCheckValidationHumanAdoptionBoundary/non-synthetic_blocked (0.00s)
+=== RUN   TestGenerateAttachmentValidationID
+--- PASS: TestGenerateAttachmentValidationID (0.00s)
+=== RUN   TestValidateAttachment
+=== RUN   TestValidateAttachment/valid_attachment
+=== RUN   TestValidateAttachment/invalid_mime_type
+=== RUN   TestValidateAttachment/non-synthetic_blocked
+--- PASS: TestValidateAttachment (0.00s)
+    --- PASS: TestValidateAttachment/valid_attachment (0.00s)
+    --- PASS: TestValidateAttachment/invalid_mime_type (0.00s)
+    --- PASS: TestValidateAttachment/non-synthetic_blocked (0.00s)
+=== RUN   TestValidateAttachmentIdempotency
+--- PASS: TestValidateAttachmentIdempotency (0.00s)
+=== RUN   TestRetrieveAttachmentValidation
+--- PASS: TestRetrieveAttachmentValidation (0.00s)
+=== RUN   TestRetrieveAttachmentValidationNotFound
+--- PASS: TestRetrieveAttachmentValidationNotFound (0.00s)
+=== RUN   TestValidateDraftRecoveryRequest
+=== RUN   TestValidateDraftRecoveryRequest/valid_save_request
+=== RUN   TestValidateDraftRecoveryRequest/missing_form_id
+=== RUN   TestValidateDraftRecoveryRequest/non-synthetic
+=== RUN   TestValidateDraftRecoveryRequest/invalid_operation
+=== RUN   TestValidateDraftRecoveryRequest/save_without_draft_data
+=== RUN   TestValidateDraftRecoveryRequest/recover_without_draft_id
+--- PASS: TestValidateDraftRecoveryRequest (0.00s)
+    --- PASS: TestValidateDraftRecoveryRequest/valid_save_request (0.00s)
+    --- PASS: TestValidateDraftRecoveryRequest/missing_form_id (0.00s)
+    --- PASS: TestValidateDraftRecoveryRequest/non-synthetic (0.00s)
+    --- PASS: TestValidateDraftRecoveryRequest/invalid_operation (0.00s)
+    --- PASS: TestValidateDraftRecoveryRequest/save_without_draft_data (0.00s)
+    --- PASS: TestValidateDraftRecoveryRequest/recover_without_draft_id (0.00s)
+=== RUN   TestValidateDraftID
+=== RUN   TestValidateDraftID/valid_draft_id
+=== RUN   TestValidateDraftID/empty_draft_id
+=== RUN   TestValidateDraftID/invalid_format
+=== RUN   TestValidateDraftID/too_short
+--- PASS: TestValidateDraftID (0.00s)
+    --- PASS: TestValidateDraftID/valid_draft_id (0.00s)
+    --- PASS: TestValidateDraftID/empty_draft_id (0.00s)
+    --- PASS: TestValidateDraftID/invalid_format (0.00s)
+    --- PASS: TestValidateDraftID/too_short (0.00s)
+=== RUN   TestValidateDraftData
+=== RUN   TestValidateDraftData/valid_draft_data
+=== RUN   TestValidateDraftData/empty_draft_data
+=== RUN   TestValidateDraftData/prohibited_key_name
+=== RUN   TestValidateDraftData/prohibited_PHI_key_rejection
+--- PASS: TestValidateDraftData (0.00s)
+    --- PASS: TestValidateDraftData/valid_draft_data (0.00s)
+    --- PASS: TestValidateDraftData/empty_draft_data (0.00s)
+    --- PASS: TestValidateDraftData/prohibited_key_name (0.00s)
+    --- PASS: TestValidateDraftData/prohibited_PHI_key_rejection (0.00s)
+=== RUN   TestCalculateDraftChecksum
+=== RUN   TestCalculateDraftChecksum/valid_checksum_calculation
+=== RUN   TestCalculateDraftChecksum/empty_data
+--- PASS: TestCalculateDraftChecksum (0.00s)
+    --- PASS: TestCalculateDraftChecksum/valid_checksum_calculation (0.00s)
+    --- PASS: TestCalculateDraftChecksum/empty_data (0.00s)
+=== RUN   TestGenerateDraftID
+--- PASS: TestGenerateDraftID (0.00s)
+=== RUN   TestSaveDraft
+--- PASS: TestSaveDraft (0.00s)
+=== RUN   TestRecoverDraft
+--- PASS: TestRecoverDraft (0.00s)
+=== RUN   TestDiscardDraft
+--- PASS: TestDiscardDraft (0.00s)
+=== RUN   TestProcessDraftRecovery
+--- PASS: TestProcessDraftRecovery (0.00s)
+=== RUN   TestDraftAccessControl
+--- PASS: TestDraftAccessControl (0.00s)
+=== RUN   TestValidateSubmissionRequest
+--- PASS: TestValidateSubmissionRequest (0.00s)
+=== RUN   TestValidateSubmissionID
+--- PASS: TestValidateSubmissionID (0.00s)
+=== RUN   TestCalculateSubmissionChecksum
+--- PASS: TestCalculateSubmissionChecksum (0.00s)
+=== RUN   TestGenerateSubmissionID
+--- PASS: TestGenerateSubmissionID (0.00s)
+=== RUN   TestSubmitForm
+--- PASS: TestSubmitForm (0.00s)
+=== RUN   TestUpdateSubmission
+--- PASS: TestUpdateSubmission (0.00s)
+=== RUN   TestWithdrawSubmission
+--- PASS: TestWithdrawSubmission (0.00s)
+=== RUN   TestSubmissionAccessControl
+--- PASS: TestSubmissionAccessControl (0.00s)
+=== RUN   TestProcessSubmission
+--- PASS: TestProcessSubmission (0.00s)
+=== RUN   TestSubmissionFieldLimit
+--- PASS: TestSubmissionFieldLimit (0.00s)
+=== RUN   TestValidateRevocationRequest
+=== RUN   TestValidateRevocationRequest/nil_request
+=== RUN   TestValidateRevocationRequest/non-synthetic_rejected
+=== RUN   TestValidateRevocationRequest/invalid_submission_ID
+=== RUN   TestValidateRevocationRequest/empty_revoked-by
+=== RUN   TestValidateRevocationRequest/reason_too_short
+=== RUN   TestValidateRevocationRequest/zero_timestamp
+=== RUN   TestValidateRevocationRequest/empty_actor_ID
+=== RUN   TestValidateRevocationRequest/empty_idempotency_key
+=== RUN   TestValidateRevocationRequest/prohibited_metadata_key_rejected
+=== RUN   TestValidateRevocationRequest/valid_revocation_request
+--- PASS: TestValidateRevocationRequest (0.00s)
+    --- PASS: TestValidateRevocationRequest/nil_request (0.00s)
+    --- PASS: TestValidateRevocationRequest/non-synthetic_rejected (0.00s)
+    --- PASS: TestValidateRevocationRequest/invalid_submission_ID (0.00s)
+    --- PASS: TestValidateRevocationRequest/empty_revoked-by (0.00s)
+    --- PASS: TestValidateRevocationRequest/reason_too_short (0.00s)
+    --- PASS: TestValidateRevocationRequest/zero_timestamp (0.00s)
+    --- PASS: TestValidateRevocationRequest/empty_actor_ID (0.00s)
+    --- PASS: TestValidateRevocationRequest/empty_idempotency_key (0.00s)
+    --- PASS: TestValidateRevocationRequest/prohibited_metadata_key_rejected (0.00s)
+    --- PASS: TestValidateRevocationRequest/valid_revocation_request (0.00s)
+=== RUN   TestValidateRevocationReason
+=== RUN   TestValidateRevocationReason/too_short
+=== RUN   TestValidateRevocationReason/minimum_length
+=== RUN   TestValidateRevocationReason/normal_length
+=== RUN   TestValidateRevocationReason/maximum_length
+=== RUN   TestValidateRevocationReason/too_long
+--- PASS: TestValidateRevocationReason (0.00s)
+    --- PASS: TestValidateRevocationReason/too_short (0.00s)
+    --- PASS: TestValidateRevocationReason/minimum_length (0.00s)
+    --- PASS: TestValidateRevocationReason/normal_length (0.00s)
+    --- PASS: TestValidateRevocationReason/maximum_length (0.00s)
+    --- PASS: TestValidateRevocationReason/too_long (0.00s)
+=== RUN   TestValidateRevocationID
+=== RUN   TestValidateRevocationID/valid_ID
+=== RUN   TestValidateRevocationID/lowercase_rejected
+=== RUN   TestValidateRevocationID/wrong_prefix
+=== RUN   TestValidateRevocationID/too_short
+=== RUN   TestValidateRevocationID/too_long
+=== RUN   TestValidateRevocationID/empty_string
+--- PASS: TestValidateRevocationID (0.00s)
+    --- PASS: TestValidateRevocationID/valid_ID (0.00s)
+    --- PASS: TestValidateRevocationID/lowercase_rejected (0.00s)
+    --- PASS: TestValidateRevocationID/wrong_prefix (0.00s)
+    --- PASS: TestValidateRevocationID/too_short (0.00s)
+    --- PASS: TestValidateRevocationID/too_long (0.00s)
+    --- PASS: TestValidateRevocationID/empty_string (0.00s)
+=== RUN   TestGenerateRevocationID
+--- PASS: TestGenerateRevocationID (0.00s)
+=== RUN   TestRevokeSubmission
+--- PASS: TestRevokeSubmission (0.00s)
+=== RUN   TestRevokeSubmissionIdempotency
+--- PASS: TestRevokeSubmissionIdempotency (0.00s)
+=== RUN   TestRevokeSubmissionNotFound
+--- PASS: TestRevokeSubmissionNotFound (0.00s)
+=== RUN   TestRevokeSubmissionAlreadyRevoked
+--- PASS: TestRevokeSubmissionAlreadyRevoked (0.00s)
+=== RUN   TestRevokeSubmissionInvalidStatus
+--- PASS: TestRevokeSubmissionInvalidStatus (0.00s)
+=== RUN   TestGetRevocation
+--- PASS: TestGetRevocation (0.00s)
+=== RUN   TestProcessRevocation
+--- PASS: TestProcessRevocation (0.00s)
+=== RUN   TestValidatePrintRenderRequest
+=== RUN   TestValidatePrintRenderRequest/nil_request
+=== RUN   TestValidatePrintRenderRequest/missing_synthetic_flag
+=== RUN   TestValidatePrintRenderRequest/missing_form_ID
+=== RUN   TestValidatePrintRenderRequest/missing_submission_ID
+=== RUN   TestValidatePrintRenderRequest/missing_template
+=== RUN   TestValidatePrintRenderRequest/missing_format
+=== RUN   TestValidatePrintRenderRequest/invalid_format
+=== RUN   TestValidatePrintRenderRequest/missing_rendered_by
+=== RUN   TestValidatePrintRenderRequest/missing_actor_ID
+=== RUN   TestValidatePrintRenderRequest/missing_idempotency_key
+=== RUN   TestValidatePrintRenderRequest/valid_request
+--- PASS: TestValidatePrintRenderRequest (0.00s)
+    --- PASS: TestValidatePrintRenderRequest/nil_request (0.00s)
+    --- PASS: TestValidatePrintRenderRequest/missing_synthetic_flag (0.00s)
+    --- PASS: TestValidatePrintRenderRequest/missing_form_ID (0.00s)
+    --- PASS: TestValidatePrintRenderRequest/missing_submission_ID (0.00s)
+    --- PASS: TestValidatePrintRenderRequest/missing_template (0.00s)
+    --- PASS: TestValidatePrintRenderRequest/missing_format (0.00s)
+    --- PASS: TestValidatePrintRenderRequest/invalid_format (0.00s)
+    --- PASS: TestValidatePrintRenderRequest/missing_rendered_by (0.00s)
+    --- PASS: TestValidatePrintRenderRequest/missing_actor_ID (0.00s)
+    --- PASS: TestValidatePrintRenderRequest/missing_idempotency_key (0.00s)
+    --- PASS: TestValidatePrintRenderRequest/valid_request (0.00s)
+=== RUN   TestValidateRenderFormat
+=== RUN   TestValidateRenderFormat/empty_format
+=== RUN   TestValidateRenderFormat/invalid_format
+=== RUN   TestValidateRenderFormat/valid_pdf_format
+=== RUN   TestValidateRenderFormat/valid_html_format
+=== RUN   TestValidateRenderFormat/valid_docx_format
+=== RUN   TestValidateRenderFormat/case_insensitive_pdf
+--- PASS: TestValidateRenderFormat (0.00s)
+    --- PASS: TestValidateRenderFormat/empty_format (0.00s)
+    --- PASS: TestValidateRenderFormat/invalid_format (0.00s)
+    --- PASS: TestValidateRenderFormat/valid_pdf_format (0.00s)
+    --- PASS: TestValidateRenderFormat/valid_html_format (0.00s)
+    --- PASS: TestValidateRenderFormat/valid_docx_format (0.00s)
+    --- PASS: TestValidateRenderFormat/case_insensitive_pdf (0.00s)
+=== RUN   TestValidateRenderOptions
+=== RUN   TestValidateRenderOptions/nil_options
+=== RUN   TestValidateRenderOptions/empty_options
+=== RUN   TestValidateRenderOptions/valid_options
+=== RUN   TestValidateRenderOptions/prohibited_PHI_key_rejection
+--- PASS: TestValidateRenderOptions (0.00s)
+    --- PASS: TestValidateRenderOptions/nil_options (0.00s)
+    --- PASS: TestValidateRenderOptions/empty_options (0.00s)
+    --- PASS: TestValidateRenderOptions/valid_options (0.00s)
+    --- PASS: TestValidateRenderOptions/prohibited_PHI_key_rejection (0.00s)
+=== RUN   TestValidateRenderID
+=== RUN   TestValidateRenderID/empty_render_ID
+=== RUN   TestValidateRenderID/invalid_prefix
+=== RUN   TestValidateRenderID/invalid_length
+=== RUN   TestValidateRenderID/valid_render_ID
+--- PASS: TestValidateRenderID (0.00s)
+    --- PASS: TestValidateRenderID/empty_render_ID (0.00s)
+    --- PASS: TestValidateRenderID/invalid_prefix (0.00s)
+    --- PASS: TestValidateRenderID/invalid_length (0.00s)
+    --- PASS: TestValidateRenderID/valid_render_ID (0.00s)
+=== RUN   TestGenerateRenderID
+--- PASS: TestGenerateRenderID (0.00s)
+=== RUN   TestCalculateRenderChecksum
+--- PASS: TestCalculateRenderChecksum (0.00s)
+=== RUN   TestRenderForm
+--- PASS: TestRenderForm (0.00s)
+=== RUN   TestRenderFormIdempotency
+--- PASS: TestRenderFormIdempotency (0.00s)
+=== RUN   TestGetRender
+--- PASS: TestGetRender (0.00s)
+=== RUN   TestGetRenderNotFound
+--- PASS: TestGetRenderNotFound (0.00s)
+=== RUN   TestDeleteRender
+--- PASS: TestDeleteRender (0.00s)
+=== RUN   TestDeleteRenderUnauthorized
+--- PASS: TestDeleteRenderUnauthorized (0.00s)
+=== RUN   TestProcessPrintRender
+--- PASS: TestProcessPrintRender (0.00s)
+=== RUN   TestStoreOfflineCache_Success
+--- PASS: TestStoreOfflineCache_Success (0.00s)
+=== RUN   TestStoreOfflineCache_NilRequest
+--- PASS: TestStoreOfflineCache_NilRequest (0.00s)
+=== RUN   TestStoreOfflineCache_SyntheticRequired
+--- PASS: TestStoreOfflineCache_SyntheticRequired (0.00s)
+=== RUN   TestStoreOfflineCache_FormIDEmpty
+--- PASS: TestStoreOfflineCache_FormIDEmpty (0.00s)
+=== RUN   TestStoreOfflineCache_CacheKeyEmpty
+--- PASS: TestStoreOfflineCache_CacheKeyEmpty (0.00s)
+=== RUN   TestStoreOfflineCache_DataHashEmpty
+--- PASS: TestStoreOfflineCache_DataHashEmpty (0.00s)
+=== RUN   TestStoreOfflineCache_DataHashInvalid
+--- PASS: TestStoreOfflineCache_DataHashInvalid (0.00s)
+=== RUN   TestStoreOfflineCache_EncryptedDataEmpty
+--- PASS: TestStoreOfflineCache_EncryptedDataEmpty (0.00s)
+=== RUN   TestStoreOfflineCache_TTLInvalid
+=== RUN   TestStoreOfflineCache_TTLInvalid/zero_TTL
+=== RUN   TestStoreOfflineCache_TTLInvalid/negative_TTL
+=== RUN   TestStoreOfflineCache_TTLInvalid/exceeds_maximum
+--- PASS: TestStoreOfflineCache_TTLInvalid (0.00s)
+    --- PASS: TestStoreOfflineCache_TTLInvalid/zero_TTL (0.00s)
+    --- PASS: TestStoreOfflineCache_TTLInvalid/negative_TTL (0.00s)
+    --- PASS: TestStoreOfflineCache_TTLInvalid/exceeds_maximum (0.00s)
+=== RUN   TestStoreOfflineCache_IdempotencyRequired
+--- PASS: TestStoreOfflineCache_IdempotencyRequired (0.00s)
+=== RUN   TestStoreOfflineCache_PHIPatternDetected
+=== RUN   TestStoreOfflineCache_PHIPatternDetected/patient-id-key
+=== RUN   TestStoreOfflineCache_PHIPatternDetected/cache-name-field
+=== RUN   TestStoreOfflineCache_PHIPatternDetected/user-phone-cache
+=== RUN   TestStoreOfflineCache_PHIPatternDetected/address-cache-key
+=== RUN   TestStoreOfflineCache_PHIPatternDetected/birth-date-field
+=== RUN   TestStoreOfflineCache_PHIPatternDetected/ssn-identifier
+=== RUN   TestStoreOfflineCache_PHIPatternDetected/email-field
+--- PASS: TestStoreOfflineCache_PHIPatternDetected (0.00s)
+    --- PASS: TestStoreOfflineCache_PHIPatternDetected/patient-id-key (0.00s)
+    --- PASS: TestStoreOfflineCache_PHIPatternDetected/cache-name-field (0.00s)
+    --- PASS: TestStoreOfflineCache_PHIPatternDetected/user-phone-cache (0.00s)
+    --- PASS: TestStoreOfflineCache_PHIPatternDetected/address-cache-key (0.00s)
+    --- PASS: TestStoreOfflineCache_PHIPatternDetected/birth-date-field (0.00s)
+    --- PASS: TestStoreOfflineCache_PHIPatternDetected/ssn-identifier (0.00s)
+    --- PASS: TestStoreOfflineCache_PHIPatternDetected/email-field (0.00s)
+=== RUN   TestStoreOfflineCache_Idempotency
+--- PASS: TestStoreOfflineCache_Idempotency (0.00s)
+=== RUN   TestRetrieveOfflineCache_Success
+--- PASS: TestRetrieveOfflineCache_Success (0.00s)
+=== RUN   TestRetrieveOfflineCache_NilRequest
+--- PASS: TestRetrieveOfflineCache_NilRequest (0.00s)
+=== RUN   TestRetrieveOfflineCache_SyntheticRequired
+--- PASS: TestRetrieveOfflineCache_SyntheticRequired (0.00s)
+=== RUN   TestRetrieveOfflineCache_IDEmpty
+--- PASS: TestRetrieveOfflineCache_IDEmpty (0.00s)
+=== RUN   TestRetrieveOfflineCache_KeyEmpty
+--- PASS: TestRetrieveOfflineCache_KeyEmpty (0.00s)
+=== RUN   TestRetrieveOfflineCache_NotFound
+--- PASS: TestRetrieveOfflineCache_NotFound (0.00s)
+=== RUN   TestRetrieveOfflineCache_Expired
+--- PASS: TestRetrieveOfflineCache_Expired (0.00s)
+=== RUN   TestInvalidateOfflineCache_Success
+--- PASS: TestInvalidateOfflineCache_Success (0.00s)
+=== RUN   TestInvalidateOfflineCache_SyntheticRequired
+--- PASS: TestInvalidateOfflineCache_SyntheticRequired (0.00s)
+=== RUN   TestInvalidateOfflineCache_IDEmpty
+--- PASS: TestInvalidateOfflineCache_IDEmpty (0.00s)
+=== RUN   TestInvalidateOfflineCache_NotFound
+--- PASS: TestInvalidateOfflineCache_NotFound (0.00s)
+=== RUN   TestListExpiredCaches_Success
+--- PASS: TestListExpiredCaches_Success (0.00s)
+=== RUN   TestListExpiredCaches_SyntheticRequired
+--- PASS: TestListExpiredCaches_SyntheticRequired (0.00s)
+=== RUN   TestCleanupExpiredCaches_Success
+--- PASS: TestCleanupExpiredCaches_Success (0.00s)
+=== RUN   TestCleanupExpiredCaches_SyntheticRequired
+--- PASS: TestCleanupExpiredCaches_SyntheticRequired (0.00s)
+=== RUN   TestValidateCacheIntegrity_Success
+--- PASS: TestValidateCacheIntegrity_Success (0.00s)
+=== RUN   TestValidateCacheIntegrity_SyntheticRequired
+--- PASS: TestValidateCacheIntegrity_SyntheticRequired (0.00s)
+=== RUN   TestValidateCacheIntegrity_IDEmpty
+--- PASS: TestValidateCacheIntegrity_IDEmpty (0.00s)
+=== RUN   TestValidateCacheIntegrity_HashEmpty
+--- PASS: TestValidateCacheIntegrity_HashEmpty (0.00s)
+=== RUN   TestValidateCacheIntegrity_NotFound
+--- PASS: TestValidateCacheIntegrity_NotFound (0.00s)
+=== RUN   TestValidateSyntheticFormRequest_Valid
+--- PASS: TestValidateSyntheticFormRequest_Valid (0.00s)
+=== RUN   TestValidateSyntheticFormRequest_NilRequest
+--- PASS: TestValidateSyntheticFormRequest_NilRequest (0.00s)
+=== RUN   TestValidateSyntheticFormRequest_EmptyFormID
+--- PASS: TestValidateSyntheticFormRequest_EmptyFormID (0.00s)
+=== RUN   TestValidateSyntheticFormRequest_EmptyFormType
+--- PASS: TestValidateSyntheticFormRequest_EmptyFormType (0.00s)
+=== RUN   TestValidateSyntheticFormRequest_NotSynthetic
+--- PASS: TestValidateSyntheticFormRequest_NotSynthetic (0.00s)
+=== RUN   TestValidateSyntheticFormRequest_EmptyIdempotencyKey
+--- PASS: TestValidateSyntheticFormRequest_EmptyIdempotencyKey (0.00s)
+=== RUN   TestValidateSyntheticFormRequest_ShortIdempotencyKey
+--- PASS: TestValidateSyntheticFormRequest_ShortIdempotencyKey (0.00s)
+=== RUN   TestValidateSyntheticFormRequest_EmptySeed
+--- PASS: TestValidateSyntheticFormRequest_EmptySeed (0.00s)
+=== RUN   TestValidateSyntheticFormRequest_EmptyFieldSpec
+--- PASS: TestValidateSyntheticFormRequest_EmptyFieldSpec (0.00s)
+=== RUN   TestValidateSyntheticFormRequest_PHIPatternDetected
+--- PASS: TestValidateSyntheticFormRequest_PHIPatternDetected (0.00s)
+=== RUN   TestValidateSyntheticFormRequest_InvalidFormType
+--- PASS: TestValidateSyntheticFormRequest_InvalidFormType (0.00s)
+=== RUN   TestValidateSyntheticFormRequest_EmptyVersion
+--- PASS: TestValidateSyntheticFormRequest_EmptyVersion (0.00s)
+=== RUN   TestValidateSyntheticFormRequest_InvalidVersion
+--- PASS: TestValidateSyntheticFormRequest_InvalidVersion (0.00s)
+=== RUN   TestGenerateSyntheticForm_Success
+--- PASS: TestGenerateSyntheticForm_Success (0.00s)
+=== RUN   TestGenerateSyntheticForm_Idempotency
+--- PASS: TestGenerateSyntheticForm_Idempotency (0.00s)
+=== RUN   TestGenerateSyntheticForm_ValidationFailure
+--- PASS: TestGenerateSyntheticForm_ValidationFailure (0.00s)
+=== RUN   TestGetSyntheticForm_Success
+--- PASS: TestGetSyntheticForm_Success (0.00s)
+=== RUN   TestGetSyntheticForm_EmptyID
+--- PASS: TestGetSyntheticForm_EmptyID (0.00s)
+=== RUN   TestGetSyntheticForm_NotFound
+--- PASS: TestGetSyntheticForm_NotFound (0.00s)
+=== RUN   TestListSyntheticForms_AllTypes
+--- PASS: TestListSyntheticForms_AllTypes (0.00s)
+=== RUN   TestListSyntheticForms_FilterByType
+--- PASS: TestListSyntheticForms_FilterByType (0.00s)
+=== RUN   TestValidateSyntheticForm_Success
+--- PASS: TestValidateSyntheticForm_Success (0.00s)
+=== RUN   TestValidateSyntheticForm_EmptyID
+--- PASS: TestValidateSyntheticForm_EmptyID (0.00s)
+=== RUN   TestValidateSyntheticForm_NotFound
+--- PASS: TestValidateSyntheticForm_NotFound (0.00s)
+=== RUN   TestDeleteSyntheticForm_Success
+--- PASS: TestDeleteSyntheticForm_Success (0.00s)
+=== RUN   TestDeleteSyntheticForm_EmptyID
+--- PASS: TestDeleteSyntheticForm_EmptyID (0.00s)
+=== RUN   TestDeleteSyntheticForm_NotFound
+--- PASS: TestDeleteSyntheticForm_NotFound (0.00s)
+=== RUN   TestCleanupSyntheticForms_Success
+--- PASS: TestCleanupSyntheticForms_Success (0.00s)
+=== RUN   TestGenerateSyntheticValue_AllTypes
+--- PASS: TestGenerateSyntheticValue_AllTypes (0.00s)
+=== RUN   TestGenerateSyntheticForm_DeterministicGeneration
+--- PASS: TestGenerateSyntheticForm_DeterministicGeneration (0.00s)
+=== RUN   TestGenerateSyntheticForm_Timestamps
+--- PASS: TestGenerateSyntheticForm_Timestamps (0.00s)
+=== RUN   TestValidateSyntheticFormRequest_PHIPatternVariations
+--- PASS: TestValidateSyntheticFormRequest_PHIPatternVariations (0.00s)
+=== RUN   TestGenerateSyntheticForm_ValidFormTypes
+--- PASS: TestGenerateSyntheticForm_ValidFormTypes (0.00s)
+=== RUN   TestValidateValidationErrorRequest_Valid
+--- PASS: TestValidateValidationErrorRequest_Valid (0.00s)
+=== RUN   TestValidateValidationErrorRequest_NilRequest
+--- PASS: TestValidateValidationErrorRequest_NilRequest (0.00s)
+=== RUN   TestValidateValidationErrorRequest_NotSynthetic
+--- PASS: TestValidateValidationErrorRequest_NotSynthetic (0.00s)
+=== RUN   TestValidateValidationErrorRequest_EmptyErrorID
+--- PASS: TestValidateValidationErrorRequest_EmptyErrorID (0.00s)
+=== RUN   TestValidateValidationErrorRequest_InvalidIDFormat
+--- PASS: TestValidateValidationErrorRequest_InvalidIDFormat (0.00s)
+=== RUN   TestValidateValidationErrorRequest_EmptyFormID
+--- PASS: TestValidateValidationErrorRequest_EmptyFormID (0.00s)
+=== RUN   TestValidateValidationErrorRequest_EmptyField
+--- PASS: TestValidateValidationErrorRequest_EmptyField (0.00s)
+=== RUN   TestValidateValidationErrorRequest_PHIPatternDetected
+--- PASS: TestValidateValidationErrorRequest_PHIPatternDetected (0.00s)
+=== RUN   TestValidateValidationErrorRequest_EmptyErrorType
+--- PASS: TestValidateValidationErrorRequest_EmptyErrorType (0.00s)
+=== RUN   TestValidateValidationErrorRequest_InvalidErrorType
+--- PASS: TestValidateValidationErrorRequest_InvalidErrorType (0.00s)
+=== RUN   TestValidateValidationErrorRequest_EmptyMessage
+--- PASS: TestValidateValidationErrorRequest_EmptyMessage (0.00s)
+=== RUN   TestValidateValidationErrorRequest_EmptyIdempotencyKey
+--- PASS: TestValidateValidationErrorRequest_EmptyIdempotencyKey (0.00s)
+=== RUN   TestValidateValidationErrorRequest_ShortIdempotencyKey
+--- PASS: TestValidateValidationErrorRequest_ShortIdempotencyKey (0.00s)
+=== RUN   TestRecordValidationError_Success
+--- PASS: TestRecordValidationError_Success (0.00s)
+=== RUN   TestRecordValidationError_Idempotency
+--- PASS: TestRecordValidationError_Idempotency (0.00s)
+=== RUN   TestRecordValidationError_ValidationFailure
+--- PASS: TestRecordValidationError_ValidationFailure (0.00s)
+=== RUN   TestGetValidationError_Success
+--- PASS: TestGetValidationError_Success (0.00s)
+=== RUN   TestGetValidationError_EmptyID
+--- PASS: TestGetValidationError_EmptyID (0.00s)
+=== RUN   TestGetValidationError_NotFound
+--- PASS: TestGetValidationError_NotFound (0.00s)
+=== RUN   TestListValidationErrors_Success
+--- PASS: TestListValidationErrors_Success (0.00s)
+=== RUN   TestListValidationErrors_EmptyFormID
+--- PASS: TestListValidationErrors_EmptyFormID (0.00s)
+=== RUN   TestListValidationErrors_NoResults
+--- PASS: TestListValidationErrors_NoResults (0.00s)
+=== RUN   TestGetValidationErrorsByField_Success
+--- PASS: TestGetValidationErrorsByField_Success (0.00s)
+=== RUN   TestGetValidationErrorsByField_EmptyFormID
+--- PASS: TestGetValidationErrorsByField_EmptyFormID (0.00s)
+=== RUN   TestGetValidationErrorsByField_EmptyField
+--- PASS: TestGetValidationErrorsByField_EmptyField (0.00s)
+=== RUN   TestDeleteValidationError_Success
+--- PASS: TestDeleteValidationError_Success (0.00s)
+=== RUN   TestDeleteValidationError_EmptyID
+--- PASS: TestDeleteValidationError_EmptyID (0.00s)
+=== RUN   TestDeleteValidationError_NotFound
+--- PASS: TestDeleteValidationError_NotFound (0.00s)
+=== RUN   TestClearValidationErrors_Success
+--- PASS: TestClearValidationErrors_Success (0.00s)
+=== RUN   TestClearValidationErrors_EmptyFormID
+--- PASS: TestClearValidationErrors_EmptyFormID (0.00s)
+=== RUN   TestGenerateValidationErrorDigest_Deterministic
+--- PASS: TestGenerateValidationErrorDigest_Deterministic (0.00s)
+=== RUN   TestGenerateValidationErrorDigest_DifferentInputs
+--- PASS: TestGenerateValidationErrorDigest_DifferentInputs (0.00s)
+=== RUN   TestRecordValidationError_AllErrorTypes
+--- PASS: TestRecordValidationError_AllErrorTypes (0.00s)
+=== RUN   TestValidateValidationErrorRequest_PHIPatterns
+--- PASS: TestValidateValidationErrorRequest_PHIPatterns (0.00s)
+=== RUN   TestRecordValidationError_MetadataPreserved
+--- PASS: TestRecordValidationError_MetadataPreserved (0.00s)
+=== RUN   TestRecordValidationError_AttemptedValueRecorded
+--- PASS: TestRecordValidationError_AttemptedValueRecorded (0.00s)
+=== RUN   TestValidateTrackFormEventRequest_Valid
+--- PASS: TestValidateTrackFormEventRequest_Valid (0.00s)
+=== RUN   TestValidateTrackFormEventRequest_NilRequest
+--- PASS: TestValidateTrackFormEventRequest_NilRequest (0.00s)
+=== RUN   TestValidateTrackFormEventRequest_NotSynthetic
+--- PASS: TestValidateTrackFormEventRequest_NotSynthetic (0.00s)
+=== RUN   TestValidateTrackFormEventRequest_EmptyEventID
+--- PASS: TestValidateTrackFormEventRequest_EmptyEventID (0.00s)
+=== RUN   TestValidateTrackFormEventRequest_InvalidEventID
+--- PASS: TestValidateTrackFormEventRequest_InvalidEventID (0.00s)
+=== RUN   TestValidateTrackFormEventRequest_EmptyFormID
+--- PASS: TestValidateTrackFormEventRequest_EmptyFormID (0.00s)
+=== RUN   TestValidateTrackFormEventRequest_PHIPatternInFormID
+--- PASS: TestValidateTrackFormEventRequest_PHIPatternInFormID (0.00s)
+=== RUN   TestValidateTrackFormEventRequest_EmptyEventType
+--- PASS: TestValidateTrackFormEventRequest_EmptyEventType (0.00s)
+=== RUN   TestValidateTrackFormEventRequest_InvalidEventType
+--- PASS: TestValidateTrackFormEventRequest_InvalidEventType (0.00s)
+=== RUN   TestValidateTrackFormEventRequest_EmptyActorRole
+--- PASS: TestValidateTrackFormEventRequest_EmptyActorRole (0.00s)
+=== RUN   TestValidateTrackFormEventRequest_PHIPatternInActorRole
+--- PASS: TestValidateTrackFormEventRequest_PHIPatternInActorRole (0.00s)
+=== RUN   TestValidateTrackFormEventRequest_EmptyTimestamp
+--- PASS: TestValidateTrackFormEventRequest_EmptyTimestamp (0.00s)
+=== RUN   TestValidateTrackFormEventRequest_InvalidTimestamp
+--- PASS: TestValidateTrackFormEventRequest_InvalidTimestamp (0.00s)
+=== RUN   TestValidateTrackFormEventRequest_PHIPatternInDetails
+--- PASS: TestValidateTrackFormEventRequest_PHIPatternInDetails (0.00s)
+=== RUN   TestValidateTrackFormEventRequest_EmptyIdempotencyKey
+--- PASS: TestValidateTrackFormEventRequest_EmptyIdempotencyKey (0.00s)
+=== RUN   TestValidateTrackFormEventRequest_ShortIdempotencyKey
+--- PASS: TestValidateTrackFormEventRequest_ShortIdempotencyKey (0.00s)
+=== RUN   TestTrackFormEvent_Success
+--- PASS: TestTrackFormEvent_Success (0.00s)
+=== RUN   TestTrackFormEvent_Idempotency
+--- PASS: TestTrackFormEvent_Idempotency (0.00s)
+=== RUN   TestTrackFormEvent_ValidationFailure
+--- PASS: TestTrackFormEvent_ValidationFailure (0.00s)
+=== RUN   TestGetFormEvent_Success
+--- PASS: TestGetFormEvent_Success (0.00s)
+=== RUN   TestGetFormEvent_EmptyID
+--- PASS: TestGetFormEvent_EmptyID (0.00s)
+=== RUN   TestGetFormEvent_NotFound
+--- PASS: TestGetFormEvent_NotFound (0.00s)
+=== RUN   TestListFormEvents_Success
+--- PASS: TestListFormEvents_Success (0.00s)
+=== RUN   TestListFormEvents_EmptyFormID
+--- PASS: TestListFormEvents_EmptyFormID (0.00s)
+=== RUN   TestListFormEvents_NoResults
+--- PASS: TestListFormEvents_NoResults (0.00s)
+=== RUN   TestGetEventsByType_Success
+--- PASS: TestGetEventsByType_Success (0.00s)
+=== RUN   TestGetEventsByType_EmptyType
+--- PASS: TestGetEventsByType_EmptyType (0.00s)
+=== RUN   TestGetEventsByType_InvalidType
+--- PASS: TestGetEventsByType_InvalidType (0.00s)
+=== RUN   TestDeleteFormEvent_Success
+--- PASS: TestDeleteFormEvent_Success (0.00s)
+=== RUN   TestDeleteFormEvent_EmptyID
+--- PASS: TestDeleteFormEvent_EmptyID (0.00s)
+=== RUN   TestDeleteFormEvent_NotFound
+--- PASS: TestDeleteFormEvent_NotFound (0.00s)
+=== RUN   TestClearFormEvents_Success
+--- PASS: TestClearFormEvents_Success (0.00s)
+=== RUN   TestClearFormEvents_EmptyFormID
+--- PASS: TestClearFormEvents_EmptyFormID (0.00s)
+=== RUN   TestGenerateFormEventDigest_Deterministic
+--- PASS: TestGenerateFormEventDigest_Deterministic (0.00s)
+=== RUN   TestGenerateFormEventDigest_DifferentInputs
+--- PASS: TestGenerateFormEventDigest_DifferentInputs (0.00s)
+=== RUN   TestTrackFormEvent_AllEventTypes
+--- PASS: TestTrackFormEvent_AllEventTypes (0.01s)
+=== RUN   TestTrackFormEvent_DetailsPreserved
+--- PASS: TestTrackFormEvent_DetailsPreserved (0.00s)
+=== RUN   TestTrackFormEvent_TimestampParsing
+--- PASS: TestTrackFormEvent_TimestampParsing (0.00s)
+PASS
+coverage: 90.1% of statements
+ok  	atlas/services/atlas-forms	1.174s	coverage: 90.1% of statements
+=== RUN   TestScheduleGenerator_GenerateSchedule_Synthetic
+--- PASS: TestScheduleGenerator_GenerateSchedule_Synthetic (0.00s)
+=== RUN   TestScheduleGenerator_GenerateSchedule_RejectNonSynthetic
+--- PASS: TestScheduleGenerator_GenerateSchedule_RejectNonSynthetic (0.00s)
+=== RUN   TestScheduleGenerator_GenerateSchedule_Idempotency
+--- PASS: TestScheduleGenerator_GenerateSchedule_Idempotency (0.00s)
+=== RUN   TestScheduleGenerator_GenerateSchedule_InvalidPractitionerCount
+--- PASS: TestScheduleGenerator_GenerateSchedule_InvalidPractitionerCount (0.00s)
+=== RUN   TestScheduleGenerator_GenerateSchedule_InvalidSlotDuration
+--- PASS: TestScheduleGenerator_GenerateSchedule_InvalidSlotDuration (0.00s)
+=== RUN   TestScheduleGenerator_GenerateSchedule_InvalidDateRange
+--- PASS: TestScheduleGenerator_GenerateSchedule_InvalidDateRange (0.00s)
+=== RUN   TestScheduleValidator_ValidateSynthetic
+--- PASS: TestScheduleValidator_ValidateSynthetic (0.00s)
+=== RUN   TestScheduleValidator_ValidateNoOverlap
+--- PASS: TestScheduleValidator_ValidateNoOverlap (0.00s)
+=== RUN   TestScheduleGenerator_ValidateSchedule
+--- PASS: TestScheduleGenerator_ValidateSchedule (0.00s)
+=== RUN   TestScheduleGenerator_ValidateSchedule_MissingFields
+--- PASS: TestScheduleGenerator_ValidateSchedule_MissingFields (0.00s)
+=== RUN   TestRollbackService_ValidateRollback
+=== RUN   TestRollbackService_ValidateRollback/valid_operation_can_rollback
+=== RUN   TestRollbackService_ValidateRollback/non-existent_operation
+=== RUN   TestRollbackService_ValidateRollback/non-synthetic_data_rejected
+=== RUN   TestRollbackService_ValidateRollback/empty_operation_ID
+--- PASS: TestRollbackService_ValidateRollback (0.00s)
+    --- PASS: TestRollbackService_ValidateRollback/valid_operation_can_rollback (0.00s)
+    --- PASS: TestRollbackService_ValidateRollback/non-existent_operation (0.00s)
+    --- PASS: TestRollbackService_ValidateRollback/non-synthetic_data_rejected (0.00s)
+    --- PASS: TestRollbackService_ValidateRollback/empty_operation_ID (0.00s)
+=== RUN   TestRollbackService_Rollback
+=== RUN   TestRollbackService_Rollback/successful_rollback
+=== RUN   TestRollbackService_Rollback/non-synthetic_rejected
+=== RUN   TestRollbackService_Rollback/empty_reason_rejected
+=== RUN   TestRollbackService_Rollback/unknown_reason_rejected
+--- PASS: TestRollbackService_Rollback (0.00s)
+    --- PASS: TestRollbackService_Rollback/successful_rollback (0.00s)
+    --- PASS: TestRollbackService_Rollback/non-synthetic_rejected (0.00s)
+    --- PASS: TestRollbackService_Rollback/empty_reason_rejected (0.00s)
+    --- PASS: TestRollbackService_Rollback/unknown_reason_rejected (0.00s)
+=== RUN   TestRollbackService_IdempotentRollback
+--- PASS: TestRollbackService_IdempotentRollback (0.00s)
+=== RUN   TestRollbackService_DependentOperationsBlock
+--- PASS: TestRollbackService_DependentOperationsBlock (0.00s)
+=== RUN   TestRollbackService_StateValidation
+=== RUN   TestRollbackService_StateValidation/operation_not_found
+=== RUN   TestRollbackService_StateValidation/already_rolled_back
+=== RUN   TestRollbackService_StateValidation/operation_in_progress
+--- PASS: TestRollbackService_StateValidation (0.00s)
+    --- PASS: TestRollbackService_StateValidation/operation_not_found (0.00s)
+    --- PASS: TestRollbackService_StateValidation/already_rolled_back (0.00s)
+    --- PASS: TestRollbackService_StateValidation/operation_in_progress (0.00s)
+=== RUN   TestValidateAuditRequest_Success
+--- PASS: TestValidateAuditRequest_Success (0.00s)
+=== RUN   TestValidateAuditRequest_MissingScheduleID
+--- PASS: TestValidateAuditRequest_MissingScheduleID (0.00s)
+=== RUN   TestValidateAuditRequest_InvalidOperationType
+--- PASS: TestValidateAuditRequest_InvalidOperationType (0.00s)
+=== RUN   TestValidateAuditRequest_NonSyntheticActorID
+--- PASS: TestValidateAuditRequest_NonSyntheticActorID (0.00s)
+=== RUN   TestValidateAuditRequest_InvalidTimestamp
+--- PASS: TestValidateAuditRequest_InvalidTimestamp (0.00s)
+=== RUN   TestValidateAuditRequest_MissingChanges
+--- PASS: TestValidateAuditRequest_MissingChanges (0.00s)
+=== RUN   TestValidateAuditRequest_InvalidJSON
+--- PASS: TestValidateAuditRequest_InvalidJSON (0.00s)
+=== RUN   TestValidateAuditRequest_EmptyReason
+--- PASS: TestValidateAuditRequest_EmptyReason (0.00s)
+=== RUN   TestValidateNoPHI_ContactPattern
+--- PASS: TestValidateNoPHI_ContactPattern (0.00s)
+=== RUN   TestValidateNoPHI_RecipientPattern
+--- PASS: TestValidateNoPHI_RecipientPattern (0.00s)
+=== RUN   TestValidateNoPHI_IdentifierPattern
+--- PASS: TestValidateNoPHI_IdentifierPattern (0.00s)
+=== RUN   TestValidateNoPHI_Clean
+--- PASS: TestValidateNoPHI_Clean (0.00s)
+=== RUN   TestCheckHumanAdoptionBoundary_ApproveRequiresHuman
+--- PASS: TestCheckHumanAdoptionBoundary_ApproveRequiresHuman (0.00s)
+=== RUN   TestCheckHumanAdoptionBoundary_ApproveWithHuman
+--- PASS: TestCheckHumanAdoptionBoundary_ApproveWithHuman (0.00s)
+=== RUN   TestCheckHumanAdoptionBoundary_UpdateNoHumanRequired
+--- PASS: TestCheckHumanAdoptionBoundary_UpdateNoHumanRequired (0.00s)
+=== RUN   TestCreateAuditEntry_Success
+--- PASS: TestCreateAuditEntry_Success (0.00s)
+=== RUN   TestCreateAuditEntry_ValidationFailure
+--- PASS: TestCreateAuditEntry_ValidationFailure (0.00s)
+=== RUN   TestGenerateAuditID_Deterministic
+--- PASS: TestGenerateAuditID_Deterministic (0.00s)
+=== RUN   TestValidateSchema_Success
+--- PASS: TestValidateSchema_Success (0.00s)
+=== RUN   TestValidateSchema_MissingRequiredField
+--- PASS: TestValidateSchema_MissingRequiredField (0.00s)
+=== RUN   TestValidateSchema_InvalidStatus
+--- PASS: TestValidateSchema_InvalidStatus (0.00s)
+=== RUN   TestRetrieveAuditTrail_Success
+--- PASS: TestRetrieveAuditTrail_Success (0.00s)
+=== RUN   TestRetrieveAuditTrail_MissingScheduleID
+--- PASS: TestRetrieveAuditTrail_MissingScheduleID (0.00s)
+=== RUN   TestRetrieveAuditTrail_InvalidScheduleID
+--- PASS: TestRetrieveAuditTrail_InvalidScheduleID (0.00s)
+=== RUN   TestCheckRepeatability_Success
+--- PASS: TestCheckRepeatability_Success (0.00s)
+=== RUN   TestValidateTerminology_ValidTerms
+--- PASS: TestValidateTerminology_ValidTerms (0.00s)
+=== RUN   TestValidateTerminology_InvalidTerm
+--- PASS: TestValidateTerminology_InvalidTerm (0.00s)
+PASS
+coverage: 85.1% of statements
+ok  	atlas/services/atlas-schedule	1.093s	coverage: 85.1% of statements
+=== RUN   TestValidateWorkflowDefinitionRequest_Valid
+--- PASS: TestValidateWorkflowDefinitionRequest_Valid (0.00s)
+=== RUN   TestValidateWorkflowDefinitionRequest_NilRequest
+--- PASS: TestValidateWorkflowDefinitionRequest_NilRequest (0.00s)
+=== RUN   TestValidateWorkflowDefinitionRequest_NotSynthetic
+--- PASS: TestValidateWorkflowDefinitionRequest_NotSynthetic (0.00s)
+=== RUN   TestValidateWorkflowDefinitionRequest_EmptyIdempotencyKey
+--- PASS: TestValidateWorkflowDefinitionRequest_EmptyIdempotencyKey (0.00s)
+=== RUN   TestValidateWorkflowDefinitionRequest_ShortIdempotencyKey
+--- PASS: TestValidateWorkflowDefinitionRequest_ShortIdempotencyKey (0.00s)
+=== RUN   TestValidateWorkflowDefinitionRequest_EmptyDefinitionID
+--- PASS: TestValidateWorkflowDefinitionRequest_EmptyDefinitionID (0.00s)
+=== RUN   TestValidateWorkflowDefinitionRequest_InvalidDefinitionIDPrefix
+--- PASS: TestValidateWorkflowDefinitionRequest_InvalidDefinitionIDPrefix (0.00s)
+=== RUN   TestValidateWorkflowDefinitionRequest_BlankWorkflowTitle
+--- PASS: TestValidateWorkflowDefinitionRequest_BlankWorkflowTitle (0.00s)
+=== RUN   TestValidateWorkflowDefinitionRequest_PHIPatternInWorkflowTitle
+--- PASS: TestValidateWorkflowDefinitionRequest_PHIPatternInWorkflowTitle (0.00s)
+=== RUN   TestValidateWorkflowDefinitionRequest_EmptyVersion
+--- PASS: TestValidateWorkflowDefinitionRequest_EmptyVersion (0.00s)
+=== RUN   TestValidateWorkflowDefinitionRequest_EmptySteps
+--- PASS: TestValidateWorkflowDefinitionRequest_EmptySteps (0.00s)
+=== RUN   TestValidateWorkflowDefinitionRequest_EmptyStepID
+--- PASS: TestValidateWorkflowDefinitionRequest_EmptyStepID (0.00s)
+=== RUN   TestValidateWorkflowDefinitionRequest_DuplicateStepID
+--- PASS: TestValidateWorkflowDefinitionRequest_DuplicateStepID (0.00s)
+=== RUN   TestValidateWorkflowDefinitionRequest_EmptyStepType
+--- PASS: TestValidateWorkflowDefinitionRequest_EmptyStepType (0.00s)
+=== RUN   TestValidateWorkflowDefinitionRequest_InvalidStepType
+--- PASS: TestValidateWorkflowDefinitionRequest_InvalidStepType (0.00s)
+=== RUN   TestValidateWorkflowDefinitionRequest_BlankStepTitle
+--- PASS: TestValidateWorkflowDefinitionRequest_BlankStepTitle (0.00s)
+=== RUN   TestValidateWorkflowDefinitionRequest_PHIPatternInStepConfig
+--- PASS: TestValidateWorkflowDefinitionRequest_PHIPatternInStepConfig (0.00s)
+=== RUN   TestValidateWorkflowDefinitionRequest_EmptyInitialState
+--- PASS: TestValidateWorkflowDefinitionRequest_EmptyInitialState (0.00s)
+=== RUN   TestValidateWorkflowDefinitionRequest_EmptyFinalStates
+--- PASS: TestValidateWorkflowDefinitionRequest_EmptyFinalStates (0.00s)
+=== RUN   TestValidateWorkflowDefinitionRequest_EmptyTransitions
+--- PASS: TestValidateWorkflowDefinitionRequest_EmptyTransitions (0.00s)
+=== RUN   TestValidateWorkflowDefinitionRequest_EmptyTransitionFrom
+--- PASS: TestValidateWorkflowDefinitionRequest_EmptyTransitionFrom (0.00s)
+=== RUN   TestValidateWorkflowDefinitionRequest_EmptyTransitionTo
+--- PASS: TestValidateWorkflowDefinitionRequest_EmptyTransitionTo (0.00s)
+=== RUN   TestValidateWorkflowDefinitionRequest_EmptyTransitionEvent
+--- PASS: TestValidateWorkflowDefinitionRequest_EmptyTransitionEvent (0.00s)
+=== RUN   TestValidateWorkflowDefinitionRequest_InvalidMetadataKey
+--- PASS: TestValidateWorkflowDefinitionRequest_InvalidMetadataKey (0.00s)
+=== RUN   TestValidateWorkflowDefinitionRequest_PHIPatternInMetadataKey
+--- PASS: TestValidateWorkflowDefinitionRequest_PHIPatternInMetadataKey (0.00s)
+=== RUN   TestDefineWorkflow_Success
+--- PASS: TestDefineWorkflow_Success (0.00s)
+=== RUN   TestDefineWorkflow_Idempotency
+--- PASS: TestDefineWorkflow_Idempotency (0.00s)
+=== RUN   TestDefineWorkflow_ValidationFailure
+--- PASS: TestDefineWorkflow_ValidationFailure (0.00s)
+=== RUN   TestGetWorkflowDefinition_Success
+--- PASS: TestGetWorkflowDefinition_Success (0.00s)
+=== RUN   TestGetWorkflowDefinition_EmptyID
+--- PASS: TestGetWorkflowDefinition_EmptyID (0.00s)
+=== RUN   TestGetWorkflowDefinition_NotFound
+--- PASS: TestGetWorkflowDefinition_NotFound (0.00s)
+=== RUN   TestListWorkflowDefinitions_Success
+--- PASS: TestListWorkflowDefinitions_Success (0.00s)
+=== RUN   TestListWorkflowDefinitions_Empty
+--- PASS: TestListWorkflowDefinitions_Empty (0.00s)
+=== RUN   TestDeleteWorkflowDefinition_Success
+--- PASS: TestDeleteWorkflowDefinition_Success (0.00s)
+=== RUN   TestDeleteWorkflowDefinition_EmptyID
+--- PASS: TestDeleteWorkflowDefinition_EmptyID (0.00s)
+=== RUN   TestDeleteWorkflowDefinition_NotFound
+--- PASS: TestDeleteWorkflowDefinition_NotFound (0.00s)
+=== RUN   TestGenerateWorkflowDefinitionChecksum_Deterministic
+--- PASS: TestGenerateWorkflowDefinitionChecksum_Deterministic (0.00s)
+=== RUN   TestGenerateWorkflowDefinitionChecksum_DifferentInputs
+--- PASS: TestGenerateWorkflowDefinitionChecksum_DifferentInputs (0.00s)
+=== RUN   TestDefineWorkflow_AllStepTypes
+--- PASS: TestDefineWorkflow_AllStepTypes (0.00s)
+=== RUN   TestDefineWorkflow_MultipleSteps
+--- PASS: TestDefineWorkflow_MultipleSteps (0.00s)
+=== RUN   TestDefineWorkflow_ComplexTransitions
+--- PASS: TestDefineWorkflow_ComplexTransitions (0.00s)
+=== RUN   TestValidateHumanTaskRequest_Valid
+--- PASS: TestValidateHumanTaskRequest_Valid (0.00s)
+=== RUN   TestValidateHumanTaskRequest_NilRequest
+--- PASS: TestValidateHumanTaskRequest_NilRequest (0.00s)
+=== RUN   TestValidateHumanTaskRequest_NotSynthetic
+--- PASS: TestValidateHumanTaskRequest_NotSynthetic (0.00s)
+=== RUN   TestValidateHumanTaskRequest_EmptyIdempotencyKey
+--- PASS: TestValidateHumanTaskRequest_EmptyIdempotencyKey (0.00s)
+=== RUN   TestValidateHumanTaskRequest_ShortIdempotencyKey
+--- PASS: TestValidateHumanTaskRequest_ShortIdempotencyKey (0.00s)
+=== RUN   TestValidateHumanTaskRequest_EmptyTaskID
+--- PASS: TestValidateHumanTaskRequest_EmptyTaskID (0.00s)
+=== RUN   TestValidateHumanTaskRequest_InvalidTaskIDPrefix
+--- PASS: TestValidateHumanTaskRequest_InvalidTaskIDPrefix (0.00s)
+=== RUN   TestValidateHumanTaskRequest_EmptyWorkflowID
+--- PASS: TestValidateHumanTaskRequest_EmptyWorkflowID (0.00s)
+=== RUN   TestValidateHumanTaskRequest_EmptyStepID
+--- PASS: TestValidateHumanTaskRequest_EmptyStepID (0.00s)
+=== RUN   TestValidateHumanTaskRequest_EmptyAssignedTo
+--- PASS: TestValidateHumanTaskRequest_EmptyAssignedTo (0.00s)
+=== RUN   TestValidateHumanTaskRequest_BlankTaskTitle
+--- PASS: TestValidateHumanTaskRequest_BlankTaskTitle (0.00s)
+=== RUN   TestValidateHumanTaskRequest_PHIPatternInTitle
+--- PASS: TestValidateHumanTaskRequest_PHIPatternInTitle (0.00s)
+=== RUN   TestValidateHumanTaskRequest_InvalidPriority
+--- PASS: TestValidateHumanTaskRequest_InvalidPriority (0.00s)
+=== RUN   TestValidateHumanTaskRequest_PHIPatternInMetadataKey
+--- PASS: TestValidateHumanTaskRequest_PHIPatternInMetadataKey (0.00s)
+=== RUN   TestCreateHumanTask_Success
+--- PASS: TestCreateHumanTask_Success (0.00s)
+=== RUN   TestCreateHumanTask_Idempotency
+--- PASS: TestCreateHumanTask_Idempotency (0.00s)
+=== RUN   TestCreateHumanTask_ValidationFailure
+--- PASS: TestCreateHumanTask_ValidationFailure (0.00s)
+=== RUN   TestGetHumanTask_Success
+--- PASS: TestGetHumanTask_Success (0.00s)
+=== RUN   TestGetHumanTask_EmptyID
+--- PASS: TestGetHumanTask_EmptyID (0.00s)
+=== RUN   TestGetHumanTask_NotFound
+--- PASS: TestGetHumanTask_NotFound (0.00s)
+=== RUN   TestUpdateHumanTaskStatus_Success
+--- PASS: TestUpdateHumanTaskStatus_Success (0.00s)
+=== RUN   TestUpdateHumanTaskStatus_EmptyID
+--- PASS: TestUpdateHumanTaskStatus_EmptyID (0.00s)
+=== RUN   TestUpdateHumanTaskStatus_EmptyStatus
+--- PASS: TestUpdateHumanTaskStatus_EmptyStatus (0.00s)
+=== RUN   TestUpdateHumanTaskStatus_InvalidStatus
+--- PASS: TestUpdateHumanTaskStatus_InvalidStatus (0.00s)
+=== RUN   TestUpdateHumanTaskStatus_NotFound
+--- PASS: TestUpdateHumanTaskStatus_NotFound (0.00s)
+=== RUN   TestListHumanTasks_Success
+--- PASS: TestListHumanTasks_Success (0.00s)
+=== RUN   TestListHumanTasks_Empty
+--- PASS: TestListHumanTasks_Empty (0.00s)
+=== RUN   TestListHumanTasksByWorkflow_Success
+--- PASS: TestListHumanTasksByWorkflow_Success (0.00s)
+=== RUN   TestListHumanTasksByAssignee_Success
+--- PASS: TestListHumanTasksByAssignee_Success (0.00s)
+=== RUN   TestDeleteHumanTask_Success
+--- PASS: TestDeleteHumanTask_Success (0.00s)
+=== RUN   TestDeleteHumanTask_EmptyID
+--- PASS: TestDeleteHumanTask_EmptyID (0.00s)
+=== RUN   TestDeleteHumanTask_NotFound
+--- PASS: TestDeleteHumanTask_NotFound (0.00s)
+=== RUN   TestGenerateHumanTaskChecksum_Deterministic
+--- PASS: TestGenerateHumanTaskChecksum_Deterministic (0.00s)
+=== RUN   TestGenerateHumanTaskChecksum_DifferentInputs
+--- PASS: TestGenerateHumanTaskChecksum_DifferentInputs (0.00s)
+=== RUN   TestCreateHumanTask_AllPriorities
+--- PASS: TestCreateHumanTask_AllPriorities (0.00s)
+=== RUN   TestUpdateHumanTaskStatus_AllStatuses
+--- PASS: TestUpdateHumanTaskStatus_AllStatuses (0.00s)
+=== RUN   TestListHumanTasksByWorkflow_MultipleMatches
+--- PASS: TestListHumanTasksByWorkflow_MultipleMatches (0.00s)
+=== RUN   TestValidateTimeoutEscalationRequest_Valid
+--- PASS: TestValidateTimeoutEscalationRequest_Valid (0.00s)
+=== RUN   TestValidateTimeoutEscalationRequest_NilRequest
+--- PASS: TestValidateTimeoutEscalationRequest_NilRequest (0.00s)
+=== RUN   TestValidateTimeoutEscalationRequest_NotSynthetic
+--- PASS: TestValidateTimeoutEscalationRequest_NotSynthetic (0.00s)
+=== RUN   TestValidateTimeoutEscalationRequest_EmptyIdempotencyKey
+--- PASS: TestValidateTimeoutEscalationRequest_EmptyIdempotencyKey (0.00s)
+=== RUN   TestValidateTimeoutEscalationRequest_ShortIdempotencyKey
+--- PASS: TestValidateTimeoutEscalationRequest_ShortIdempotencyKey (0.00s)
+=== RUN   TestValidateTimeoutEscalationRequest_EmptyRuleID
+--- PASS: TestValidateTimeoutEscalationRequest_EmptyRuleID (0.00s)
+=== RUN   TestValidateTimeoutEscalationRequest_InvalidRuleIDPrefix
+--- PASS: TestValidateTimeoutEscalationRequest_InvalidRuleIDPrefix (0.00s)
+=== RUN   TestValidateTimeoutEscalationRequest_EmptyWorkflowID
+--- PASS: TestValidateTimeoutEscalationRequest_EmptyWorkflowID (0.00s)
+=== RUN   TestValidateTimeoutEscalationRequest_EmptyStepID
+--- PASS: TestValidateTimeoutEscalationRequest_EmptyStepID (0.00s)
+=== RUN   TestValidateTimeoutEscalationRequest_InvalidDuration
+--- PASS: TestValidateTimeoutEscalationRequest_InvalidDuration (0.00s)
+=== RUN   TestValidateTimeoutEscalationRequest_NegativeDuration
+--- PASS: TestValidateTimeoutEscalationRequest_NegativeDuration (0.00s)
+=== RUN   TestValidateTimeoutEscalationRequest_EmptyAction
+--- PASS: TestValidateTimeoutEscalationRequest_EmptyAction (0.00s)
+=== RUN   TestValidateTimeoutEscalationRequest_InvalidAction
+--- PASS: TestValidateTimeoutEscalationRequest_InvalidAction (0.00s)
+=== RUN   TestValidateTimeoutEscalationRequest_MissingTargetForReassign
+--- PASS: TestValidateTimeoutEscalationRequest_MissingTargetForReassign (0.00s)
+=== RUN   TestValidateTimeoutEscalationRequest_MissingTargetForEscalate
+--- PASS: TestValidateTimeoutEscalationRequest_MissingTargetForEscalate (0.00s)
+=== RUN   TestValidateTimeoutEscalationRequest_PHIPatternInTarget
+--- PASS: TestValidateTimeoutEscalationRequest_PHIPatternInTarget (0.00s)
+=== RUN   TestValidateTimeoutEscalationRequest_PHIPatternInMetadataKey
+--- PASS: TestValidateTimeoutEscalationRequest_PHIPatternInMetadataKey (0.00s)
+=== RUN   TestCreateTimeoutEscalation_Success
+--- PASS: TestCreateTimeoutEscalation_Success (0.00s)
+=== RUN   TestCreateTimeoutEscalation_Idempotency
+--- PASS: TestCreateTimeoutEscalation_Idempotency (0.00s)
+=== RUN   TestCreateTimeoutEscalation_ValidationFailure
+--- PASS: TestCreateTimeoutEscalation_ValidationFailure (0.00s)
+=== RUN   TestGetTimeoutEscalation_Success
+--- PASS: TestGetTimeoutEscalation_Success (0.00s)
+=== RUN   TestGetTimeoutEscalation_EmptyID
+--- PASS: TestGetTimeoutEscalation_EmptyID (0.00s)
+=== RUN   TestGetTimeoutEscalation_NotFound
+--- PASS: TestGetTimeoutEscalation_NotFound (0.00s)
+=== RUN   TestUpdateTimeoutEscalation_Success
+--- PASS: TestUpdateTimeoutEscalation_Success (0.00s)
+=== RUN   TestUpdateTimeoutEscalation_EmptyID
+--- PASS: TestUpdateTimeoutEscalation_EmptyID (0.00s)
+=== RUN   TestUpdateTimeoutEscalation_ValidationFailure
+--- PASS: TestUpdateTimeoutEscalation_ValidationFailure (0.00s)
+=== RUN   TestUpdateTimeoutEscalation_NotFound
+--- PASS: TestUpdateTimeoutEscalation_NotFound (0.00s)
+=== RUN   TestListTimeoutEscalations_Success
+--- PASS: TestListTimeoutEscalations_Success (0.00s)
+=== RUN   TestListTimeoutEscalations_Empty
+--- PASS: TestListTimeoutEscalations_Empty (0.00s)
+=== RUN   TestListTimeoutEscalationsByWorkflow_Success
+--- PASS: TestListTimeoutEscalationsByWorkflow_Success (0.00s)
+=== RUN   TestDeleteTimeoutEscalation_Success
+--- PASS: TestDeleteTimeoutEscalation_Success (0.00s)
+=== RUN   TestDeleteTimeoutEscalation_EmptyID
+--- PASS: TestDeleteTimeoutEscalation_EmptyID (0.00s)
+=== RUN   TestDeleteTimeoutEscalation_NotFound
+--- PASS: TestDeleteTimeoutEscalation_NotFound (0.00s)
+=== RUN   TestGenerateTimeoutEscalationChecksum_Deterministic
+--- PASS: TestGenerateTimeoutEscalationChecksum_Deterministic (0.00s)
+=== RUN   TestGenerateTimeoutEscalationChecksum_DifferentInputs
+--- PASS: TestGenerateTimeoutEscalationChecksum_DifferentInputs (0.00s)
+=== RUN   TestCreateTimeoutEscalation_AllActions
+--- PASS: TestCreateTimeoutEscalation_AllActions (0.00s)
+=== RUN   TestListTimeoutEscalationsByWorkflow_MultipleMatches
+--- PASS: TestListTimeoutEscalationsByWorkflow_MultipleMatches (0.00s)
+=== RUN   TestValidateCompensationActionRequest_Valid
+--- PASS: TestValidateCompensationActionRequest_Valid (0.00s)
+=== RUN   TestValidateCompensationActionRequest_NilRequest
+--- PASS: TestValidateCompensationActionRequest_NilRequest (0.00s)
+=== RUN   TestValidateCompensationActionRequest_NotSynthetic
+--- PASS: TestValidateCompensationActionRequest_NotSynthetic (0.00s)
+=== RUN   TestValidateCompensationActionRequest_EmptyIdempotencyKey
+--- PASS: TestValidateCompensationActionRequest_EmptyIdempotencyKey (0.00s)
+=== RUN   TestValidateCompensationActionRequest_ShortIdempotencyKey
+--- PASS: TestValidateCompensationActionRequest_ShortIdempotencyKey (0.00s)
+=== RUN   TestValidateCompensationActionRequest_EmptyActionID
+--- PASS: TestValidateCompensationActionRequest_EmptyActionID (0.00s)
+=== RUN   TestValidateCompensationActionRequest_InvalidActionIDPrefix
+--- PASS: TestValidateCompensationActionRequest_InvalidActionIDPrefix (0.00s)
+=== RUN   TestValidateCompensationActionRequest_EmptyWorkflowID
+--- PASS: TestValidateCompensationActionRequest_EmptyWorkflowID (0.00s)
+=== RUN   TestValidateCompensationActionRequest_EmptyStepID
+--- PASS: TestValidateCompensationActionRequest_EmptyStepID (0.00s)
+=== RUN   TestValidateCompensationActionRequest_EmptyTriggerCondition
+--- PASS: TestValidateCompensationActionRequest_EmptyTriggerCondition (0.00s)
+=== RUN   TestValidateCompensationActionRequest_InvalidTriggerCondition
+--- PASS: TestValidateCompensationActionRequest_InvalidTriggerCondition (0.00s)
+=== RUN   TestValidateCompensationActionRequest_EmptyCompensationType
+--- PASS: TestValidateCompensationActionRequest_EmptyCompensationType (0.00s)
+=== RUN   TestValidateCompensationActionRequest_InvalidCompensationType
+--- PASS: TestValidateCompensationActionRequest_InvalidCompensationType (0.00s)
+=== RUN   TestValidateCompensationActionRequest_MissingTargetState
+--- PASS: TestValidateCompensationActionRequest_MissingTargetState (0.00s)
+=== RUN   TestValidateCompensationActionRequest_MissingRollbackScript
+--- PASS: TestValidateCompensationActionRequest_MissingRollbackScript (0.00s)
+=== RUN   TestValidateCompensationActionRequest_PHIPatternInTargetState
+--- PASS: TestValidateCompensationActionRequest_PHIPatternInTargetState (0.00s)
+=== RUN   TestValidateCompensationActionRequest_PHIPatternInRollbackScript
+--- PASS: TestValidateCompensationActionRequest_PHIPatternInRollbackScript (0.00s)
+=== RUN   TestValidateCompensationActionRequest_PHIPatternInNotifyUsers
+--- PASS: TestValidateCompensationActionRequest_PHIPatternInNotifyUsers (0.00s)
+=== RUN   TestValidateCompensationActionRequest_PHIPatternInMetadataKey
+--- PASS: TestValidateCompensationActionRequest_PHIPatternInMetadataKey (0.00s)
+=== RUN   TestCreateCompensationAction_Success
+--- PASS: TestCreateCompensationAction_Success (0.00s)
+=== RUN   TestCreateCompensationAction_Idempotency
+--- PASS: TestCreateCompensationAction_Idempotency (0.00s)
+=== RUN   TestCreateCompensationAction_ValidationFailure
+--- PASS: TestCreateCompensationAction_ValidationFailure (0.00s)
+=== RUN   TestGetCompensationAction_Success
+--- PASS: TestGetCompensationAction_Success (0.00s)
+=== RUN   TestGetCompensationAction_EmptyID
+--- PASS: TestGetCompensationAction_EmptyID (0.00s)
+=== RUN   TestGetCompensationAction_NotFound
+--- PASS: TestGetCompensationAction_NotFound (0.00s)
+=== RUN   TestUpdateCompensationAction_Success
+--- PASS: TestUpdateCompensationAction_Success (0.00s)
+=== RUN   TestUpdateCompensationAction_EmptyID
+--- PASS: TestUpdateCompensationAction_EmptyID (0.00s)
+=== RUN   TestUpdateCompensationAction_ValidationFailure
+--- PASS: TestUpdateCompensationAction_ValidationFailure (0.00s)
+=== RUN   TestUpdateCompensationAction_NotFound
+--- PASS: TestUpdateCompensationAction_NotFound (0.00s)
+=== RUN   TestListCompensationActions_Success
+--- PASS: TestListCompensationActions_Success (0.00s)
+=== RUN   TestListCompensationActions_Empty
+--- PASS: TestListCompensationActions_Empty (0.00s)
+=== RUN   TestListCompensationActionsByWorkflow_Success
+--- PASS: TestListCompensationActionsByWorkflow_Success (0.00s)
+=== RUN   TestDeleteCompensationAction_Success
+--- PASS: TestDeleteCompensationAction_Success (0.00s)
+=== RUN   TestDeleteCompensationAction_EmptyID
+--- PASS: TestDeleteCompensationAction_EmptyID (0.00s)
+=== RUN   TestDeleteCompensationAction_NotFound
+--- PASS: TestDeleteCompensationAction_NotFound (0.00s)
+=== RUN   TestGenerateCompensationActionChecksum_Deterministic
+--- PASS: TestGenerateCompensationActionChecksum_Deterministic (0.00s)
+=== RUN   TestGenerateCompensationActionChecksum_DifferentInputs
+--- PASS: TestGenerateCompensationActionChecksum_DifferentInputs (0.00s)
+=== RUN   TestCreateCompensationAction_AllCompensationTypes
+--- PASS: TestCreateCompensationAction_AllCompensationTypes (0.00s)
+=== RUN   TestListCompensationActionsByWorkflow_MultipleMatches
+--- PASS: TestListCompensationActionsByWorkflow_MultipleMatches (0.00s)
+=== RUN   TestValidateClinicalWriteGuardRequest_Valid
+--- PASS: TestValidateClinicalWriteGuardRequest_Valid (0.00s)
+=== RUN   TestValidateClinicalWriteGuardRequest_NilRequest
+--- PASS: TestValidateClinicalWriteGuardRequest_NilRequest (0.00s)
+=== RUN   TestValidateClinicalWriteGuardRequest_NotSynthetic
+--- PASS: TestValidateClinicalWriteGuardRequest_NotSynthetic (0.00s)
+=== RUN   TestValidateClinicalWriteGuardRequest_EmptyIdempotencyKey
+--- PASS: TestValidateClinicalWriteGuardRequest_EmptyIdempotencyKey (0.00s)
+=== RUN   TestValidateClinicalWriteGuardRequest_ShortIdempotencyKey
+--- PASS: TestValidateClinicalWriteGuardRequest_ShortIdempotencyKey (0.00s)
+=== RUN   TestValidateClinicalWriteGuardRequest_EmptyGuardID
+--- PASS: TestValidateClinicalWriteGuardRequest_EmptyGuardID (0.00s)
+=== RUN   TestValidateClinicalWriteGuardRequest_InvalidGuardIDPrefix
+--- PASS: TestValidateClinicalWriteGuardRequest_InvalidGuardIDPrefix (0.00s)
+=== RUN   TestValidateClinicalWriteGuardRequest_EmptyWorkflowID
+--- PASS: TestValidateClinicalWriteGuardRequest_EmptyWorkflowID (0.00s)
+=== RUN   TestValidateClinicalWriteGuardRequest_EmptyStepID
+--- PASS: TestValidateClinicalWriteGuardRequest_EmptyStepID (0.00s)
+=== RUN   TestValidateClinicalWriteGuardRequest_EmptyOperationType
+--- PASS: TestValidateClinicalWriteGuardRequest_EmptyOperationType (0.00s)
+=== RUN   TestValidateClinicalWriteGuardRequest_InvalidOperationType
+--- PASS: TestValidateClinicalWriteGuardRequest_InvalidOperationType (0.00s)
+=== RUN   TestValidateClinicalWriteGuardRequest_EmptyResourceType
+--- PASS: TestValidateClinicalWriteGuardRequest_EmptyResourceType (0.00s)
+=== RUN   TestValidateClinicalWriteGuardRequest_EmptyExecutionMode
+--- PASS: TestValidateClinicalWriteGuardRequest_EmptyExecutionMode (0.00s)
+=== RUN   TestValidateClinicalWriteGuardRequest_InvalidExecutionMode
+--- PASS: TestValidateClinicalWriteGuardRequest_InvalidExecutionMode (0.00s)
+=== RUN   TestValidateClinicalWriteGuardRequest_AutomaticWriteProhibited
+--- PASS: TestValidateClinicalWriteGuardRequest_AutomaticWriteProhibited (0.00s)
+=== RUN   TestValidateClinicalWriteGuardRequest_ReviewerRoleRequired
+--- PASS: TestValidateClinicalWriteGuardRequest_ReviewerRoleRequired (0.00s)
+=== RUN   TestValidateClinicalWriteGuardRequest_PHIPatternInResourceType
+--- PASS: TestValidateClinicalWriteGuardRequest_PHIPatternInResourceType (0.00s)
+=== RUN   TestValidateClinicalWriteGuardRequest_PHIPatternInReviewerRole
+--- PASS: TestValidateClinicalWriteGuardRequest_PHIPatternInReviewerRole (0.00s)
+=== RUN   TestValidateClinicalWriteGuardRequest_PHIPatternInMetadataKey
+--- PASS: TestValidateClinicalWriteGuardRequest_PHIPatternInMetadataKey (0.00s)
+=== RUN   TestCreateClinicalWriteGuard_Success
+--- PASS: TestCreateClinicalWriteGuard_Success (0.00s)
+=== RUN   TestCreateClinicalWriteGuard_Idempotency
+--- PASS: TestCreateClinicalWriteGuard_Idempotency (0.00s)
+=== RUN   TestCreateClinicalWriteGuard_ValidationFailure
+--- PASS: TestCreateClinicalWriteGuard_ValidationFailure (0.00s)
+=== RUN   TestGetClinicalWriteGuard_Success
+--- PASS: TestGetClinicalWriteGuard_Success (0.00s)
+=== RUN   TestGetClinicalWriteGuard_EmptyID
+--- PASS: TestGetClinicalWriteGuard_EmptyID (0.00s)
+=== RUN   TestGetClinicalWriteGuard_NotFound
+--- PASS: TestGetClinicalWriteGuard_NotFound (0.00s)
+=== RUN   TestUpdateClinicalWriteGuard_Success
+--- PASS: TestUpdateClinicalWriteGuard_Success (0.00s)
+=== RUN   TestUpdateClinicalWriteGuard_EmptyID
+--- PASS: TestUpdateClinicalWriteGuard_EmptyID (0.00s)
+=== RUN   TestUpdateClinicalWriteGuard_ValidationFailure
+--- PASS: TestUpdateClinicalWriteGuard_ValidationFailure (0.00s)
+=== RUN   TestUpdateClinicalWriteGuard_NotFound
+--- PASS: TestUpdateClinicalWriteGuard_NotFound (0.00s)
+=== RUN   TestListClinicalWriteGuards_Success
+--- PASS: TestListClinicalWriteGuards_Success (0.00s)
+=== RUN   TestListClinicalWriteGuards_Empty
+--- PASS: TestListClinicalWriteGuards_Empty (0.00s)
+=== RUN   TestListClinicalWriteGuardsByWorkflow_Success
+--- PASS: TestListClinicalWriteGuardsByWorkflow_Success (0.00s)
+=== RUN   TestDeleteClinicalWriteGuard_Success
+--- PASS: TestDeleteClinicalWriteGuard_Success (0.00s)
+=== RUN   TestDeleteClinicalWriteGuard_EmptyID
+--- PASS: TestDeleteClinicalWriteGuard_EmptyID (0.00s)
+=== RUN   TestDeleteClinicalWriteGuard_NotFound
+--- PASS: TestDeleteClinicalWriteGuard_NotFound (0.00s)
+=== RUN   TestGenerateClinicalWriteGuardChecksum_Deterministic
+--- PASS: TestGenerateClinicalWriteGuardChecksum_Deterministic (0.00s)
+=== RUN   TestGenerateClinicalWriteGuardChecksum_DifferentInputs
+--- PASS: TestGenerateClinicalWriteGuardChecksum_DifferentInputs (0.00s)
+=== RUN   TestCreateClinicalWriteGuard_AllOperationTypes
+--- PASS: TestCreateClinicalWriteGuard_AllOperationTypes (0.00s)
+=== RUN   TestListClinicalWriteGuardsByWorkflow_MultipleMatches
+--- PASS: TestListClinicalWriteGuardsByWorkflow_MultipleMatches (0.00s)
+=== RUN   TestValidateWorkflowEventRequest_Valid
+--- PASS: TestValidateWorkflowEventRequest_Valid (0.00s)
+=== RUN   TestValidateWorkflowEventRequest_NilRequest
+--- PASS: TestValidateWorkflowEventRequest_NilRequest (0.00s)
+=== RUN   TestValidateWorkflowEventRequest_EmptyIdempotencyKey
+--- PASS: TestValidateWorkflowEventRequest_EmptyIdempotencyKey (0.00s)
+=== RUN   TestValidateWorkflowEventRequest_ShortIdempotencyKey
+--- PASS: TestValidateWorkflowEventRequest_ShortIdempotencyKey (0.00s)
+=== RUN   TestValidateWorkflowEventRequest_EmptyEventID
+--- PASS: TestValidateWorkflowEventRequest_EmptyEventID (0.00s)
+=== RUN   TestValidateWorkflowEventRequest_InvalidEventIDPrefix
+--- PASS: TestValidateWorkflowEventRequest_InvalidEventIDPrefix (0.00s)
+=== RUN   TestValidateWorkflowEventRequest_EmptyWorkflowID
+--- PASS: TestValidateWorkflowEventRequest_EmptyWorkflowID (0.00s)
+=== RUN   TestValidateWorkflowEventRequest_EmptyEventType
+--- PASS: TestValidateWorkflowEventRequest_EmptyEventType (0.00s)
+=== RUN   TestValidateWorkflowEventRequest_InvalidEventType
+--- PASS: TestValidateWorkflowEventRequest_InvalidEventType (0.00s)
+=== RUN   TestValidateWorkflowEventRequest_EmptyEventPayload
+--- PASS: TestValidateWorkflowEventRequest_EmptyEventPayload (0.00s)
+=== RUN   TestValidateWorkflowEventRequest_NegativeTTL
+--- PASS: TestValidateWorkflowEventRequest_NegativeTTL (0.00s)
+=== RUN   TestValidateWorkflowEventRequest_PHIPatternInMetadataKey
+--- PASS: TestValidateWorkflowEventRequest_PHIPatternInMetadataKey (0.00s)
+=== RUN   TestCreateWorkflowEvent_Success
+--- PASS: TestCreateWorkflowEvent_Success (0.00s)
+=== RUN   TestCreateWorkflowEvent_Idempotency
+--- PASS: TestCreateWorkflowEvent_Idempotency (0.00s)
+=== RUN   TestCreateWorkflowEvent_DuplicateDetection
+--- PASS: TestCreateWorkflowEvent_DuplicateDetection (0.00s)
+=== RUN   TestCreateWorkflowEvent_ValidationFailure
+--- PASS: TestCreateWorkflowEvent_ValidationFailure (0.00s)
+=== RUN   TestGetWorkflowEvent_Success
+--- PASS: TestGetWorkflowEvent_Success (0.00s)
+=== RUN   TestGetWorkflowEvent_EmptyID
+--- PASS: TestGetWorkflowEvent_EmptyID (0.00s)
+=== RUN   TestGetWorkflowEvent_NotFound
+--- PASS: TestGetWorkflowEvent_NotFound (0.00s)
+=== RUN   TestListWorkflowEvents_Success
+--- PASS: TestListWorkflowEvents_Success (0.00s)
+=== RUN   TestListWorkflowEvents_Empty
+--- PASS: TestListWorkflowEvents_Empty (0.00s)
+=== RUN   TestListWorkflowEventsByWorkflow_Success
+--- PASS: TestListWorkflowEventsByWorkflow_Success (0.00s)
+=== RUN   TestDeleteWorkflowEvent_Success
+--- PASS: TestDeleteWorkflowEvent_Success (0.00s)
+=== RUN   TestDeleteWorkflowEvent_EmptyID
+--- PASS: TestDeleteWorkflowEvent_EmptyID (0.00s)
+=== RUN   TestDeleteWorkflowEvent_NotFound
+--- PASS: TestDeleteWorkflowEvent_NotFound (0.00s)
+=== RUN   TestGenerateEventFingerprint_Deterministic
+--- PASS: TestGenerateEventFingerprint_Deterministic (0.00s)
+=== RUN   TestGenerateEventFingerprint_DifferentInputs
+--- PASS: TestGenerateEventFingerprint_DifferentInputs (0.00s)
+=== RUN   TestCreateWorkflowEvent_AllEventTypes
+--- PASS: TestCreateWorkflowEvent_AllEventTypes (0.00s)
+=== RUN   TestListWorkflowEventsByWorkflow_MultipleMatches
+--- PASS: TestListWorkflowEventsByWorkflow_MultipleMatches (0.00s)
+=== RUN   TestValidateWorkflowTraceRequest_Valid
+--- PASS: TestValidateWorkflowTraceRequest_Valid (0.00s)
+=== RUN   TestValidateWorkflowTraceRequest_NilRequest
+--- PASS: TestValidateWorkflowTraceRequest_NilRequest (0.00s)
+=== RUN   TestValidateWorkflowTraceRequest_EmptyIdempotencyKey
+--- PASS: TestValidateWorkflowTraceRequest_EmptyIdempotencyKey (0.00s)
+=== RUN   TestValidateWorkflowTraceRequest_ShortIdempotencyKey
+--- PASS: TestValidateWorkflowTraceRequest_ShortIdempotencyKey (0.00s)
+=== RUN   TestValidateWorkflowTraceRequest_EmptyTraceID
+--- PASS: TestValidateWorkflowTraceRequest_EmptyTraceID (0.00s)
+=== RUN   TestValidateWorkflowTraceRequest_InvalidTraceIDPrefix
+--- PASS: TestValidateWorkflowTraceRequest_InvalidTraceIDPrefix (0.00s)
+=== RUN   TestValidateWorkflowTraceRequest_EmptyWorkflowID
+--- PASS: TestValidateWorkflowTraceRequest_EmptyWorkflowID (0.00s)
+=== RUN   TestValidateWorkflowTraceRequest_EmptyStepID
+--- PASS: TestValidateWorkflowTraceRequest_EmptyStepID (0.00s)
+=== RUN   TestValidateWorkflowTraceRequest_BlankStepTitle
+--- PASS: TestValidateWorkflowTraceRequest_BlankStepTitle (0.00s)
+=== RUN   TestValidateWorkflowTraceRequest_EmptyStepStatus
+--- PASS: TestValidateWorkflowTraceRequest_EmptyStepStatus (0.00s)
+=== RUN   TestValidateWorkflowTraceRequest_InvalidStepStatus
+--- PASS: TestValidateWorkflowTraceRequest_InvalidStepStatus (0.00s)
+=== RUN   TestValidateWorkflowTraceRequest_NegativeDuration
+--- PASS: TestValidateWorkflowTraceRequest_NegativeDuration (0.00s)
+=== RUN   TestValidateWorkflowTraceRequest_PHIPatternInMetadataKey
+--- PASS: TestValidateWorkflowTraceRequest_PHIPatternInMetadataKey (0.00s)
+=== RUN   TestCreateWorkflowTrace_Success
+--- PASS: TestCreateWorkflowTrace_Success (0.01s)
+=== RUN   TestCreateWorkflowTrace_Idempotency
+--- PASS: TestCreateWorkflowTrace_Idempotency (0.00s)
+=== RUN   TestCreateWorkflowTrace_DuplicateTraceID
+--- PASS: TestCreateWorkflowTrace_DuplicateTraceID (0.00s)
+=== RUN   TestCreateWorkflowTrace_ValidationFailure
+--- PASS: TestCreateWorkflowTrace_ValidationFailure (0.00s)
+=== RUN   TestGetWorkflowTrace_Success
+--- PASS: TestGetWorkflowTrace_Success (0.00s)
+=== RUN   TestGetWorkflowTrace_EmptyID
+--- PASS: TestGetWorkflowTrace_EmptyID (0.00s)
+=== RUN   TestGetWorkflowTrace_NotFound
+--- PASS: TestGetWorkflowTrace_NotFound (0.00s)
+=== RUN   TestUpdateWorkflowTrace_Success
+--- PASS: TestUpdateWorkflowTrace_Success (0.00s)
+=== RUN   TestUpdateWorkflowTrace_NotFound
+--- PASS: TestUpdateWorkflowTrace_NotFound (0.00s)
+=== RUN   TestDeleteWorkflowTrace_Success
+--- PASS: TestDeleteWorkflowTrace_Success (0.00s)
+=== RUN   TestDeleteWorkflowTrace_EmptyID
+--- PASS: TestDeleteWorkflowTrace_EmptyID (0.00s)
+=== RUN   TestDeleteWorkflowTrace_NotFound
+--- PASS: TestDeleteWorkflowTrace_NotFound (0.00s)
+=== RUN   TestListWorkflowTraces_Success
+--- PASS: TestListWorkflowTraces_Success (0.00s)
+=== RUN   TestListWorkflowTraces_Empty
+--- PASS: TestListWorkflowTraces_Empty (0.00s)
+=== RUN   TestListWorkflowTracesByWorkflow_Success
+--- PASS: TestListWorkflowTracesByWorkflow_Success (0.00s)
+=== RUN   TestGenerateTraceChecksum_Deterministic
+--- PASS: TestGenerateTraceChecksum_Deterministic (0.00s)
+=== RUN   TestGenerateTraceChecksum_DifferentInputs
+--- PASS: TestGenerateTraceChecksum_DifferentInputs (0.00s)
+=== RUN   TestCreateWorkflowTrace_AllStepStatuses
+--- PASS: TestCreateWorkflowTrace_AllStepStatuses (0.00s)
+=== RUN   TestListWorkflowTracesByWorkflow_MultipleMatches
+--- PASS: TestListWorkflowTracesByWorkflow_MultipleMatches (0.00s)
+=== RUN   TestValidateWorkflowFailureIsolationRequest_Valid
+--- PASS: TestValidateWorkflowFailureIsolationRequest_Valid (0.00s)
+=== RUN   TestValidateWorkflowFailureIsolationRequest_NilRequest
+--- PASS: TestValidateWorkflowFailureIsolationRequest_NilRequest (0.00s)
+=== RUN   TestValidateWorkflowFailureIsolationRequest_EmptyIdempotencyKey
+--- PASS: TestValidateWorkflowFailureIsolationRequest_EmptyIdempotencyKey (0.00s)
+=== RUN   TestValidateWorkflowFailureIsolationRequest_ShortIdempotencyKey
+--- PASS: TestValidateWorkflowFailureIsolationRequest_ShortIdempotencyKey (0.00s)
+=== RUN   TestValidateWorkflowFailureIsolationRequest_EmptyIsolationID
+--- PASS: TestValidateWorkflowFailureIsolationRequest_EmptyIsolationID (0.00s)
+=== RUN   TestValidateWorkflowFailureIsolationRequest_InvalidIsolationIDPrefix
+--- PASS: TestValidateWorkflowFailureIsolationRequest_InvalidIsolationIDPrefix (0.00s)
+=== RUN   TestValidateWorkflowFailureIsolationRequest_EmptyWorkflowID
+--- PASS: TestValidateWorkflowFailureIsolationRequest_EmptyWorkflowID (0.00s)
+=== RUN   TestValidateWorkflowFailureIsolationRequest_EmptyIsolationScope
+--- PASS: TestValidateWorkflowFailureIsolationRequest_EmptyIsolationScope (0.00s)
+=== RUN   TestValidateWorkflowFailureIsolationRequest_InvalidIsolationScope
+--- PASS: TestValidateWorkflowFailureIsolationRequest_InvalidIsolationScope (0.00s)
+=== RUN   TestValidateWorkflowFailureIsolationRequest_EmptyIsolationMode
+--- PASS: TestValidateWorkflowFailureIsolationRequest_EmptyIsolationMode (0.00s)
+=== RUN   TestValidateWorkflowFailureIsolationRequest_InvalidIsolationMode
+--- PASS: TestValidateWorkflowFailureIsolationRequest_InvalidIsolationMode (0.00s)
+=== RUN   TestValidateWorkflowFailureIsolationRequest_EmptyFailurePatterns
+--- PASS: TestValidateWorkflowFailureIsolationRequest_EmptyFailurePatterns (0.00s)
+=== RUN   TestValidateWorkflowFailureIsolationRequest_EmptyRetryStrategy
+--- PASS: TestValidateWorkflowFailureIsolationRequest_EmptyRetryStrategy (0.00s)
+=== RUN   TestValidateWorkflowFailureIsolationRequest_PHIPatternInMetadataKey
+--- PASS: TestValidateWorkflowFailureIsolationRequest_PHIPatternInMetadataKey (0.00s)
+=== RUN   TestCreateWorkflowFailureIsolation_Success
+--- PASS: TestCreateWorkflowFailureIsolation_Success (0.00s)
+=== RUN   TestCreateWorkflowFailureIsolation_Idempotency
+--- PASS: TestCreateWorkflowFailureIsolation_Idempotency (0.00s)
+=== RUN   TestCreateWorkflowFailureIsolation_DuplicateIsolationID
+--- PASS: TestCreateWorkflowFailureIsolation_DuplicateIsolationID (0.00s)
+=== RUN   TestCreateWorkflowFailureIsolation_ValidationFailure
+--- PASS: TestCreateWorkflowFailureIsolation_ValidationFailure (0.00s)
+=== RUN   TestGetWorkflowFailureIsolation_Success
+--- PASS: TestGetWorkflowFailureIsolation_Success (0.00s)
+=== RUN   TestGetWorkflowFailureIsolation_EmptyID
+--- PASS: TestGetWorkflowFailureIsolation_EmptyID (0.00s)
+=== RUN   TestGetWorkflowFailureIsolation_NotFound
+--- PASS: TestGetWorkflowFailureIsolation_NotFound (0.00s)
+=== RUN   TestUpdateWorkflowFailureIsolation_Success
+--- PASS: TestUpdateWorkflowFailureIsolation_Success (0.00s)
+=== RUN   TestUpdateWorkflowFailureIsolation_NotFound
+--- PASS: TestUpdateWorkflowFailureIsolation_NotFound (0.00s)
+=== RUN   TestDeleteWorkflowFailureIsolation_Success
+--- PASS: TestDeleteWorkflowFailureIsolation_Success (0.00s)
+=== RUN   TestDeleteWorkflowFailureIsolation_EmptyID
+--- PASS: TestDeleteWorkflowFailureIsolation_EmptyID (0.00s)
+=== RUN   TestDeleteWorkflowFailureIsolation_NotFound
+--- PASS: TestDeleteWorkflowFailureIsolation_NotFound (0.00s)
+=== RUN   TestListWorkflowFailureIsolations_Success
+--- PASS: TestListWorkflowFailureIsolations_Success (0.00s)
+=== RUN   TestListWorkflowFailureIsolations_Empty
+--- PASS: TestListWorkflowFailureIsolations_Empty (0.00s)
+=== RUN   TestListWorkflowFailureIsolationsByWorkflow_Success
+--- PASS: TestListWorkflowFailureIsolationsByWorkflow_Success (0.00s)
+=== RUN   TestGenerateIsolationChecksum_Deterministic
+--- PASS: TestGenerateIsolationChecksum_Deterministic (0.00s)
+=== RUN   TestGenerateIsolationChecksum_DifferentInputs
+--- PASS: TestGenerateIsolationChecksum_DifferentInputs (0.00s)
+=== RUN   TestCreateWorkflowFailureIsolation_AllIsolationScopes
+--- PASS: TestCreateWorkflowFailureIsolation_AllIsolationScopes (0.00s)
+=== RUN   TestCreateWorkflowFailureIsolation_AllIsolationModes
+--- PASS: TestCreateWorkflowFailureIsolation_AllIsolationModes (0.00s)
+=== RUN   TestListWorkflowFailureIsolationsByWorkflow_MultipleMatches
+--- PASS: TestListWorkflowFailureIsolationsByWorkflow_MultipleMatches (0.00s)
+=== RUN   TestValidateWorkflowVersionMigrationRequest_Valid
+--- PASS: TestValidateWorkflowVersionMigrationRequest_Valid (0.00s)
+=== RUN   TestValidateWorkflowVersionMigrationRequest_NilRequest
+--- PASS: TestValidateWorkflowVersionMigrationRequest_NilRequest (0.00s)
+=== RUN   TestValidateWorkflowVersionMigrationRequest_EmptyIdempotencyKey
+--- PASS: TestValidateWorkflowVersionMigrationRequest_EmptyIdempotencyKey (0.00s)
+=== RUN   TestValidateWorkflowVersionMigrationRequest_ShortIdempotencyKey
+--- PASS: TestValidateWorkflowVersionMigrationRequest_ShortIdempotencyKey (0.00s)
+=== RUN   TestValidateWorkflowVersionMigrationRequest_EmptyMigrationID
+--- PASS: TestValidateWorkflowVersionMigrationRequest_EmptyMigrationID (0.00s)
+=== RUN   TestValidateWorkflowVersionMigrationRequest_InvalidMigrationIDPrefix
+--- PASS: TestValidateWorkflowVersionMigrationRequest_InvalidMigrationIDPrefix (0.00s)
+=== RUN   TestValidateWorkflowVersionMigrationRequest_EmptyWorkflowID
+--- PASS: TestValidateWorkflowVersionMigrationRequest_EmptyWorkflowID (0.00s)
+=== RUN   TestValidateWorkflowVersionMigrationRequest_EmptySourceVersion
+--- PASS: TestValidateWorkflowVersionMigrationRequest_EmptySourceVersion (0.00s)
+=== RUN   TestValidateWorkflowVersionMigrationRequest_EmptyTargetVersion
+--- PASS: TestValidateWorkflowVersionMigrationRequest_EmptyTargetVersion (0.00s)
+=== RUN   TestValidateWorkflowVersionMigrationRequest_EmptyMigrationStatus
+--- PASS: TestValidateWorkflowVersionMigrationRequest_EmptyMigrationStatus (0.00s)
+=== RUN   TestValidateWorkflowVersionMigrationRequest_InvalidMigrationStatus
+--- PASS: TestValidateWorkflowVersionMigrationRequest_InvalidMigrationStatus (0.00s)
+=== RUN   TestValidateWorkflowVersionMigrationRequest_EmptyMigrationScript
+--- PASS: TestValidateWorkflowVersionMigrationRequest_EmptyMigrationScript (0.00s)
+=== RUN   TestValidateWorkflowVersionMigrationRequest_EmptyValidationRules
+--- PASS: TestValidateWorkflowVersionMigrationRequest_EmptyValidationRules (0.00s)
+=== RUN   TestValidateWorkflowVersionMigrationRequest_PHIPatternInMetadataKey
+--- PASS: TestValidateWorkflowVersionMigrationRequest_PHIPatternInMetadataKey (0.00s)
+=== RUN   TestCreateWorkflowVersionMigration_Success
+--- PASS: TestCreateWorkflowVersionMigration_Success (0.00s)
+=== RUN   TestCreateWorkflowVersionMigration_Idempotency
+--- PASS: TestCreateWorkflowVersionMigration_Idempotency (0.00s)
+=== RUN   TestCreateWorkflowVersionMigration_DuplicateMigrationID
+--- PASS: TestCreateWorkflowVersionMigration_DuplicateMigrationID (0.00s)
+=== RUN   TestCreateWorkflowVersionMigration_ValidationFailure
+--- PASS: TestCreateWorkflowVersionMigration_ValidationFailure (0.00s)
+=== RUN   TestGetWorkflowVersionMigration_Success
+--- PASS: TestGetWorkflowVersionMigration_Success (0.00s)
+=== RUN   TestGetWorkflowVersionMigration_EmptyID
+--- PASS: TestGetWorkflowVersionMigration_EmptyID (0.00s)
+=== RUN   TestGetWorkflowVersionMigration_NotFound
+--- PASS: TestGetWorkflowVersionMigration_NotFound (0.00s)
+=== RUN   TestUpdateWorkflowVersionMigration_Success
+--- PASS: TestUpdateWorkflowVersionMigration_Success (0.00s)
+=== RUN   TestUpdateWorkflowVersionMigration_NotFound
+--- PASS: TestUpdateWorkflowVersionMigration_NotFound (0.00s)
+=== RUN   TestDeleteWorkflowVersionMigration_Success
+--- PASS: TestDeleteWorkflowVersionMigration_Success (0.00s)
+=== RUN   TestDeleteWorkflowVersionMigration_EmptyID
+--- PASS: TestDeleteWorkflowVersionMigration_EmptyID (0.00s)
+=== RUN   TestDeleteWorkflowVersionMigration_NotFound
+--- PASS: TestDeleteWorkflowVersionMigration_NotFound (0.00s)
+=== RUN   TestListWorkflowVersionMigrations_Success
+--- PASS: TestListWorkflowVersionMigrations_Success (0.00s)
+=== RUN   TestListWorkflowVersionMigrations_Empty
+--- PASS: TestListWorkflowVersionMigrations_Empty (0.00s)
+=== RUN   TestListWorkflowVersionMigrationsByWorkflow_Success
+--- PASS: TestListWorkflowVersionMigrationsByWorkflow_Success (0.00s)
+=== RUN   TestGenerateMigrationChecksum_Deterministic
+--- PASS: TestGenerateMigrationChecksum_Deterministic (0.00s)
+=== RUN   TestGenerateMigrationChecksum_DifferentInputs
+--- PASS: TestGenerateMigrationChecksum_DifferentInputs (0.00s)
+=== RUN   TestCreateWorkflowVersionMigration_AllMigrationStatuses
+--- PASS: TestCreateWorkflowVersionMigration_AllMigrationStatuses (0.00s)
+=== RUN   TestListWorkflowVersionMigrationsByWorkflow_MultipleMatches
+--- PASS: TestListWorkflowVersionMigrationsByWorkflow_MultipleMatches (0.00s)
+=== RUN   TestValidateWorkflowLoadTestFixtureRequest_Valid
+--- PASS: TestValidateWorkflowLoadTestFixtureRequest_Valid (0.00s)
+=== RUN   TestValidateWorkflowLoadTestFixtureRequest_NilRequest
+--- PASS: TestValidateWorkflowLoadTestFixtureRequest_NilRequest (0.00s)
+=== RUN   TestValidateWorkflowLoadTestFixtureRequest_EmptyIdempotencyKey
+--- PASS: TestValidateWorkflowLoadTestFixtureRequest_EmptyIdempotencyKey (0.00s)
+=== RUN   TestValidateWorkflowLoadTestFixtureRequest_ShortIdempotencyKey
+--- PASS: TestValidateWorkflowLoadTestFixtureRequest_ShortIdempotencyKey (0.00s)
+=== RUN   TestValidateWorkflowLoadTestFixtureRequest_EmptyFixtureID
+--- PASS: TestValidateWorkflowLoadTestFixtureRequest_EmptyFixtureID (0.00s)
+=== RUN   TestValidateWorkflowLoadTestFixtureRequest_InvalidFixtureIDPrefix
+--- PASS: TestValidateWorkflowLoadTestFixtureRequest_InvalidFixtureIDPrefix (0.00s)
+=== RUN   TestValidateWorkflowLoadTestFixtureRequest_EmptyWorkflowID
+--- PASS: TestValidateWorkflowLoadTestFixtureRequest_EmptyWorkflowID (0.00s)
+=== RUN   TestValidateWorkflowLoadTestFixtureRequest_EmptyFixtureType
+--- PASS: TestValidateWorkflowLoadTestFixtureRequest_EmptyFixtureType (0.00s)
+=== RUN   TestValidateWorkflowLoadTestFixtureRequest_InvalidFixtureType
+--- PASS: TestValidateWorkflowLoadTestFixtureRequest_InvalidFixtureType (0.00s)
+=== RUN   TestValidateWorkflowLoadTestFixtureRequest_NegativeRequestsPerSecond
+--- PASS: TestValidateWorkflowLoadTestFixtureRequest_NegativeRequestsPerSecond (0.00s)
+=== RUN   TestValidateWorkflowLoadTestFixtureRequest_NegativeDurationSeconds
+--- PASS: TestValidateWorkflowLoadTestFixtureRequest_NegativeDurationSeconds (0.00s)
+=== RUN   TestValidateWorkflowLoadTestFixtureRequest_NegativeConcurrentUsers
+--- PASS: TestValidateWorkflowLoadTestFixtureRequest_NegativeConcurrentUsers (0.00s)
+=== RUN   TestValidateWorkflowLoadTestFixtureRequest_EmptySyntheticSubjects
+--- PASS: TestValidateWorkflowLoadTestFixtureRequest_EmptySyntheticSubjects (0.00s)
+=== RUN   TestValidateWorkflowLoadTestFixtureRequest_EmptyTestScenarios
+--- PASS: TestValidateWorkflowLoadTestFixtureRequest_EmptyTestScenarios (0.00s)
+=== RUN   TestValidateWorkflowLoadTestFixtureRequest_NegativeExpectedLatencyP50
+--- PASS: TestValidateWorkflowLoadTestFixtureRequest_NegativeExpectedLatencyP50 (0.00s)
+=== RUN   TestValidateWorkflowLoadTestFixtureRequest_NegativeExpectedLatencyP95
+--- PASS: TestValidateWorkflowLoadTestFixtureRequest_NegativeExpectedLatencyP95 (0.00s)
+=== RUN   TestValidateWorkflowLoadTestFixtureRequest_NegativeExpectedLatencyP99
+--- PASS: TestValidateWorkflowLoadTestFixtureRequest_NegativeExpectedLatencyP99 (0.00s)
+=== RUN   TestValidateWorkflowLoadTestFixtureRequest_PHIPatternInMetadataKey
+--- PASS: TestValidateWorkflowLoadTestFixtureRequest_PHIPatternInMetadataKey (0.00s)
+=== RUN   TestCreateWorkflowLoadTestFixture_Success
+--- PASS: TestCreateWorkflowLoadTestFixture_Success (0.00s)
+=== RUN   TestCreateWorkflowLoadTestFixture_Idempotency
+--- PASS: TestCreateWorkflowLoadTestFixture_Idempotency (0.00s)
+=== RUN   TestCreateWorkflowLoadTestFixture_DuplicateFixtureID
+--- PASS: TestCreateWorkflowLoadTestFixture_DuplicateFixtureID (0.00s)
+=== RUN   TestCreateWorkflowLoadTestFixture_ValidationFailure
+--- PASS: TestCreateWorkflowLoadTestFixture_ValidationFailure (0.00s)
+=== RUN   TestGetWorkflowLoadTestFixture_Success
+--- PASS: TestGetWorkflowLoadTestFixture_Success (0.00s)
+=== RUN   TestGetWorkflowLoadTestFixture_EmptyID
+--- PASS: TestGetWorkflowLoadTestFixture_EmptyID (0.00s)
+=== RUN   TestGetWorkflowLoadTestFixture_NotFound
+--- PASS: TestGetWorkflowLoadTestFixture_NotFound (0.00s)
+=== RUN   TestUpdateWorkflowLoadTestFixture_Success
+--- PASS: TestUpdateWorkflowLoadTestFixture_Success (0.00s)
+=== RUN   TestUpdateWorkflowLoadTestFixture_NotFound
+--- PASS: TestUpdateWorkflowLoadTestFixture_NotFound (0.00s)
+=== RUN   TestDeleteWorkflowLoadTestFixture_Success
+--- PASS: TestDeleteWorkflowLoadTestFixture_Success (0.00s)
+=== RUN   TestDeleteWorkflowLoadTestFixture_EmptyID
+--- PASS: TestDeleteWorkflowLoadTestFixture_EmptyID (0.00s)
+=== RUN   TestDeleteWorkflowLoadTestFixture_NotFound
+--- PASS: TestDeleteWorkflowLoadTestFixture_NotFound (0.00s)
+=== RUN   TestListWorkflowLoadTestFixtures_Success
+--- PASS: TestListWorkflowLoadTestFixtures_Success (0.00s)
+=== RUN   TestListWorkflowLoadTestFixtures_Empty
+--- PASS: TestListWorkflowLoadTestFixtures_Empty (0.00s)
+=== RUN   TestListWorkflowLoadTestFixturesByWorkflow_Success
+--- PASS: TestListWorkflowLoadTestFixturesByWorkflow_Success (0.00s)
+=== RUN   TestGenerateFixtureChecksum_Deterministic
+--- PASS: TestGenerateFixtureChecksum_Deterministic (0.00s)
+=== RUN   TestGenerateFixtureChecksum_DifferentInputs
+--- PASS: TestGenerateFixtureChecksum_DifferentInputs (0.00s)
+=== RUN   TestCreateWorkflowLoadTestFixture_AllFixtureTypes
+--- PASS: TestCreateWorkflowLoadTestFixture_AllFixtureTypes (0.00s)
+=== RUN   TestListWorkflowLoadTestFixturesByWorkflow_MultipleMatches
+--- PASS: TestListWorkflowLoadTestFixturesByWorkflow_MultipleMatches (0.00s)
+=== RUN   TestValidateWorkflowPermissionRequest_Valid
+--- PASS: TestValidateWorkflowPermissionRequest_Valid (0.00s)
+=== RUN   TestValidateWorkflowPermissionRequest_NilRequest
+--- PASS: TestValidateWorkflowPermissionRequest_NilRequest (0.00s)
+=== RUN   TestValidateWorkflowPermissionRequest_EmptyIdempotencyKey
+--- PASS: TestValidateWorkflowPermissionRequest_EmptyIdempotencyKey (0.00s)
+=== RUN   TestValidateWorkflowPermissionRequest_ShortIdempotencyKey
+--- PASS: TestValidateWorkflowPermissionRequest_ShortIdempotencyKey (0.00s)
+=== RUN   TestValidateWorkflowPermissionRequest_EmptyPermissionID
+--- PASS: TestValidateWorkflowPermissionRequest_EmptyPermissionID (0.00s)
+=== RUN   TestValidateWorkflowPermissionRequest_InvalidPermissionIDPrefix
+--- PASS: TestValidateWorkflowPermissionRequest_InvalidPermissionIDPrefix (0.00s)
+=== RUN   TestValidateWorkflowPermissionRequest_EmptyWorkflowID
+--- PASS: TestValidateWorkflowPermissionRequest_EmptyWorkflowID (0.00s)
+=== RUN   TestValidateWorkflowPermissionRequest_EmptyRoleID
+--- PASS: TestValidateWorkflowPermissionRequest_EmptyRoleID (0.00s)
+=== RUN   TestValidateWorkflowPermissionRequest_InvalidRoleIDPrefix
+--- PASS: TestValidateWorkflowPermissionRequest_InvalidRoleIDPrefix (0.00s)
+=== RUN   TestValidateWorkflowPermissionRequest_EmptyActions
+--- PASS: TestValidateWorkflowPermissionRequest_EmptyActions (0.00s)
+=== RUN   TestValidateWorkflowPermissionRequest_InvalidAction
+--- PASS: TestValidateWorkflowPermissionRequest_InvalidAction (0.00s)
+=== RUN   TestValidateWorkflowPermissionRequest_EmptyResourceScopes
+--- PASS: TestValidateWorkflowPermissionRequest_EmptyResourceScopes (0.00s)
+=== RUN   TestValidateWorkflowPermissionRequest_EmptyGrantedBy
+--- PASS: TestValidateWorkflowPermissionRequest_EmptyGrantedBy (0.00s)
+=== RUN   TestValidateWorkflowPermissionRequest_EmptyGrantedAt
+--- PASS: TestValidateWorkflowPermissionRequest_EmptyGrantedAt (0.00s)
+=== RUN   TestValidateWorkflowPermissionRequest_PHIPatternInMetadataKey
+--- PASS: TestValidateWorkflowPermissionRequest_PHIPatternInMetadataKey (0.00s)
+=== RUN   TestCreateWorkflowPermission_Success
+--- PASS: TestCreateWorkflowPermission_Success (0.00s)
+=== RUN   TestCreateWorkflowPermission_Idempotency
+--- PASS: TestCreateWorkflowPermission_Idempotency (0.00s)
+=== RUN   TestCreateWorkflowPermission_DuplicatePermissionID
+--- PASS: TestCreateWorkflowPermission_DuplicatePermissionID (0.00s)
+=== RUN   TestCreateWorkflowPermission_ValidationFailure
+--- PASS: TestCreateWorkflowPermission_ValidationFailure (0.00s)
+=== RUN   TestGetWorkflowPermission_Success
+--- PASS: TestGetWorkflowPermission_Success (0.00s)
+=== RUN   TestGetWorkflowPermission_EmptyID
+--- PASS: TestGetWorkflowPermission_EmptyID (0.00s)
+=== RUN   TestGetWorkflowPermission_NotFound
+--- PASS: TestGetWorkflowPermission_NotFound (0.00s)
+=== RUN   TestUpdateWorkflowPermission_Success
+--- PASS: TestUpdateWorkflowPermission_Success (0.00s)
+=== RUN   TestUpdateWorkflowPermission_NotFound
+--- PASS: TestUpdateWorkflowPermission_NotFound (0.00s)
+=== RUN   TestDeleteWorkflowPermission_Success
+--- PASS: TestDeleteWorkflowPermission_Success (0.00s)
+=== RUN   TestDeleteWorkflowPermission_EmptyID
+--- PASS: TestDeleteWorkflowPermission_EmptyID (0.00s)
+=== RUN   TestDeleteWorkflowPermission_NotFound
+--- PASS: TestDeleteWorkflowPermission_NotFound (0.00s)
+=== RUN   TestListWorkflowPermissions_Success
+--- PASS: TestListWorkflowPermissions_Success (0.00s)
+=== RUN   TestListWorkflowPermissions_Empty
+--- PASS: TestListWorkflowPermissions_Empty (0.00s)
+=== RUN   TestListWorkflowPermissionsByRole_Success
+--- PASS: TestListWorkflowPermissionsByRole_Success (0.00s)
+=== RUN   TestListWorkflowPermissionsByWorkflow_Success
+--- PASS: TestListWorkflowPermissionsByWorkflow_Success (0.00s)
+=== RUN   TestGeneratePermissionChecksum_Deterministic
+--- PASS: TestGeneratePermissionChecksum_Deterministic (0.00s)
+=== RUN   TestGeneratePermissionChecksum_DifferentInputs
+--- PASS: TestGeneratePermissionChecksum_DifferentInputs (0.00s)
+=== RUN   TestCreateWorkflowPermission_AllActions
+--- PASS: TestCreateWorkflowPermission_AllActions (0.00s)
+=== RUN   TestListWorkflowPermissionsByRole_MultipleMatches
+--- PASS: TestListWorkflowPermissionsByRole_MultipleMatches (0.00s)
+PASS
+coverage: 99.4% of statements
+ok  	atlas/services/atlas-workflow	1.174s	coverage: 99.4% of statements
+FAIL
